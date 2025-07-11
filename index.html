@@ -9,14 +9,10 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f7f9fb;
       color: #333;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
       padding: 20px;
       text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     h1 {
@@ -27,8 +23,8 @@
 
     p {
       font-size: 1.25rem;
-      max-width: 600px;
-      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin: 1rem auto;
       line-height: 1.6;
       color: #555;
     }
@@ -43,11 +39,36 @@
       text-decoration: underline;
     }
 
+    img {
+      float: left;
+      width: 160px;
+      margin-right: 20px;
+      border-radius: 10px;
+    }
+
+    section {
+      margin-top: 60px;
+      overflow: hidden;
+      text-align: left;
+    }
+
     footer {
       font-size: 0.9rem;
       color: #aaa;
-      position: absolute;
-      bottom: 15px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      img {
+        float: none;
+        display: block;
+        margin: 0 auto 20px auto;
+      }
+
+      section {
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -60,25 +81,37 @@
     Want to be one of the first to try it? Email us at <a href="mailto:DataForgeApps@gmail.com">DataForgeApps@gmail.com</a>
   </p>
 
-<h3 style="margin-top: 40px;">🔥 You’re visitor #<span id="visit-count">Loading...</span> to the Forge!</h3>
+  <h3 style="margin-top: 40px;">🔥 You’re visitor #<span id="visit-count">Loading...</span> to the Forge!</h3>
 
+  <section>
+    <h2>👩‍💻 About the Developer</h2>
+    <img src="renee-avatar.png" alt="Avatar of Renee, the developer" />
 
-<<section style="margin-top: 60px; overflow: hidden;">
-  <h2>👩‍💻 About the Developer</h2>
-  <img src="renee-avatar.png" alt="Avatar of Renee, the developer" 
-       style="float: left; width: 160px; margin-right: 20px; border-radius: 10px;" />
-
-  <p>
-    Hey, I'm <strong>Renee</strong> — engineer by training, spreadsheet wrangler by trade, and now indie coder for fun!<br><br>
-    I hold an Associate's in Engineering Science (Erie Community College), a Bachelor's in Chemical Engineering (University of Pittsburgh), 
-    and a Master's in Engineering Management (online — because full-time jobs and day classes don’t mix).<br><br>
-    I’m also Lean Six Sigma Black Belt–certified through Kent State. ⚙️📊<br><br>
-    My love of coding started with VBA automation in Excel, but this is my first big step outside that world. DataForge is just the beginning — let’s see what we can build. 🔧🔥<br><br>
-    Connect with me on <a href="https://www.linkedin.com/in/reneelueke?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>!
-  </p>
-</section>
+    <p>
+      Hey, I'm <strong>Renee</strong> — engineer by training, spreadsheet wrangler by trade, and now indie coder for fun!
+      <br><br>
+      I hold an Associate's in Engineering Science (Erie Community College), a Bachelor's in Chemical Engineering (University of Pittsburgh), and a Master's in Engineering Management (online — because full-time jobs and day classes don’t mix).
+      <br><br>
+      I’m also Lean Six Sigma Black Belt–certified through Kent State. ⚙️📊
+      <br><br>
+      My love of coding started with VBA automation in Excel, but this is my first big step outside that world. DataForge is just the beginning — let’s see what we can build. 🔧🔥
+      <br><br>
+      Connect with me on <a href="https://www.linkedin.com/in/reneelueke?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>!
+    </p>
+    <div style="clear: both;"></div>
+  </section>
 
   <footer>© 2025 DataForge</footer>
-  <!-- making the commit so it goes live-->
+
+  <script>
+    fetch('https://api.countapi.xyz/hit/getdataforge.com/visits')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('visit-count').textContent = data.value;
+      })
+      .catch(() => {
+        document.getElementById('visit-count').textContent = "???";
+      });
+  </script>
 </body>
 </html>
