@@ -81,7 +81,7 @@
     Want to be one of the first to try it? Email us at <a href="mailto:DataForgeApps@gmail.com">DataForgeApps@gmail.com</a>
   </p>
 
- <!-- Visitor Counter - Bottom Center -->
+ <!-- Visitor Counter - Bottom Center (Improved Digit Display) -->
 <div style="
   position: fixed;
   bottom: 10px;
@@ -96,16 +96,21 @@
   z-index: 999;
   display: flex;
   align-items: center;
-  gap: 8px;
-  max-width: 90vw;
+  gap: 6px;
   flex-wrap: wrap;
 ">
   <span>You’re the</span>
   <img src="https://counter.websiteout.net/compte.php?S=6&C=007ACC&N=1&T=0"
        alt="Visitor Counter"
-       style="height: 20px; vertical-align: middle;" />
+       style="
+         height: auto;
+         max-height: 24px;
+         image-rendering: pixelated;
+         display: inline-block;
+       " />
   <span>visitor to the Forge!</span>
 </div>
+  
 
   <section>
     <h2>👩‍💻 About the Developer</h2>
