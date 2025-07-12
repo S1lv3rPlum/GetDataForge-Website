@@ -100,48 +100,15 @@
     <div style="clear: both;"></div>
   </section>
 
-<!-- Visitor Counter - Page Footer Style -->
-<div style="
-  margin-top: 3em;
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 1rem;
-  color: #ffffff;
-  background: #222;
-  padding: 1em 0;
-">
-  <div>You’re visitor number:</div>
-  <div>
-    <img src="https://counter.websiteout.net/compte.php?S=6&C=007ACC&N=1&T=0"
-         alt=""
-         style="
-           height: auto;
-           max-height: 28px;
-           image-rendering: pixelated;
-           display: inline-block;
-         " />
-  </div>
-  <div>to the Forge!</div>
-</div>
-
 
   <footer>© 2025 DataForge</footer>
 
-  <script>
-    fetch('https://api.countapi.xyz/hit/getdataforge.com/visits')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visit-count').textContent = data.value;
-      })
-      .catch(() => {
-        document.getElementById('visit-count').textContent = "???";
-      });
-  </script>
 
-<!-- Visitor Counter - FreeCounter.org -->
-<div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000;">
-  <img src="https://freecounter.org/count.php?fc=16953861&nd=6&width=100" alt="Visitor Counter" style="opacity: 0.75;" />
-</div>
+
+<footer style="text-align: center; font-size: 0.9rem; margin-top: 2rem;">
+  <span>Visitors to The Forge:</span>
+  <img src="https://hitwebcounter.com/counter/counter.php?page=21131817&style=0006&nbdigits=5&type=page&initCount=3" alt="Visitor Counter" style="vertical-align: middle; margin-left: 6px;">
+</footer>
 
 </body>
 </html>
