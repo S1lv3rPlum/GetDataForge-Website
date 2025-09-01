@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - [App Name]</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #333;
+    }
+    h1, h2 {
+      color: #222;
+    }
+    h1 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p><em>Last updated: [DATE]</em></p>
+
+  <p><strong>[App Name]</strong> ("the App") is developed to help users track maintenance on their vehicles. 
+  This privacy policy explains how information is collected, used, and protected when using the App.</p>
+
+  <h2>1. Information We Collect</h2>
+  <ul>
+    <li><strong>Account Information:</strong> When you create an account or log in, we collect your email address through Firebase Authentication.</li>
+    <li><strong>Usage Data:</strong> Firebase may collect non-identifying information such as device type, operating system, crash logs, and app performance metrics.</li>
+    <li><strong>Maintenance Data:</strong> Any information you enter into the App (e.g., vehicle details, maintenance records) is stored securely in Firebase.</li>
+  </ul>
+
+  <h2>2. How We Use Information</h2>
+  <ul>
+    <li>To allow you to log in and access your account across devices.</li>
+    <li>To sync your data between devices and/or household members.</li>
+    <li>To improve app stability and performance.</li>
+  </ul>
+
+  <h2>3. Sharing of Information</h2>
+  <p>We do not sell, trade, or rent your personal information. We only share data with trusted third-party services (Firebase) that provide hosting, authentication, and database functionality.</p>
+
+  <h2>4. Data Security</h2>
+  <p>We take reasonable measures to protect your information. However, no method of electronic transmission or storage is 100% secure.</p>
+
+  <h2>5. Children’s Privacy</h2>
+  <p>The App is not directed toward children under 13. We do not knowingly collect information from children under 13.</p>
+
+  <h2>6. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Updates will be posted at this page with a revised date.</p>
+
+  <h2>7. Contact Us</h2>
+  <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+  <p><strong>[Your Contact Email]</strong></p>
+
+</body>
+</html>
