@@ -70,17 +70,87 @@
         text-align: center;
       }
     }
+
+    /* Side menu styling */
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      background-color: #2c3e50;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+
+    .sidenav a {
+      padding: 10px 30px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: #f7f9fb;
+      display: block;
+      transition: 0.2s;
+    }
+
+    .sidenav a:hover {
+      background-color: #007acc;
+      color: #fff;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 2rem;
+      color: #f7f9fb;
+    }
+
+    /* Hamburger button */
+    .menu-btn {
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1100;
+      background: #2c3e50;
+      color: #f7f9fb;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 14px;
+    }
   </style>
 </head>
 <body>
-  <h1>Coming Soon!</h1>
+  <!-- Side menu -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="gearsmith.html">GearSmith</a>
+    <!-- Later, add more: <a href="app2.html">App 2</a>, <a href="app3.html">App 3</a> -->
+  </div>
+
+  <!-- Menu button -->
+  <button class="menu-btn" onclick="openNav()">☰ Apps</button>
+
+<section id="about">
+  <h2>About Our Apps</h2>
   <p>
-    We're building <strong>Stock Hammer</strong>, a streamlined inventory management app to help you track stock, analyze sales, and simplify operations — all without being online.
+    Welcome! We create apps designed to make everyday tasks easier.  
+    Our first release is live — check out the links in the menu to explore details, 
+    including our vehicle maintenance tracker and more apps as they’re released.  
   </p>
+</section>
+<p>
+  Want to see what we’re working on? Use the <strong>☰ Apps</strong> menu to explore.  
+</p>
+<p>
+  Interested in testing early versions? Email us at <a href="mailto:DataForgeApps@gmail.com">DataForgeApps@gmail.com</a>
+</p>
   <p>
     Want to be one of the first to try it? Email us at <a href="mailto:DataForgeApps@gmail.com">DataForgeApps@gmail.com</a>
   </p>
-  
 
   <section>
     <h2>👩‍💻 About the Developer</h2>
@@ -100,17 +170,25 @@
     <div style="clear: both;"></div>
   </section>
 
+  <footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
+    <div>© 2025 DataForge</div>
+    <div style="margin-top: 12px;">
+      <span>Visitors to The Forge:</span>
+      <img 
+        src="https://hitwebcounter.com/counter/counter.php?page=21131817&style=0006&nbdigits=5&type=page&initCount=3" 
+        alt="Visitor Counter" 
+        style="vertical-align: middle; margin-left: 6px;">
+    </div>
+  </footer>
 
- <footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
-  <div>© 2025 DataForge</div>
-  <div style="margin-top: 12px;">
-    <span>Visitors to The Forge:</span>
-    <img 
-      src="https://hitwebcounter.com/counter/counter.php?page=21131817&style=0006&nbdigits=5&type=page&initCount=3" 
-      alt="Visitor Counter" 
-      style="vertical-align: middle; margin-left: 6px;">
-  </div>
-</footer>
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
 
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
 </body>
 </html>
