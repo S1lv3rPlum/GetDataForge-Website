@@ -121,20 +121,6 @@
       margin: 10px 0;
     }
 
-    .screenshots {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin: 30px 0;
-      justify-content: center;
-    }
-
-    .screenshots img {
-      width: 280px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
     .instructions {
       background: #fff3cd;
       border-left: 4px solid #ffc107;
@@ -252,15 +238,23 @@
       <p>Request songs, tip the band, and hear your picks played live on stage — all from your phone.</p>
     </div>
 
+    <!-- ABOUT / APP INFO -->
+    <div class="how-it-works">
+      <h2>About This App</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8;">
+        <strong>The Juke</strong> was created specifically for Nashville North events.  
+        It gives fans a fun, digital way to browse available songs, send requests, and tip the band without standing in line or shouting over the crowd.  
+        The app uses no accounts, no passwords, and no personal profiles — just simple, fast song requests.
+      </p>
+    </div>
+
     <!-- DOWNLOAD SECTION -->
     <div class="download-section">
       <h2 style="margin-top: 0;">📥 Get The App</h2>
-      
-          <a href="YOUR_CUSTOMER_APK_URL_HERE" class="download-button">
+      <a href="YOUR_CUSTOMER_APK_URL_HERE" class="download-button">
         <span class="app-icon">🎵</span>
         Download for Android
       </a>
-
       <p style="color: #6c757d; margin-top: 10px;">
         Free to download • Request songs live • Pay via Venmo or cash
       </p>
@@ -270,32 +264,91 @@
     <div class="how-it-works">
       <h2>How It Works</h2>
       <ol>
-        <li>📱 <strong>Download the app</strong> (button above)</li>
+        <li>📱 <strong>Download the app</strong></li>
         <li>🎵 <strong>Browse the song list</strong> at the show</li>
         <li>💰 <strong>Pick a song & pay</strong> via Venmo or cash</li>
-        <li>🎸 <strong>The band plays your request</strong> live on stage!</li>
+        <li>🎸 <strong>Your request is performed live!</strong></li>
       </ol>
     </div>
 
-    <!-- SCREENSHOTS (Optional) -->
-    <!-- <div class="screenshots">
-      <img src="screenshot1.png" alt="Song list screen">
-      <img src="screenshot2.png" alt="Request screen">
-    </div> -->
-
     <!-- INSTALLATION INSTRUCTIONS -->
     <div class="instructions">
-      <h3>📋 Installation Steps</h3>
+      <h3>📋 Installation Steps (If downloading outside Play Store)</h3>
       <ol>
         <li>Tap the download button above</li>
-        <li>Your phone may show a warning about "unknown sources"</li>
-        <li>Tap <strong>Settings</strong> and enable <strong>Install Unknown Apps</strong></li>
-        <li>Return and tap <strong>Install</strong></li>
-        <li>Open The Juke and start requesting! 🎉</li>
+        <li>Your phone may warn about “Unknown Sources”</li>
+        <li>Allow installation in <strong>Settings → Install Unknown Apps</strong></li>
+        <li>Tap <strong>Install</strong></li>
+        <li>Open The Juke and start requesting 🎉</li>
       </ol>
     </div>
 
     <!-- QR CODE -->
     <div class="qr-section">
       <h3 style="color: #2c3e50;">🎤 At the Show?</h3>
-      <p style="color
+      <p>Scan to instantly download The Juke on your phone:</p>
+      <img src="YOUR_QR_IMAGE_HERE.png" class="qr-code" alt="QR Code for The Juke Download">
+    </div>
+
+   <!-- ADD THE JUKE TO YOUR VENUE / BAND -->
+    <div class="want-juke">
+      <h2>Bring <em>The Juke</em> to Your Band or Venue 🎤</h2>
+      <p>
+        Want to let your crowd request songs, tip the band, and stay engaged all night?
+        The Juke now includes a companion <strong>Band & Venue Manager App</strong> coming soon to Google Play.
+      </p>
+
+      <p>
+        With the manager app, performers and venues will be able to:
+      </p>
+
+      <ul style="text-align: left; max-width: 550px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7;">
+        <li>🎵 Build and customize your own live song list</li>
+        <li>🕹️ Enable or disable requests in real time during shows</li>
+        <li>📋 Update set lists instantly — no re-uploading or rebuilding</li>
+        <li>📱 Manage multiple events, rotating bands, or weekly lineups</li>
+        <li>⚡ Sync updates instantly with your audience’s Juke app</li>
+      </ul>
+
+      <p style="margin-top: 20px;">
+        No coding, no custom builds — just download, set up your profile, and you’re ready to go.
+      </p>
+
+      <a href="mailto:DataForgeApps@gmail.com" class="contact-button">
+        Notify Me When It’s Live
+      </a>
+    </div>
+
+    <!-- PRIVACY POLICY -->
+    <div class="how-it-works">
+      <h2>Privacy Policy</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8;">
+        The Juke does not collect or store personal information.  
+        No accounts, emails, names, or payment info are stored by the app.  
+        Payments are handled externally via Venmo, Cash App, or cash and are not processed through the app.
+      </p>
+      <p style="font-size: 1rem; color: #555;">
+        Full privacy policy available here:  
+        <a href="juke-privacy-policy.html" target="_blank">View Privacy Policy</a>
+      </p>
+    </div>
+
+    <!-- DATA DELETION REQUEST -->
+    <div class="how-it-works">
+      <h2>Request Data Deletion</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8;">
+        Because The Juke does not store user accounts or personal data,  
+        the only deletable data is optional venue-related analytics if you operate a venue version.
+      </p>
+      <a href="mailto:DataForgeApps@gmail.com?subject=Delete%20My%20Juke%20Data" class="contact-button">
+        Request Data Deletion
+      </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 DataForge | Built with ❤️ by Renee</p>
+    </footer>
+  </div>
+</body>
+</html>
