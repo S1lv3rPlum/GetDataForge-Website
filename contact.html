@@ -52,5 +52,24 @@
       <a href="Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a>
     </div>
   </footer>
+
+<script>
+  // Pre-select the reason dropdown based on URL query parameter
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const reasonParam = urlParams.get('reason');
+    if (reasonParam) {
+      const select = document.getElementById('reason');
+      for (let option of select.options) {
+        if (option.value === reasonParam) {
+          option.selected = true;
+          break;
+        }
+      }
+    }
+  });
+</script>
+
+  
 </body>
 </html>
