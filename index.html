@@ -23,6 +23,12 @@
       margin-bottom: 0.5rem;
       color: #2c3e50;
     }
+    h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
 
     p {
       font-size: 1.25rem;
@@ -124,36 +130,149 @@
       border-radius: 6px;
       padding: 8px 14px;
     }
+
+   /* Accordion for App Summaries with logos */
+#app-summaries {
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+
+.accordion-item {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center; /* center logo vertically */
+  gap: 15px; /* space between logo and text */
+  background: #667eea;
+  color: #fff;
+  cursor: pointer;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.accordion-header:hover {
+  background: #5a67d8;
+}
+
+.accordion-header img {
+  width: 40px; /* adjust logo size */
+  height: auto;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #f7f9fb;
+  transition: max-height 0.3s ease;
+  padding: 0 20px;
+}
+
+.accordion-content p {
+  margin: 15px 0;
+  color: #333;
+}
+
   </style>
 </head>
 <body>
   <!-- Side menu -->
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="gearsmith.html">GearSmith</a>
-    <a href="stockhammer.html">Stock Hammer</a>
-    <a href="filamentfoundry.html">Filament Foundry</a>
-     <a href="juke.html">The Juke</a>
-    <!-- Later, add more: <a href="app2.html">App 2</a>, <a href="app3.html">App 3</a> -->
+    <a href="GearSmith/gearsmith.html">GearSmith</a>
+    <a href="Stock_Hammer/stockhammer.html">Stock Hammer</a>
+    <a href="Filament_Foundry/filamentfoundry.html">Filament Foundry</a>
+     <a href="The_Juke_App/juke.html">The Juke</a>
+    <!-- Later, add more: <a href="folder/app2.html">App 2</a>, <a href="folder/app3.html">App 3</a> -->
   </div>
 
   <!-- Menu button -->
   <button class="menu-btn" onclick="openNav()">☰ Apps</button>
 
 <section id="about">
-  <h2>About Our Apps</h2>
+  <h2>About Data Forge Apps</h2>
   <p>
     Welcome! We create apps designed to make everyday tasks easier.  
     Our first release is live — check out the links in the menu to explore details, 
     including our vehicle maintenance tracker and more apps as they’re released.  
   </p>
 </section>
+
 <p>
   Want to see what we’re working on? Use the <strong>☰ Apps</strong> menu to explore.  
 </p>
+
 <p>
-  Interested in testing early versions? Email us at <a href="mailto:DataForgeApps@gmail.com">DataForgeApps@gmail.com</a>
+  Interested in testing early versions or contacting us? 
+ <a href="contact.html" style="color:#007acc; font-weight:bold; text-decoration:none;" 
+   onmouseover="this.style.textDecoration='underline';" 
+   onmouseout="this.style.textDecoration='none';">
+  Reach out here
+</a>
 </p>
+
+
+<section id="app-summaries">
+  <h2>Our Apps</h2>
+  <div class="accordion">
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <img src="GearSmith/GearSmithLogo.png" alt="GearSmith Logo">
+        GearSmith
+      </button>
+      <div class="accordion-content">
+        <p>A vehicle maintenance tracker that keeps your cars organized. Originally built for a classic Corvette enthusiast to track maintenance, receipts, modifications, and more, GearSmith quickly became a tool I’d use myself. Keep all your household vehicles organized in one place, with shared logs for everyone who helps care for them. </p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <img src="Stock_Hammer/StockHammerLogo.png" alt="Stock Hammer Logo">
+        Stock Hammer
+      </button>
+      <div class="accordion-content">
+        <p>A simple inventory and parts tracker for makers and small shops. Designed to keep counts accurate, reduce guesswork, and make restocking decisions easier.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <img src="Filament_Foundry/filamentlogo.png" alt="Filament Foundry Logo">
+        Filament Foundry
+      </button>
+      <div class="accordion-content">
+        <p>A 3-D printing filament tracker built for small businesses. Monitor spool weights, usage, and remaining stock to avoid mid-print failures and improve inventory planning.</p>
+  </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <img src="The_Juke_App/Juke_icon.png" alt="The Juke Logo">
+        The Juke
+      </button>
+      <div class="accordion-content">
+        <p>Live jukebox app for events — request songs, tip the band, and follow along in real time. I created it to make shows more interactive and fun.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
   
   <section>
     <h2>👩‍💻 About the Developer</h2>
@@ -168,21 +287,34 @@
       <br><br>
       My love of coding started with VBA automation in Excel, but this is my first big step outside that world. DataForge is just the beginning — let’s see what we can build. 🔧🔥
       <br><br>
-      Connect with me on <a href="https://www.linkedin.com/in/reneelueke?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>!
+      Connect with me on <a href="https://www.linkedin.com/in/reneelueke?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer"
+>LinkedIn</a>!
     </p>
     <div style="clear: both;"></div>
   </section>
 
-  <footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
-    <div>© 2025 DataForge</div>
-    <div style="margin-top: 12px;">
-      <span>Visitors to The Forge:</span>
-      <img 
-        src="https://hitwebcounter.com/counter/counter.php?page=21131817&style=0006&nbdigits=5&type=page&initCount=3" 
-        alt="Visitor Counter" 
-        style="vertical-align: middle; margin-center: 6px;">
-    </div>
-  </footer>
+<footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
+  <div>© 2025 DataForge</div>
+  <div style="margin-top: 8px;">
+    <a href="Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer"
+>Privacy Policy</a> |
+    <a href="Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer"
+>Terms of Service</a> |
+    <a href="Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer"
+>Cookie Policy</a> |
+     <a href="contact.html" target="_blank" rel="noopener noreferrer"
+>Contact Form</a>
+  </div>
+  <div style="margin-top: 12px;">
+    <span>Visitors to The Forge:</span>
+    <img 
+      src="https://hitwebcounter.com/counter/counter.php?page=21131817&style=0006&nbdigits=5&type=page&initCount=3" 
+      alt="Visitor Counter" 
+      style="vertical-align: middle; margin-left: 6px;"
+
+  </div>
+</footer>
+
 
   <script>
     function openNav() {
@@ -193,5 +325,20 @@
       document.getElementById("mySidenav").style.width = "0";
     }
   </script>
+  <script>
+  const headers = document.querySelectorAll('.accordion-header');
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null; // close
+      } else {
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+        content.style.maxHeight = content.scrollHeight + "px"; // open
+      }
+    });
+  });
+</script>
+
 </body>
 </html>

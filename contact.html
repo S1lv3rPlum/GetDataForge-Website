@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - DataForgeApps</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
+    h1 { color: #2c3e50; text-align: center; }
+    form { max-width: 500px; margin: 0 auto; }
+    input, textarea { width: 100%; padding: 6px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    input[type="submit"] { background: #007acc; color: #fff; border: none; cursor: pointer; }
+    input[type="submit"]:hover { background: #005fa3; }
+    footer { margin-top: 40px; font-size: 0.9rem; color: #aaa; text-align: center; }
+    a { color: #007acc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Contact Us</h1>
+  <p style="text-align:center;">We’d love to hear from you! Please fill out the form below and we’ll get back to you as soon as possible.</p>
+
+  <form action="mailto:DataForgeApps@gmail.com" method="post" enctype="text/plain">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="reason">Reason for Contact:</label>
+  <select id="reason" name="reason" required>
+    <option value="">-- Please choose an option --</option>
+    <option value="General Inquiry">General Inquiry</option>
+    <option value="Beta Testing Request">Beta Testing Request</option>
+    <option value="Data Deletion Request">Data Deletion Request</option>
+    <option value="Bug Report">Bug Report</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
+
+  <input type="submit" value="Send">
+</form>
+
+
+  <footer>
+    <div>© 2025 DataForgeApps</div>
+    <div style="margin-top: 8px;">
+      <a href="Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
+      <a href="Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
+      <a href="Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a>
+    </div>
+  </footer>
+
+<script>
+  // Pre-select the reason dropdown based on URL query parameter
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const reasonParam = urlParams.get('reason');
+    if (reasonParam) {
+      const select = document.getElementById('reason');
+      for (let option of select.options) {
+        if (option.value === reasonParam) {
+          option.selected = true;
+          break;
+        }
+      }
+    }
+  });
+</script>
+
+  
+</body>
+</html>
