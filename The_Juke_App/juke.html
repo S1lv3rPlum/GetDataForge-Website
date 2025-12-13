@@ -222,16 +222,40 @@
         width: 100%;
       }
     }
+
+    .header-title .logo {
+  width: 80px; /* adjust size */
+  margin: 0;   /* remove bottom margin */
+  display: inline-block; /* allow inline with text */
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+@media (max-width: 600px) {
+  .header-title {
+    flex-direction: column; /* stacks on small screens */
+    gap: 10px;
+  }
+}
+
+
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <img src="Juke_icon.png" alt="The Juke Logo" class="logo">
-      <h1> The Juke</h1>
-      <p class="subtitle">Live Jukebox </p>
-      <p><a href="../index.html">🏠 Back to Home</a></p>
-    </header>
+  <div class="header-title">
+    <img src="Juke_icon.png" alt="The Juke Logo" class="logo">
+    <h1>The Juke</h1>
+  </div>
+  <p class="subtitle">Live Jukebox </p>
+  <p><a href="../index.html">🏠 Back to Home</a></p>
+</header>
+
 
     <!-- HERO SECTION -->
     <div class="hero">
@@ -287,7 +311,7 @@
     <!-- QR CODE -->
     <div class="qr-section">
       <h3 style="color: #2c3e50;">🎤 At the Show?</h3>
-      <p>Scan to instantly download The Juke on your phone:</p>
+      <p>(Coming Soon!) Scan to instantly download The Juke on your phone:</p>
       <img src="YOUR_QR_IMAGE_HERE.png" class="qr-code" alt="QR Code for The Juke Download">
     </div>
 

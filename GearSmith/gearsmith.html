@@ -91,12 +91,35 @@
 .badge-button:hover {
   background-color: #ff3b3b;
 }
+.header-title {
+  display: flex;
+  align-items: center;      /* vertically centers logo with text */
+  justify-content: center;  /* centers horizontally */
+  gap: 15px;                /* space between logo and text */
+}
+
+.header-title .logo {
+  width: 80px;              /* adjust size */
+  margin: 0;                /* remove bottom margin */
+  display: inline-block;    /* ensures inline with text */
+}
+
+@media (max-width: 600px) {
+  .header-title {
+    flex-direction: column; /* stacks on small screens */
+    gap: 10px;
+  }
+}
+
+
   </style>
 </head>
 <body>
-  <header>
-  <img src="GearSmithLogo.png" alt="GearSmith Logo" style="width:120px; margin-bottom: 10px;">
-  <h1>GearSmith</h1>
+<header>
+  <div class="header-title">
+    <img src="GearSmithLogo.png" alt="GearSmith Logo" class="logo">
+    <h1>GearSmith</h1>
+  </div>
   <p>A vehicle maintenance tracker app by <strong>DataForge</strong></p>
   <p><a href="../index.html">🏠 Back to Home</a></p>
 </header>
@@ -139,8 +162,10 @@
   <h2>Download</h2>
   <p>
     Google Play Store link coming soon!  
-    <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="badge-button">Join Beta Testers</a><br>
-    APK link coming soon for direct download.
+   <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
+  Notify Me When It’s Live
+</a>
+
   </p>
 </section>
 
@@ -149,7 +174,10 @@
     <p>
       GearSmith has its own <a href="gearsmithprivacy-policy.html" target="_blank">Privacy Policy</a> to cover account login, household vehicle data, and online sync.
     </p>
-    <a href="mailto:DataForgeApps@gmail.com?subject=Delete%20My%20GearSmith%20Data">Request Data Deletion</a>
+    <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
+  Request Data Deletion
+</a>
+
   </section>
 
 <footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">

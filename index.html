@@ -23,6 +23,12 @@
       margin-bottom: 0.5rem;
       color: #2c3e50;
     }
+    h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
 
     p {
       font-size: 1.25rem;
@@ -124,6 +130,62 @@
       border-radius: 6px;
       padding: 8px 14px;
     }
+
+   /* Accordion for App Summaries with logos */
+#app-summaries {
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+
+.accordion-item {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center; /* center logo vertically */
+  gap: 15px; /* space between logo and text */
+  background: #667eea;
+  color: #fff;
+  cursor: pointer;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.accordion-header:hover {
+  background: #5a67d8;
+}
+
+.accordion-header img {
+  width: 40px; /* adjust logo size */
+  height: auto;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #f7f9fb;
+  transition: max-height 0.3s ease;
+  padding: 0 20px;
+}
+
+.accordion-content p {
+  margin: 15px 0;
+  color: #333;
+}
+
   </style>
 </head>
 <body>
@@ -141,7 +203,7 @@
   <button class="menu-btn" onclick="openNav()">☰ Apps</button>
 
 <section id="about">
-  <h2>About Our Apps</h2>
+  <h2>About Data Forge Apps</h2>
   <p>
     Welcome! We create apps designed to make everyday tasks easier.  
     Our first release is live — check out the links in the menu to explore details, 
@@ -161,6 +223,55 @@
   Reach out here
 </a>
 </p>
+
+
+<section id="app-summaries">
+  <h2>Our Apps</h2>
+  <div class="accordion">
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <img src="GearSmith/GearSmithLogo.png" alt="GearSmith Logo">
+        GearSmith
+      </button>
+      <div class="accordion-content">
+        <p>A vehicle maintenance tracker that keeps your cars organized. Originally built for a classic Corvette enthusiast to track maintenance, receipts, modifications, and more, GearSmith quickly became a tool I’d use myself. Keep all your household vehicles organized in one place, with shared logs for everyone who helps care for them. </p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <img src="Stock_Hammer/StockHammerLogo.png" alt="Stock Hammer Logo">
+        Stock Hammer
+      </button>
+      <div class="accordion-content">
+        <p>Asimple inventory and parts tracker for makers and small shops. Designed to keep counts accurate, reduce guesswork, and make restocking decisions easier.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <img src="Filament_Foundry/filamentlogo.png" alt="Filament Foundry Logo">
+        Filament Foundry
+      </button>
+      <div class="accordion-content">
+        <p>A 3-D printing filament tracker built for small businesses. Monitor spool weights, usage, and remaining stock to avoid mid-print failures and improve inventory planning.</p>
+  </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <img src="The_Juke_App/Juke_icon.png" alt="The Juke Logo">
+        The Juke
+      </button>
+      <div class="accordion-content">
+        <p>Live jukebox app for events — request songs, tip the band, and follow along in real time. I created it to make shows more interactive and fun.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
   
   <section>
@@ -208,5 +319,20 @@
       document.getElementById("mySidenav").style.width = "0";
     }
   </script>
+  <script>
+  const headers = document.querySelectorAll('.accordion-header');
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null; // close
+      } else {
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+        content.style.maxHeight = content.scrollHeight + "px"; // open
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
