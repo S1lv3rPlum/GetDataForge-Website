@@ -5,69 +5,267 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Filament Foundry</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f9fb;
       color: #333;
+      line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(165deg, 
+        #ff0080 0%, 
+        #ff8c00 8%, 
+        #ff0080 12%,
+        #40e0d0 18%, 
+        #7b68ee 25%, 
+        #ff1493 30%,
+        #ff8c00 35%,
+        #40e0d0 42%,
+        #7b68ee 48%,
+        #ff0080 55%,
+        #ff8c00 62%,
+        #40e0d0 68%,
+        #ff1493 75%,
+        #7b68ee 82%,
+        #ff8c00 88%,
+        #40e0d0 94%,
+        #ff1493 100%
+      );
+      background-size: 400% 400%;
+      background-attachment: fixed;
+    }
+
+    /* Rainbow layer lines overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.1) 0px,
+        rgba(0,0,0,0.1) 1px,
+        transparent 1px,
+        transparent 4px,
+        rgba(255,255,255,0.08) 4px,
+        rgba(255,255,255,0.08) 5px,
+        transparent 5px,
+        transparent 8px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Sidebar - 3D printer aluminum extrusion frame */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 50px;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        #808080 0%, 
+        #b8b8b8 10%,
+        #e0e0e0 20%,
+        #f5f5f5 30%,
+        #e0e0e0 40%,
+        #b8b8b8 50%,
+        #808080 60%,
+        #606060 70%,
+        #808080 80%,
+        #b8b8b8 90%,
+        #808080 100%
+      );
+      box-shadow: 
+        inset -2px 0 4px rgba(0,0,0,0.3),
+        inset 2px 0 2px rgba(255,255,255,0.4);
+      z-index: 2;
+      border-right: 1px solid #999;
+    }
+
+    /* T-slot grooves in the extrusion */
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      width: 8px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        180deg,
+        #404040 0px,
+        #404040 10px,
+        #606060 10px,
+        #606060 12px,
+        #404040 12px,
+        #404040 22px
+      );
+      box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+    }
+
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      right: 12px;
+      top: 0;
+      width: 8px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        180deg,
+        #404040 0px,
+        #404040 10px,
+        #606060 10px,
+        #606060 12px,
+        #404040 12px,
+        #404040 22px
+      );
+      box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+    }
+
+    /* Main content area */
+    .content-wrapper {
+      margin-left: 70px;
       padding: 20px;
       max-width: 1000px;
-      margin: 0 auto;
-      line-height: 1.6;
+      position: relative;
+      z-index: 2;
     }
+
     header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
       text-align: center;
-      margin-bottom: 40px;
+      border: 3px solid rgba(255,255,255,0.6);
     }
+
+    header img {
+      width: 120px;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
     h1 {
       color: #2c3e50;
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 10px;
     }
+
     h2 {
-      margin-top: 40px;
       color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
     }
+
+    header p {
+      color: #555;
+      font-size: 1.1rem;
+      margin: 5px 0;
+    }
+
+    header a {
+      color: #7b68ee;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header a:hover {
+      color: #ff1493;
+      text-decoration: underline;
+    }
+
+    /* Content sections */
+    section {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-left: 6px solid #ff0080;
+    }
+
+    section:nth-child(even) {
+      border-left-color: #40e0d0;
+    }
+
     p {
       font-size: 1.1rem;
       color: #555;
+      margin-bottom: 15px;
     }
+
     ul {
+      margin-left: 25px;
+      color: #555;
       list-style-type: disc;
-      margin-left: 20px;
     }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
     .screenshots {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       margin: 20px 0;
     }
+
+    .screenshots > div {
+      text-align: center;
+    }
+
     .screenshots img {
       width: 280px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
+
     .caption {
       font-size: 0.9rem;
-      text-align: center;
       color: #666;
-      margin-top: 4px;
+      margin-top: 8px;
     }
+
     a {
-      color: #007acc;
+      color: #7b68ee;
       text-decoration: none;
       font-weight: bold;
     }
+
     a:hover {
+      color: #ff1493;
       text-decoration: underline;
     }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: 60px;
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
-      color: #aaa;
+
+    .contact-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff0080, #ff8c00);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      margin-top: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-decoration: none;
     }
+
+    .contact-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      text-decoration: none;
+    }
+
     .badge-button {
       display: inline-block;
       background-color: #ff6b6b;
@@ -81,79 +279,127 @@
       vertical-align: middle;
       transition: background 0.3s;
     }
+
     .badge-button:hover {
       background-color: #ff3b3b;
+    }
+
+    footer {
+      background: rgba(26, 26, 46, 0.95);
+      color: #aaa;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 30px 20px;
+      margin-top: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    footer a {
+      color: #40e0d0;
+    }
+
+    footer div:last-child {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 30px;
+      }
+      
+      .sidebar::before,
+      .sidebar::after {
+        width: 6px;
+      }
+
+      .content-wrapper {
+        margin-left: 40px;
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="FilamentFoundryLogo.png" alt="Filament Foundry Logo" style="width:120px; margin-bottom: 10px;" />
-    <h1>Filament Foundry</h1>
-    <p>Track your 3D print filament usage with ease</p>
-    <p><a href="../index.html">🏠 Back to Home</a></p>
-  </header>
- <section>
-  <h2>App Overview</h2>
-  <p>
-    Filament Foundry helps you precisely track the weight of your 3D print filament spools before and after each print job, so you always know how much filament remains. This prevents starting large print jobs without sufficient material and allows you to monitor filament usage by job.
-    In addition, easily manage your entire filament spool library within the app. Generate detailed usage reports designed to help 3D printing businesses optimize material purchasing and inventory control.
-    Currently, the app relies on manually entered weights and automatically compensates for empty spool weight. An upcoming feature will enable real-time filament usage tracking with a rotary encoder, making management even more effortless.
-  </p>
-</section>
-<section>
-  <h2>Features</h2>
-  <ul>
-    <li>Track filament weight usage to monitor remaining filament accurately.</li>
-    <li>Automatic compensation for empty spool weight to ensure precise measurements.</li>
-    <li>Manage and organize your filament spool library with ease.</li>
-    <li>Generate detailed usage reports for business insights and inventory management.</li>
-    <li>Future update will include rotary encoder support for real-time filament length tracking.</li>
-    <li>Intuitive interface designed for accuracy and ease of use.</li>
-  </ul>
-</section>
-  <section>
-    <h2>Screenshots</h2>
-    <div class="screenshots">
-      <div>
-        <img src="placeholder1.png" alt="Filament Weight Tracking Dashboard" />
-        <div class="caption">Filament Weight Tracking Dashboard</div>
-      </div>
-      <div>
-        <img src="placeholder2.png" alt="Print Job History & Usage" />
-        <div class="caption">Print Job History &amp; Usage</div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <h2>Download & Beta Access</h2>
-    <p>
-      Filament Foundry is preparing for launch on the Google Play Store!<br />
-      <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
-  Notify Me When It’s Live
-</a>
+  <!-- Sidebar - Aluminum extrusion frame -->
+  <div class="sidebar"></div>
 
-    </p>
-  </section>
-  <section>
-    <h2>Privacy</h2>
-    <p>
-      A detailed <a href="filamentfoundry-privacy-policy.html" target="_blank">Privacy Policy</a> will be provided upon release, covering how filament data and user information are handled.
-    </p>
-    <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
-  Request Data Deletion
-</a>
+  <div class="content-wrapper">
+    <header>
+      <img src="FilamentFoundryLogo.png" alt="Filament Foundry Logo" />
+      <h1>Filament Foundry</h1>
+      <p>Track your 3D print filament usage with ease</p>
+      <p><a href="../index.html">🏠 Back to Home</a></p>
+    </header>
 
-  </section>
-<footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
-  <div>© 2025 DataForge | Built with ❤️ by Renee</div>
-  <div style="margin-top: 8px;">
-    <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-    <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-    <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-     <a href="../contact.html" target="_blank">Contact Form</a>
+    <section>
+      <h2>App Overview</h2>
+      <p>
+        Filament Foundry helps you precisely track the weight of your 3D print filament spools before and after each print job, so you always know how much filament remains. This prevents starting large print jobs without sufficient material and allows you to monitor filament usage by job.
+        In addition, easily manage your entire filament spool library within the app. Generate detailed usage reports designed to help 3D printing businesses optimize material purchasing and inventory control.
+        Currently, the app relies on manually entered weights and automatically compensates for empty spool weight. An upcoming feature will enable real-time filament usage tracking with a rotary encoder, making management even more effortless.
+      </p>
+    </section>
+
+    <section>
+      <h2>Features</h2>
+      <ul>
+        <li>Track filament weight usage to monitor remaining filament accurately.</li>
+        <li>Automatic compensation for empty spool weight to ensure precise measurements.</li>
+        <li>Manage and organize your filament spool library with ease.</li>
+        <li>Generate detailed usage reports for business insights and inventory management.</li>
+        <li>Future update will include rotary encoder support for real-time filament length tracking.</li>
+        <li>Intuitive interface designed for accuracy and ease of use.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Screenshots</h2>
+      <div class="screenshots">
+        <div>
+          <img src="placeholder1.png" alt="Filament Weight Tracking Dashboard" />
+          <div class="caption">Filament Weight Tracking Dashboard</div>
+        </div>
+        <div>
+          <img src="placeholder2.png" alt="Print Job History &amp; Usage" />
+          <div class="caption">Print Job History &amp; Usage</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Download & Beta Access</h2>
+      <p>
+        Filament Foundry is preparing for launch on the Google Play Store!<br />
+        <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
+          Notify Me When It's Live
+        </a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Privacy</h2>
+      <p>
+        A detailed <a href="filamentfoundry-privacy-policy.html" target="_blank">Privacy Policy</a> will be provided upon release, covering how filament data and user information are handled.
+      </p>
+      <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
+        Request Data Deletion
+      </a>
+    </section>
+
+    <footer>
+      <div>© 2025 DataForge | Built with ❤️ by Renee</div>
+      <div>
+        <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
+        <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
+        <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
+        <a href="../contact.html" target="_blank">Contact Form</a>
+      </div>
+    </footer>
   </div>
-</footer>
-
 </body>
 </html>
