@@ -5,35 +5,164 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GearSmith - DataForge</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f9fb;
+      background: #2d3436;
       color: #333;
+      line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Sidebar with tire tread and checkered flags */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 60px;
+      height: 100%;
+      background: #1a1a1a;
+      border-right: 4px solid #0984e3;
+      z-index: 1;
+    }
+
+    /* Tire tread pattern - two vertical tracks */
+    .tire-tread {
+      width: 50px;
+      height: 100px;
+      margin: 20px auto;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      opacity: 0.7;
+    }
+
+    .tire-tread::before,
+    .tire-tread::after {
+      content: '';
+      width: 8px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        180deg,
+        #444 0px,
+        #444 12px,
+        #1a1a1a 12px,
+        #1a1a1a 16px,
+        #555 16px,
+        #555 18px,
+        #1a1a1a 18px,
+        #1a1a1a 22px
+      );
+      border-radius: 3px;
+      box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+    }
+
+    /* Checkered flag */
+    .checkered-flag {
+      width: 40px;
+      height: 40px;
+      margin: 30px auto;
+      background-image: 
+        linear-gradient(45deg, #fff 25%, transparent 25%),
+        linear-gradient(-45deg, #fff 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #fff 75%),
+        linear-gradient(-45deg, transparent 75%, #fff 75%);
+      background-size: 10px 10px;
+      background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+      border-radius: 4px;
+      opacity: 0.7;
+    }
+
+    /* Main content area */
+    .content-wrapper {
+      margin-left: 80px;
       padding: 20px;
       max-width: 1000px;
-      margin: 0 auto;
-      line-height: 1.6;
     }
 
     header {
-      text-align: center;
-      margin-bottom: 40px;
+      background: linear-gradient(135deg, #2d3436 0%, #1a3a52 100%);
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      border-left: 8px solid #0984e3;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .header-title .logo {
+      width: 80px;
+      background: white;
+      padding: 10px;
+      border-radius: 50%;
     }
 
     h1 {
-      color: #2c3e50;
+      color: #fff;
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      margin: 0;
+    }
+
+    header p {
+      color: #e0e0e0;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    header a {
+      color: #0984e3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header a:hover {
+      color: #74b9ff;
+      text-decoration: underline;
+    }
+
+    /* Content sections */
+    section {
+      background: #f7f9fb;
+      padding: 30px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border-left: 6px solid #0984e3;
     }
 
     h2 {
-      margin-top: 40px;
       color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
     }
 
     p {
       font-size: 1.1rem;
       color: #555;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin-left: 25px;
+      color: #555;
+    }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
     }
 
     .screenshots {
@@ -41,6 +170,10 @@
       flex-wrap: wrap;
       gap: 20px;
       margin: 20px 0;
+    }
+
+    .screenshots > div {
+      text-align: center;
     }
 
     .screenshots img {
@@ -51,13 +184,12 @@
 
     .caption {
       font-size: 0.9rem;
-      text-align: center;
       color: #666;
-      margin-top: 4px;
+      margin-top: 8px;
     }
 
     a {
-      color: #007acc;
+      color: #0984e3;
       text-decoration: none;
       font-weight: bold;
     }
@@ -66,129 +198,177 @@
       text-decoration: underline;
     }
 
+    .contact-button {
+      display: inline-block;
+      background-color: #0984e3;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    .contact-button:hover {
+      background-color: #0770c4;
+      text-decoration: none;
+    }
+
+    .badge-button {
+      display: inline-block;
+      background-color: #ff6b6b;
+      color: #fff;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 1rem;
+      text-decoration: none;
+      margin-left: 10px;
+      vertical-align: middle;
+      transition: background 0.3s;
+    }
+
+    .badge-button:hover {
+      background-color: #ff3b3b;
+    }
+
     footer {
+      background: #1a1a1a;
+      color: #aaa;
       text-align: center;
       font-size: 0.9rem;
-      margin-top: 60px;
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
-      color: #aaa;
+      padding: 30px 20px;
+      margin-top: 40px;
+      border-radius: 12px;
     }
-    .badge-button {
-  display: inline-block;
-  background-color: #ff6b6b;
-  color: #fff;
-  font-weight: bold;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-size: 1rem;
-  text-decoration: none;
-  margin-left: 10px;
-  vertical-align: middle;
-  transition: background 0.3s;
-}
 
-.badge-button:hover {
-  background-color: #ff3b3b;
-}
-.header-title {
-  display: flex;
-  align-items: center;      /* vertically centers logo with text */
-  justify-content: center;  /* centers horizontally */
-  gap: 15px;                /* space between logo and text */
-}
+    footer a {
+      color: #0984e3;
+    }
 
-.header-title .logo {
-  width: 80px;              /* adjust size */
-  margin: 0;                /* remove bottom margin */
-  display: inline-block;    /* ensures inline with text */
-}
+    footer div:last-child {
+      margin-top: 10px;
+    }
 
-@media (max-width: 600px) {
-  .header-title {
-    flex-direction: column; /* stacks on small screens */
-    gap: 10px;
-  }
-}
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 40px;
+      }
+      
+      .content-wrapper {
+        margin-left: 50px;
+        padding: 10px;
+      }
 
+      .tire-tread {
+        width: 35px;
+        gap: 6px;
+      }
 
+      .tire-tread::before,
+      .tire-tread::after {
+        width: 6px;
+      }
+
+      .checkered-flag {
+        width: 30px;
+        height: 30px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .header-title {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
-<header>
-  <div class="header-title">
-    <img src="GearSmithLogo.png" alt="GearSmith Logo" class="logo">
-    <h1>GearSmith</h1>
+  <!-- Sidebar with tire tracks and checkered flags -->
+  <div class="sidebar">
+    <div class="tire-tread"></div>
+    <div class="checkered-flag"></div>
+    <div class="tire-tread"></div>
+    <div class="checkered-flag"></div>
+    <div class="tire-tread"></div>
+    <div class="checkered-flag"></div>
+    <div class="tire-tread"></div>
   </div>
-  <p>A vehicle maintenance tracker app by <strong>DataForge</strong></p>
-  <p><a href="../index.html">🏠 Back to Home</a></p>
-</header>
 
-  <section>
-    <h2>App Overview</h2>
-    <p>
-      GearSmith was inspired by a classic car enthusiast looking for a simple way to track the work done on their vehicles.  
-      Whether you're a car enthusiast, a weekend mechanic, or just someone who loves taking care of your ride, GearSmith helps you keep track of all your vehicles in one place.  
-      The app works offline, so you can log maintenance even without internet access, and syncs online automatically whenever a connection is available — perfect for households with multiple cars.
-    </p>
-  </section>
-
-  <section>
-    <h2>Features</h2>
-    <ul>
-      <li>Add and manage multiple vehicles, including household cars.</li>
-      <li>Log maintenance tasks, service history, and work done on each vehicle.</li>
-      <li>Offline-first functionality with automatic online sync when connected.</li>
-      <li>[Future Update Placeholder] Track maintenance costs and get service reminders.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Screenshots</h2>
-    <div class="screenshots">
-      <div>
-        <img src="placeholder1.png" alt="Vehicle Dashboard">
-        <div class="caption">Vehicle Dashboard</div>
+  <div class="content-wrapper">
+    <header>
+      <div class="header-title">
+        <img src="GearSmithLogo.png" alt="GearSmith Logo" class="logo">
+        <h1>GearSmith</h1>
       </div>
-      <div>
-        <img src="placeholder2.png" alt="Log New Maintenance">
-        <div class="caption">Log New Maintenance</div>
+      <p>A vehicle maintenance tracker app by <strong>DataForge</strong></p>
+      <p><a href="../index.html">🏠 Back to Home</a></p>
+    </header>
+
+    <section>
+      <h2>App Overview</h2>
+      <p>
+        GearSmith was inspired by a classic car enthusiast looking for a simple way to track the work done on their vehicles.  
+        Whether you're a car enthusiast, a weekend mechanic, or just someone who loves taking care of your ride, GearSmith helps you keep track of all your vehicles in one place.  
+        The app works offline, so you can log maintenance even without internet access, and syncs online automatically whenever a connection is available — perfect for households with multiple cars.
+      </p>
+    </section>
+
+    <section>
+      <h2>Features</h2>
+      <ul>
+        <li>Add and manage multiple vehicles, including household cars.</li>
+        <li>Log maintenance tasks, service history, and work done on each vehicle.</li>
+        <li>Offline-first functionality with automatic online sync when connected.</li>
+        <li>[Future Update Placeholder] Track maintenance costs and get service reminders.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Screenshots</h2>
+      <div class="screenshots">
+        <div>
+          <img src="placeholder1.png" alt="Vehicle Dashboard">
+          <div class="caption">Vehicle Dashboard</div>
+        </div>
+        <div>
+          <img src="placeholder2.png" alt="Log New Maintenance">
+          <div class="caption">Log New Maintenance</div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <section>
+      <h2>Download</h2>
+      <p>
+        Google Play Store link coming soon!  
+        <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
+          Notify Me When It's Live
+        </a>
+      </p>
+    </section>
 
- <section>
-  <h2>Download</h2>
-  <p>
-    Google Play Store link coming soon!  
-   <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
-  Notify Me When It’s Live
-</a>
+    <section>
+      <h2>Privacy</h2>
+      <p>
+        GearSmith has its own <a href="gearsmithprivacy-policy.html" target="_blank">Privacy Policy</a> to cover account login, household vehicle data, and online sync.
+      </p>
+      <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
+        Request Data Deletion
+      </a>
+    </section>
 
-  </p>
-</section>
-
-  <section>
-    <h2>Privacy</h2>
-    <p>
-      GearSmith has its own <a href="gearsmithprivacy-policy.html" target="_blank">Privacy Policy</a> to cover account login, household vehicle data, and online sync.
-    </p>
-    <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
-  Request Data Deletion
-</a>
-
-  </section>
-
-<footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
-  <div>© 2025 DataForge | Built with ❤️ by Renee</div>
-  <div style="margin-top: 8px;">
-    <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-    <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-    <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-     <a href="../contact.html" target="_blank">Contact Form</a>
+    <footer>
+      <div>© 2025 DataForge | Built with ❤️ by Renee</div>
+      <div>
+        <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
+        <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
+        <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
+        <a href="../contact.html" target="_blank">Contact Form</a>
+      </div>
+    </footer>
   </div>
-</footer>
-
 </body>
 </html>

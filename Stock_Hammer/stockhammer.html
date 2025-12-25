@@ -5,69 +5,291 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stock Hammer - Inventory & POS</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f9fb;
       color: #333;
+      line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+      background: #c19a6b;
+      background-attachment: fixed;
+    }
+
+    /* Cardboard texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 50px,
+          rgba(139, 90, 43, 0.03) 50px,
+          rgba(139, 90, 43, 0.03) 51px
+        );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Sidebar - Corrugated cardboard edge view */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 60px;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        #8b5a2b 0%, 
+        #a67c52 20%,
+        #c19a6b 40%,
+        #a67c52 60%,
+        #8b5a2b 100%
+      );
+      z-index: 2;
+      border-right: 2px solid #704214;
+    }
+
+    /* Corrugated wave pattern - the wavy middle layer */
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      width: 30px;
+      height: 100%;
+      background-image: repeating-linear-gradient(
+        180deg,
+        #d4a574 0px,
+        #d4a574 8px,
+        #b8956e 8px,
+        #b8956e 10px,
+        #d4a574 10px,
+        #d4a574 18px,
+        #b8956e 18px,
+        #b8956e 20px
+      );
+      clip-path: polygon(
+        0% 0%, 
+        100% 2%, 
+        100% 8%, 
+        0% 10%,
+        0% 12%,
+        100% 14%,
+        100% 20%,
+        0% 22%,
+        0% 24%,
+        100% 26%,
+        100% 32%,
+        0% 34%,
+        0% 36%,
+        100% 38%,
+        100% 44%,
+        0% 46%,
+        0% 48%,
+        100% 50%,
+        100% 56%,
+        0% 58%,
+        0% 60%,
+        100% 62%,
+        100% 68%,
+        0% 70%,
+        0% 72%,
+        100% 74%,
+        100% 80%,
+        0% 82%,
+        0% 84%,
+        100% 86%,
+        100% 92%,
+        0% 94%,
+        0% 96%,
+        100% 98%,
+        100% 100%
+      );
+    }
+
+    /* Flat outer layers of cardboard */
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: #8b5a2b;
+      box-shadow: 47px 0 0 #8b5a2b;
+    }
+
+    /* Main content area */
+    .content-wrapper {
+      margin-left: 80px;
       padding: 20px;
       max-width: 1000px;
-      margin: 0 auto;
-      line-height: 1.6;
+      position: relative;
+      z-index: 2;
     }
+
     header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
       text-align: center;
-      margin-bottom: 40px;
+      border: 3px solid #d4a574;
     }
+
+    header img {
+      width: 120px;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
     h1 {
-      color: #2c3e50;
+      color: #3e2723;
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 10px;
     }
+
     h2 {
-      margin-top: 40px;
-      color: #2c3e50;
+      color: #3e2723;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
     }
+
+    header p {
+      color: #555;
+      font-size: 1.1rem;
+      margin: 5px 0;
+    }
+
+    header a {
+      color: #8b5a2b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header a:hover {
+      color: #704214;
+      text-decoration: underline;
+    }
+
+    /* Content sections */
+    section {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-left: 6px solid #8b5a2b;
+      position: relative;
+    }
+
+    /* Barcode accent on sections */
+    section::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 80px;
+      height: 40px;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          #000 0px,
+          #000 2px,
+          transparent 2px,
+          transparent 4px,
+          #000 4px,
+          #000 5px,
+          transparent 5px,
+          transparent 9px,
+          #000 9px,
+          #000 12px,
+          transparent 12px,
+          transparent 14px
+        );
+      opacity: 0.1;
+    }
+
     p {
       font-size: 1.1rem;
       color: #555;
+      margin-bottom: 15px;
     }
+
     ul {
+      margin-left: 25px;
+      color: #555;
       list-style-type: disc;
-      margin-left: 20px;
     }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
     .screenshots {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       margin: 20px 0;
     }
+
+    .screenshots > div {
+      text-align: center;
+    }
+
     .screenshots img {
       width: 280px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
+
     .caption {
       font-size: 0.9rem;
-      text-align: center;
       color: #666;
-      margin-top: 4px;
+      margin-top: 8px;
     }
+
     a {
-      color: #007acc;
+      color: #8b5a2b;
       text-decoration: none;
       font-weight: bold;
     }
+
     a:hover {
+      color: #704214;
       text-decoration: underline;
     }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: 60px;
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
-      color: #aaa;
+
+    .contact-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #8b5a2b, #c19a6b);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      margin-top: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-decoration: none;
     }
+
+    .contact-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      text-decoration: none;
+    }
+
     .badge-button {
       display: inline-block;
       background-color: #ff6b6b;
@@ -81,77 +303,125 @@
       vertical-align: middle;
       transition: background 0.3s;
     }
+
     .badge-button:hover {
       background-color: #ff3b3b;
+    }
+
+    footer {
+      background: rgba(62, 39, 35, 0.95);
+      color: #aaa;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 30px 20px;
+      margin-top: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    footer a {
+      color: #d4a574;
+    }
+
+    footer div:last-child {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 40px;
+      }
+      
+      .sidebar::before {
+        left: 10px;
+        width: 20px;
+      }
+
+      .content-wrapper {
+        margin-left: 50px;
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="StockHammerLogo.png" alt="Stock Hammer Logo" style="width:120px; margin-bottom: 10px;" />
-    <h1>Stock Hammer</h1>
-    <p>An inventory and point of sales management app</p>
-    <p><a href="../index.html">🏠 Back to Home</a></p>
-  </header>
-  <section>
-    <h2>App Overview</h2>
-    <p>
-      Stock Hammer is designed to simplify inventory management and streamline your point of sales operations. Whether you run a small retail store or manage a warehouse, Stock Hammer helps you keep track of stock levels, sales, and purchases in one easy-to-use app.
-      Although still in development, our goal is to empower businesses with real-time insights and efficient transaction tracking.
-    </p>
-  </section>
-  <section>
-    <h2>Features</h2>
-    <ul>
-      <li>Track inventory levels.</li>
-      <li>Manage sales and purchases seamlessly.</li>
-      <li>Generate reports to analyze sales trends.</li>
-      <li>Offline-first design to let you manage inventory without internet connection.</li>
-      <li><em>Future updates:</em> Integrations with popular e-commerce platforms and advanced analytics dashboard.</li>
-    </ul>
-  </section>
-  <section>
-    <h2>Screenshots</h2>
-    <div class="screenshots">
-      <div>
-        <img src="placeholder1.png" alt="Inventory Dashboard" />
-        <div class="caption">Inventory Dashboard</div>
-      </div>
-      <div>
-        <img src="placeholder2.png" alt="Sales Entry Screen" />
-        <div class="caption">Sales Entry Screen</div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <h2>Download & Beta Access</h2>
-    <p>
-      Stock Hammer is coming soon to the Google Play Store and other platforms!<br />
-     <a href="../Site_Level_Docs/contact.html?reason=Beta+Testing+Request" class="contact-button">
-  Notify Me When It’s Live
-</a>
+  <!-- Sidebar - Corrugated cardboard edge cross-section -->
+  <div class="sidebar"></div>
 
-    </p>
-  </section>
-  <section>
-    <h2>Privacy</h2>
-    <p>
-      Stock Hammer will have a dedicated <a href="stockhammer-privacy-policy.html" target="_blank">Privacy Policy</a> outlining data handling for your inventory and sales information. We prioritize your data security and privacy.
-    </p>
-    <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
-  Request Data Deletion
-</a>
+  <div class="content-wrapper">
+    <header>
+      <img src="StockHammerLogo.png" alt="Stock Hammer Logo" style="width:120px; margin-bottom: 10px;" />
+      <h1>Stock Hammer</h1>
+      <p>An inventory and point of sales management app</p>
+      <p><a href="../index.html">🏠 Back to Home</a></p>
+    </header>
 
-  </section>
-<footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
-  <div>© 2025 DataForge | Built with ❤️ by Renee</div>
-  <div style="margin-top: 8px;">
-    <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-    <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-    <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-     <a href="../contact.html" target="_blank">Contact Form</a>
+    <section>
+      <h2>App Overview</h2>
+      <p>
+        Stock Hammer is designed to simplify inventory management and streamline your point of sales operations. Whether you run a small retail store or manage a warehouse, Stock Hammer helps you keep track of stock levels, sales, and purchases in one easy-to-use app.
+        Although still in development, our goal is to empower businesses with real-time insights and efficient transaction tracking.
+      </p>
+    </section>
+
+    <section>
+      <h2>Features</h2>
+      <ul>
+        <li>Track inventory levels.</li>
+        <li>Manage sales and purchases seamlessly.</li>
+        <li>Generate reports to analyze sales trends.</li>
+        <li>Offline-first design to let you manage inventory without internet connection.</li>
+        <li><em>Future updates:</em> Integrations with popular e-commerce platforms and advanced analytics dashboard.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Screenshots</h2>
+      <div class="screenshots">
+        <div>
+          <img src="placeholder1.png" alt="Inventory Dashboard" />
+          <div class="caption">Inventory Dashboard</div>
+        </div>
+        <div>
+          <img src="placeholder2.png" alt="Sales Entry Screen" />
+          <div class="caption">Sales Entry Screen</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Download & Beta Access</h2>
+      <p>
+        Stock Hammer is coming soon to the Google Play Store and other platforms!<br />
+        <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
+          Notify Me When It's Live
+        </a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Privacy</h2>
+      <p>
+        Stock Hammer will have a dedicated <a href="stockhammer-privacy-policy.html" target="_blank">Privacy Policy</a> outlining data handling for your inventory and sales information. We prioritize your data security and privacy.
+      </p>
+      <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
+        Request Data Deletion
+      </a>
+    </section>
+
+    <footer>
+      <div>© 2025 DataForge | Built with ❤️ by Renee</div>
+      <div>
+        <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
+        <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
+        <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
+        <a href="../contact.html" target="_blank">Contact Form</a>
+      </div>
+    </footer>
   </div>
-</footer>
-
 </body>
 </html>

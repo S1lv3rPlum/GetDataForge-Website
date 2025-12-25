@@ -5,13 +5,177 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Juke</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-attachment: fixed;
       color: #fff;
-      padding: 20px;
-      margin: 0;
       min-height: 100vh;
+      position: relative;
+    }
+
+    /* Sidebar - Microphone Stand */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 60px;
+      height: 100%;
+      background: transparent;
+      z-index: 2;
+    }
+
+    /* Microphone stand base */
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 45px;
+      height: 18px;
+      background: radial-gradient(ellipse at center, #1a1a1a 0%, #3a3a3a 100%);
+      border-radius: 50%;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+    }
+
+    /* Microphone stand pole */
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 145px;
+      width: 8px;
+      height: calc(100% - 185px);
+      background: linear-gradient(90deg, #2a2a2a 0%, #4a4a4a 50%, #2a2a2a 100%);
+      border-radius: 4px;
+      box-shadow: 
+        inset -2px 0 3px rgba(0,0,0,0.5),
+        inset 2px 0 2px rgba(255,255,255,0.2),
+        2px 0 8px rgba(0,0,0,0.3);
+    }
+
+    /* Microphone head */
+    .mic-head {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+      width: 32px;
+      height: 45px;
+      background: radial-gradient(ellipse at 50% 30%, #6a6a6a 0%, #4a4a4a 50%, #2a2a2a 100%);
+      border-radius: 50% 50% 48% 48% / 60% 60% 40% 40%;
+      box-shadow: 
+        0 4px 12px rgba(0,0,0,0.5),
+        inset -3px 0 6px rgba(0,0,0,0.4),
+        inset 3px 0 6px rgba(255,255,255,0.15);
+      z-index: 3;
+    }
+
+    /* Microphone mesh grille */
+    .mic-head::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 4px;
+      right: 4px;
+      bottom: 8px;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 1.5px,
+        rgba(136, 136, 136, 0.4) 1.5px,
+        rgba(136, 136, 136, 0.4) 2.5px
+      );
+      border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+      opacity: 0.8;
+    }
+
+    /* Microphone shine/highlight */
+    .mic-head::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 8px;
+      height: 15px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+      border-radius: 50%;
+      filter: blur(1px);
+    }
+
+    /* Microphone handle - the part you hold - directly attached to head */
+    .mic-handle {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 65px;
+      width: 22px;
+      height: 80px;
+      background: linear-gradient(90deg, #2a2a2a 0%, #3a3a3a 30%, #3a3a3a 70%, #2a2a2a 100%);
+      border-radius: 3px;
+      box-shadow: 
+        inset -2px 0 4px rgba(0,0,0,0.6),
+        inset 2px 0 3px rgba(255,255,255,0.1),
+        0 2px 8px rgba(0,0,0,0.4);
+      z-index: 3;
+    }
+
+    /* Handle grip texture */
+    .mic-handle::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 2px;
+      right: 2px;
+      bottom: 10px;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.2) 3px,
+        rgba(0,0,0,0.2) 4px
+      );
+      border-radius: 2px;
+    }
+
+    /* XLR connector at bottom of handle */
+    .mic-handle::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 12px;
+      background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+      border-radius: 0 0 3px 3px;
+      box-shadow: inset 0 2px 3px rgba(0,0,0,0.6);
+    }
+
+    /* Remove cable - no cable needed */
+    .mic-cable {
+      display: none;
+    }
+
+    /* Remove clip connector */
+    .mic-connector {
+      display: none;
+    }
+
+    /* Main content wrapper */
+    .content-wrapper {
+      margin-left: 80px;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .container {
@@ -29,16 +193,24 @@
       margin-bottom: 30px;
     }
 
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
     .logo {
-      width: 150px;
-      margin-bottom: 20px;
+      width: 80px;
       border-radius: 20px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
     }
 
     h1 {
       color: #2c3e50;
       font-size: 2.8rem;
-      margin-bottom: 0.5rem;
+      margin: 0;
     }
 
     h2 {
@@ -52,11 +224,21 @@
     .subtitle {
       color: #7f8c8d;
       font-size: 1.3rem;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
+    }
+
+    header a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    header a:hover {
+      text-decoration: underline;
     }
 
     .hero {
-      background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
       border-radius: 15px;
       padding: 30px;
       margin: 30px 0;
@@ -121,6 +303,11 @@
       margin: 10px 0;
     }
 
+    .how-it-works p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
     .instructions {
       background: #fff3cd;
       border-left: 4px solid #ffc107;
@@ -149,13 +336,17 @@
       border: 2px dashed #ccc;
     }
 
+    .qr-section h3 {
+      color: #2c3e50;
+    }
+
     .qr-code {
       max-width: 250px;
       margin: 20px auto;
     }
 
     .want-juke {
-      background: linear-gradient(135deg, #ff6b6b15 0%, #ee576515 100%);
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(238, 87, 101, 0.08) 100%);
       border-radius: 15px;
       padding: 30px;
       margin: 40px 0;
@@ -172,6 +363,14 @@
       font-size: 1.1rem;
       line-height: 1.8;
       color: #555;
+    }
+
+    .want-juke ul {
+      text-align: left;
+      max-width: 550px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
 
     .contact-button {
@@ -201,194 +400,200 @@
       font-size: 0.9rem;
     }
 
-    a {
+    footer a {
       color: #667eea;
       text-decoration: none;
       font-weight: 600;
     }
 
-    a:hover {
+    footer a:hover {
       text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
+    footer div:last-child {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 40px;
+      }
+
+      .content-wrapper {
+        margin-left: 50px;
+        padding: 10px;
+      }
+
       .container {
         padding: 20px;
       }
+
       h1 {
         font-size: 2rem;
       }
-      .screenshots img {
-        width: 100%;
+
+      .header-title {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .mic-head {
+        width: 28px;
+        height: 45px;
+      }
+
+      .mic-connector {
+        width: 14px;
+        height: 18px;
       }
     }
-
-    .header-title .logo {
-  width: 80px; /* adjust size */
-  margin: 0;   /* remove bottom margin */
-  display: inline-block; /* allow inline with text */
-}
-
-.header-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-@media (max-width: 600px) {
-  .header-title {
-    flex-direction: column; /* stacks on small screens */
-    gap: 10px;
-  }
-}
-
-
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-  <div class="header-title">
-    <img src="Juke_icon.png" alt="The Juke Logo" class="logo">
-    <h1>The Juke</h1>
+  <!-- Sidebar with microphone stand -->
+  <div class="sidebar">
+    <div class="mic-head"></div>
+    <div class="mic-handle"></div>
+    <div class="mic-connector"></div>
   </div>
-  <p class="subtitle">Live Jukebox </p>
-  <p><a href="../index.html">🏠 Back to Home</a></p>
-</header>
 
+  <div class="content-wrapper">
+    <div class="container">
+      <header>
+        <div class="header-title">
+          <img src="Juke_icon.png" alt="The Juke Logo" class="logo">
+          <h1>The Juke</h1>
+        </div>
+        <p class="subtitle">Live Jukebox</p>
+        <p><a href="../index.html">🏠 Back to Home</a></p>
+      </header>
 
-    <!-- HERO SECTION -->
-    <div class="hero">
-      <p><strong>Turn your night into a party!</strong></p>
-      <p>Request songs, tip the band, and hear your picks played live on stage — all from your phone.</p>
-    </div>
+      <!-- HERO SECTION -->
+      <div class="hero">
+        <p><strong>Turn your night into a party!</strong></p>
+        <p>Request songs, tip the band, and hear your picks played live on stage — all from your phone.</p>
+      </div>
 
-    <!-- ABOUT / APP INFO -->
-    <div class="how-it-works">
-      <h2>About This App</h2>
-      <p style="font-size: 1.1rem; line-height: 1.8;">
-        <strong>The Juke</strong> was created specifically for Nashville North events.  
-        It gives fans a fun, digital way to browse available songs, send requests, and tip the band without standing in line or shouting over the crowd.  
-        The app uses no accounts, no passwords, and no personal profiles — just simple, fast song requests.
-      </p>
-    </div>
+      <!-- ABOUT / APP INFO -->
+      <div class="how-it-works">
+        <h2>About This App</h2>
+        <p>
+          <strong>The Juke</strong> was created specifically for Nashville North events.  
+          It gives fans a fun, digital way to browse available songs, send requests, and tip the band without standing in line or shouting over the crowd.  
+          The app uses no accounts, no passwords, and no personal profiles — just simple, fast song requests.
+        </p>
+      </div>
 
-    <!-- DOWNLOAD SECTION -->
-    <div class="download-section">
-      <h2 style="margin-top: 0;">📥 Get The App</h2>
-      <a href="YOUR_CUSTOMER_APK_URL_HERE" class="download-button">
-        <span class="app-icon">🎵</span>
-        Download for Android
-      </a>
-      <p style="color: #6c757d; margin-top: 10px;">
-        Free to download • Request songs live • Pay via Venmo or cash
-      </p>
-    </div>
+      <!-- DOWNLOAD SECTION -->
+      <div class="download-section">
+        <h2 style="margin-top: 0;">📥 Get The App</h2>
+        <a href="YOUR_CUSTOMER_APK_URL_HERE" class="download-button">
+          <span class="app-icon">🎵</span>
+          Download for Android
+        </a>
+        <p style="color: #6c757d; margin-top: 10px;">
+          Free to download • Request songs live • Pay via Venmo or cash
+        </p>
+      </div>
 
-    <!-- HOW IT WORKS -->
-    <div class="how-it-works">
-      <h2>How It Works</h2>
-      <ol>
-        <li>📱 <strong>Download the app</strong></li>
-        <li>🎵 <strong>Browse the song list</strong> at the show</li>
-        <li>💰 <strong>Pick a song & pay</strong> via Venmo or cash</li>
-        <li>🎸 <strong>Your request is performed live!</strong></li>
-      </ol>
-    </div>
+      <!-- HOW IT WORKS -->
+      <div class="how-it-works">
+        <h2>How It Works</h2>
+        <ol>
+          <li>📱 <strong>Download the app</strong></li>
+          <li>🎵 <strong>Browse the song list</strong> at the show</li>
+          <li>💰 <strong>Pick a song & pay</strong> via Venmo or cash</li>
+          <li>🎸 <strong>Your request is performed live!</strong></li>
+        </ol>
+      </div>
 
-    <!-- INSTALLATION INSTRUCTIONS -->
-    <div class="instructions">
-      <h3>📋 Installation Steps (If downloading outside Play Store)</h3>
-      <ol>
-        <li>Tap the download button above</li>
-        <li>Your phone may warn about “Unknown Sources”</li>
-        <li>Allow installation in <strong>Settings → Install Unknown Apps</strong></li>
-        <li>Tap <strong>Install</strong></li>
-        <li>Open The Juke and start requesting 🎉</li>
-      </ol>
-    </div>
+      <!-- INSTALLATION INSTRUCTIONS -->
+      <div class="instructions">
+        <h3>📋 Installation Steps (If downloading outside Play Store)</h3>
+        <ol>
+          <li>Tap the download button above</li>
+          <li>Your phone may warn about "Unknown Sources"</li>
+          <li>Allow installation in <strong>Settings → Install Unknown Apps</strong></li>
+          <li>Tap <strong>Install</strong></li>
+          <li>Open The Juke and start requesting 🎉</li>
+        </ol>
+      </div>
 
-    <!-- QR CODE -->
-    <div class="qr-section">
-      <h3 style="color: #2c3e50;">🎤 At the Show?</h3>
-      <p>(Coming Soon!) Scan to instantly download The Juke on your phone:</p>
-      <img src="YOUR_QR_IMAGE_HERE.png" class="qr-code" alt="QR Code for The Juke Download">
-    </div>
+      <!-- QR CODE -->
+      <div class="qr-section">
+        <h3>🎤 At the Show?</h3>
+        <p>(Coming Soon!) Scan to instantly download The Juke on your phone:</p>
+        <img src="YOUR_QR_IMAGE_HERE.png" class="qr-code" alt="QR Code for The Juke Download">
+      </div>
 
-   <!-- ADD THE JUKE TO YOUR VENUE / BAND -->
-    <div class="want-juke">
-      <h2>Bring <em>The Juke</em> to Your Band or Venue 🎤</h2>
-      <p>
-        Want to let your crowd request songs, tip the band, and stay engaged all night?
-        The Juke now includes a companion <strong>Band & Venue Manager App</strong> coming soon to Google Play.
-      </p>
+      <!-- ADD THE JUKE TO YOUR VENUE / BAND -->
+      <div class="want-juke">
+        <h2>Bring <em>The Juke</em> to Your Band or Venue 🎤</h2>
+        <p>
+          Want to let your crowd request songs, tip the band, and stay engaged all night?
+          The Juke now includes a companion <strong>Band & Venue Manager App</strong> coming soon to Google Play.
+        </p>
 
-      <p>
-        With the manager app, performers and venues will be able to:
-      </p>
+        <p>With the manager app, performers and venues will be able to:</p>
 
-      <ul style="text-align: left; max-width: 550px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7;">
-        <li>🎵 Build and customize your own live song list</li>
-        <li>🕹️ Enable or disable requests in real time during shows</li>
-        <li>📋 Update set lists instantly — no re-uploading or rebuilding</li>
-        <li>📱 Manage multiple events, rotating bands, or weekly lineups</li>
-        <li>⚡ Sync updates instantly with your audience’s Juke app</li>
-      </ul>
+        <ul>
+          <li>🎵 Build and customize your own live song list</li>
+          <li>🕹️ Enable or disable requests in real time during shows</li>
+          <li>📋 Update set lists instantly — no re-uploading or rebuilding</li>
+          <li>📱 Manage multiple events, rotating bands, or weekly lineups</li>
+          <li>⚡ Sync updates instantly with your audience's Juke app</li>
+        </ul>
 
-      <p style="margin-top: 20px;">
-        No coding, no custom builds — just download, set up your profile, and you’re ready to go.
-      </p>
+        <p style="margin-top: 20px;">
+          No coding, no custom builds — just download, set up your profile, and you're ready to go.
+        </p>
 
-<a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
-  Notify Me When It’s Live
-</a>
+        <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
+          Notify Me When It's Live
+        </a>
+      </div>
 
-
-    </div>
-
-    <!-- PRIVACY POLICY -->
-    <div class="how-it-works">
-      <h2>Privacy Policy</h2>
-      <p style="font-size: 1.1rem; line-height: 1.8;">
-        The Juke does not collect or store personal information.  
-        No accounts, emails, names, or payment info are stored by the app.  
-        Payments are handled externally via Venmo, Cash App, or cash and are not processed through the app.
-      </p>
-      <p style="font-size: 1rem; color: #555;">
-        Full privacy policy available here:  
-        <a href="juke-privacy-policy.html" target="_blank">View Privacy Policy</a>
+      <!-- PRIVACY POLICY -->
+      <div class="how-it-works">
+        <h2>Privacy Policy</h2>
+        <p>
+          The Juke does not collect or store personal information.  
+          No accounts, emails, names, or payment info are stored by the app.  
+          Payments are handled externally via Venmo, Cash App, or cash and are not processed through the app.
+        </p>
         <p style="font-size: 1rem; color: #555;">
-  Full Band/Venue privacy policy available here:  
-  <a href="juke-band-privacy-policy.html" target="_blank">View Band & Venue Privacy Policy</a>
-</p>
-      </p>
+          Full privacy policy available here:  
+          <a href="juke-privacy-policy.html" target="_blank">View Privacy Policy</a>
+        </p>
+        <p style="font-size: 1rem; color: #555;">
+          Full Band/Venue privacy policy available here:  
+          <a href="juke-band-privacy-policy.html" target="_blank">View Band & Venue Privacy Policy</a>
+        </p>
+      </div>
+
+      <!-- DATA DELETION REQUEST -->
+      <div class="how-it-works">
+        <h2>Request Data Deletion</h2>
+        <p>
+          Because The Juke does not store user accounts or personal data,  
+          the only deletable data is optional venue-related analytics if you operate a venue version.
+        </p>
+        <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
+          Request Data Deletion
+        </a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <div>© 2025 DataForge | Built with ❤️ by Renee</div>
+        <div>
+          <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
+          <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
+          <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
+          <a href="../contact.html" target="_blank">Contact Form</a>
+        </div>
+      </footer>
     </div>
-
-    <!-- DATA DELETION REQUEST -->
-    <div class="how-it-works">
-      <h2>Request Data Deletion</h2>
-      <p style="font-size: 1.1rem; line-height: 1.8;">
-        Because The Juke does not store user accounts or personal data,  
-        the only deletable data is optional venue-related analytics if you operate a venue version.
-      </p>
-      <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
-  Request Data Deletion
-</a>
-
-
-    </div>
-
-    <!-- FOOTER -->
- <footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
-  <div>© 2025 DataForge | Built with ❤️ by Renee</div>
-  <div style="margin-top: 8px;">
-    <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-    <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-    <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-     <a href="../contact.html" target="_blank">Contact Form</a>
-  </div>
-</footer>
-
   </div>
 </body>
 </html>
