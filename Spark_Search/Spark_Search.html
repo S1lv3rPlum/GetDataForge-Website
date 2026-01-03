@@ -1,1 +1,470 @@
-demo place holder words
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spark Search - Safe Search for Kids</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-attachment: fixed;
+      color: #fff;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Floating sparkles animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .sparkle {
+      position: fixed;
+      font-size: 2rem;
+      opacity: 0.6;
+      animation: float 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .sparkle:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .sparkle:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+    .sparkle:nth-child(3) { top: 60%; left: 5%; animation-delay: 2s; }
+    .sparkle:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 1.5s; }
+    .sparkle:nth-child(5) { top: 40%; right: 5%; animation-delay: 0.5s; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      padding: 50px 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
+    }
+
+    h1 {
+      color: #2c3e50;
+      font-size: 3.5rem;
+      margin: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      color: #2c3e50;
+      font-size: 2.2rem;
+      margin-top: 0;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #7f8c8d;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    header a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    header a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px 0;
+      text-align: center;
+      border: 3px solid #fbbf24;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      line-height: 1.9;
+      margin: 15px 0;
+      color: #555;
+    }
+
+    .hero strong {
+      color: #667eea;
+      font-size: 1.4rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .feature {
+      background: linear-gradient(135deg, #f3f4f6 0%, #fff 100%);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      border: 2px solid #e5e7eb;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .feature p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .download-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      padding: 50px 40px;
+      margin: 40px 0;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    }
+
+    .download-section h2 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .download-section p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .download-button {
+      display: inline-block;
+      padding: 20px 50px;
+      margin: 10px;
+      background: #fbbf24;
+      color: #2c3e50;
+      text-decoration: none;
+      border-radius: 15px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+    }
+
+    .download-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(251, 191, 36, 0.6);
+    }
+
+    .app-icon {
+      font-size: 2rem;
+      margin-right: 10px;
+    }
+
+    .content-section {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px 0;
+      border: 2px solid #e9ecef;
+    }
+
+    .content-section h3 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .content-section p, .content-section li {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: #555;
+      margin: 12px 0;
+    }
+
+    .content-section ul {
+      padding-left: 30px;
+    }
+
+    .safety-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin: 10px 5px;
+      font-size: 1rem;
+    }
+
+    .warning-box {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 10px;
+    }
+
+    .warning-box h3 {
+      color: #856404;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .warning-box p, .warning-box li {
+      color: #856404;
+      line-height: 1.8;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 30px 20px;
+      border-top: 2px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    footer a {
+      color: #fbbf24;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .header-title {
+        flex-direction: column;
+      }
+
+      .card {
+        padding: 30px 20px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating sparkles -->
+  <div class="sparkle">✨</div>
+  <div class="sparkle">⭐</div>
+  <div class="sparkle">🌟</div>
+  <div class="sparkle">💫</div>
+  <div class="sparkle">✨</div>
+
+  <div class="container">
+    <div class="card">
+      <header>
+        <div class="header-title">
+          <div class="logo">✨</div>
+          <h1>Spark Search</h1>
+        </div>
+        <p class="subtitle">Safe Search for Curious Kids</p>
+        <p><a href="../index.html">🏠 Back to Home</a></p>
+      </header>
+
+      <!-- HERO SECTION -->
+      <div class="hero">
+        <p><strong>Let your kids explore the world safely!</strong></p>
+        <p>Spark Search is a kid-friendly search engine that shows only safe, age-appropriate pictures, videos, and songs.</p>
+        <p>✨ No ads • No tracking • No inappropriate content ✨</p>
+      </div>
+
+      <!-- FEATURES -->
+      <h2>Perfect for Young Explorers</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🛡️</div>
+          <h3>100% Safe Content</h3>
+          <p>Advanced filtering ensures only kid-appropriate content appears</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <h3>Fun Themes</h3>
+          <p>Choose from magical, dragon, and more colorful themes!</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">👨‍👩‍👧</div>
+          <h3>Parent Controls</h3>
+          <p>PIN-protected settings to monitor searches and block words</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔍</div>
+          <h3>Easy to Use</h3>
+          <p>Simple search bar with autocomplete for young typists</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📱</div>
+          <h3>No Accounts</h3>
+          <p>Download and use immediately - no registration needed</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✨</div>
+          <h3>Free Forever</h3>
+          <p>No ads, no subscriptions, completely free to use</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD SECTION -->
+    <div class="download-section">
+      <h2>📥 Get Spark Search</h2>
+      <p>Currently in Beta Testing - Coming Soon to Google Play!</p>
+        <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
+          Notify Me When It's Live
+        </a>
+      <p style="margin-top: 20px; font-size: 1rem;">
+        Ages 0+ • Free • No Ads • Safe Content
+      </p>
+    </div>
+
+    <!-- SAFETY FEATURES -->
+    <div class="card">
+      <div class="content-section" style="border: none; padding: 0;">
+        <h2>🛡️ Safety Features</h2>
+        <p>We take your child's safety seriously. Spark Search includes multiple layers of protection:</p>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <span class="safety-badge">🔒 Content Filtering</span>
+          <span class="safety-badge">👨‍👩‍👧 Parent Monitoring</span>
+          <span class="safety-badge">🚫 Word Blocking</span>
+          <span class="safety-badge">📊 Search History</span>
+        </div>
+
+        <h3>How We Keep Kids Safe:</h3>
+        <ul>
+          <li><strong>Triple-Layer Filtering:</strong> SafeSearch API + keyword filtering + image analysis</li>
+          <li><strong>Curated Sources:</strong> Only searches trusted, family-friendly image databases</li>
+          <li><strong>No Chat or Social:</strong> Pure search only - no communication features</li>
+          <li><strong>Parent Dashboard:</strong> PIN-protected area to view search history</li>
+          <li><strong>Custom Blocking:</strong> Add specific words or topics to block</li>
+          <li><strong>No Data Collection:</strong> We don't track, store, or sell your child's information</li>
+        </ul>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="content-section">
+        <h3>How It Works</h3>
+        <p><strong>For Kids:</strong></p>
+        <ul>
+          <li>🔍 Type what you want to see (unicorns, dinosaurs, space, etc.)</li>
+          <li>🖼️ Choose Pictures, Videos, or Songs</li>
+          <li>👆 Tap any result to see it full-screen</li>
+          <li>✨ Swipe to browse more!</li>
+        </ul>
+        
+        <p style="margin-top: 25px;"><strong>For Parents:</strong></p>
+        <ul>
+          <li>⚙️ Access settings with your PIN</li>
+          <li>📊 Review what your kids searched</li>
+          <li>🚫 Block specific words or topics</li>
+          <li>✅ Adjust content filtering levels</li>
+        </ul>
+      </div>
+
+      <!-- BETA INFO -->
+      <div class="warning-box">
+        <h3>🧪 Currently in Beta Testing</h3>
+        <p>Spark Search is currently being tested with a small group of families. We're refining the safety features and user experience before the public launch.</p>
+        <p style="margin-top: 15px;"><strong>Want early access?</strong> <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">Contact us </a> to join the beta testing program!</p>
+      </div>
+
+      <!-- PRIVACY -->
+      <div class="content-section">
+        <h3>Privacy & Data</h3>
+        <p>We believe in your child's right to privacy:</p>
+        <ul>
+          <li>✅ No user accounts or personal information collected</li>
+          <li>✅ Search history stored locally on your device only</li>
+          <li>✅ No tracking, analytics, or third-party data sharing</li>
+          <li>✅ No advertisements or commercial content</li>
+          <li>✅ COPPA compliant (Children's Online Privacy Protection Act)</li>
+        </ul>
+        <p style="margin-top: 20px;">                
+          <a href="SparkSearch-PrivacyPolicy.html" style="color: #667eea; font-weight: 600;">View Full Privacy Policy →</a>
+        </p>
+      </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <div style="margin-bottom: 15px;">© 2025 DataForge Apps | Built with ❤️ for families</div>
+        <div>
+          <a href="../Site_Level_Docs/privacy.html">Privacy Policy</a>
+          <a href="../Site_Level_Docs/terms.html">Terms of Service</a>
+          <a href="../contact.html">Contact Us</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
