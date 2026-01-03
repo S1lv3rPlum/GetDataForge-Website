@@ -6,12 +6,12 @@
    <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056143037956286"
      crossorigin="anonymous"></script>
-  
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DataForgeApps</title>
    <link rel="icon" type="image/png" href="/favicon-32x32.png">
-   
+
   <style>
   body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -56,7 +56,8 @@
       text-decoration: underline;
     }
 
-    img {
+    /* Only float images with this class */
+    img.float-left {
       float: left;
       width: 160px;
       margin-right: 20px;
@@ -77,7 +78,7 @@
     }
 
     @media (max-width: 600px) {
-      img {
+      img.float-left {
         float: none;
         display: block;
         margin: 0 auto 20px auto;
@@ -156,8 +157,9 @@
 
 .accordion-header {
   display: flex;
-  align-items: center; /* center logo vertically */
-  gap: 15px; /* space between logo and text */
+  align-items: center;
+  justify-content: flex-start; /* left align content */
+  gap: 15px;
   background: #667eea;
   color: #fff;
   cursor: pointer;
@@ -175,9 +177,9 @@
 }
 
 .accordion-header img {
-  width: 40px; /* adjust logo size */
+  width: 40px;
   height: auto;
-  display: inline-block;
+  flex-shrink: 0; /* prevent logo from shrinking */
   border-radius: 6px;
 }
 
@@ -187,15 +189,17 @@
   background: #f7f9fb;
   transition: max-height 0.3s ease;
   padding: 0 20px;
+  text-align: left; /* left align text */
 }
 
 .accordion-content p {
   margin: 15px 0;
   color: #333;
+  padding-left: 55px; /* indent to align with text in header (40px logo + 15px gap) */
 }
 
   </style>
-  
+
 </head>
 <body>
   <!-- Side menu -->
@@ -219,12 +223,12 @@
     <p>
       Welcome! We create apps designed to make everyday tasks easier.  
       Our first release is live — check out the links in the menu to explore details, 
-      including our vehicle maintenance tracker and more apps as they’re released.  
+      including our vehicle maintenance tracker and more apps as they're released.  
     </p>
   </div>
 </section>
 <p>
-  Want to see what we’re working on? Use the <strong>☰ Apps</strong> menu to explore.  
+  Want to see what we're working on? Use the <strong>☰ Apps</strong> menu to explore.  
 </p>
 
 <p>
@@ -247,7 +251,7 @@
         GearSmith
       </button>
       <div class="accordion-content">
-        <p>A vehicle maintenance tracker that keeps your cars organized. Originally built for a classic Corvette enthusiast to track maintenance, receipts, modifications, and more, GearSmith quickly became a tool I’d use myself. Keep all your household vehicles organized in one place, with shared logs for everyone who helps care for them. </p>
+        <p>A vehicle maintenance tracker that keeps your cars organized. Originally built for a classic Corvette enthusiast to track maintenance, receipts, modifications, and more, GearSmith quickly became a tool I'd use myself. Keep all your household vehicles organized in one place, with shared logs for everyone who helps care for them. </p>
       </div>
     </div>
 
@@ -295,22 +299,21 @@
 </section>
 
 
-  
+
   <section>
     <h2>👩‍💻 About the Developer</h2>
-    <img src="Renee-Avatar.png" alt="Avatar of Renee, the developer" />
+    <img src="Renee-Avatar.png" alt="Avatar of Renee, the developer" class="float-left" />
 
     <p>
       Hey, I'm <strong>Renee</strong> — engineer by training, spreadsheet wrangler by trade, and now indie coder for fun!
       <br><br>
-      I hold an Associate's in Engineering Science (Erie Community College), a Bachelor's in Chemical Engineering (University of Pittsburgh), and a Master's in Engineering Management (Ohio Univeristy, online — because full-time jobs and day classes don’t mix).
+      I hold an Associate's in Engineering Science (Erie Community College), a Bachelor's in Chemical Engineering (University of Pittsburgh), and a Master's in Engineering Management (Ohio Univeristy, online — because full-time jobs and day classes don't mix).
       <br><br>
-      I’m also Lean Six Sigma Black Belt–certified through Kent State University. ⚙️📊
+      I'm also Lean Six Sigma Black Belt–certified through Kent State University. ⚙️📊
       <br><br>
-      My love of coding started with VBA automation in Excel, but this is my first big step outside that world. DataForge is just the beginning — let’s see what we can build. 🔧🔥
+      My love of coding started with VBA automation in Excel, but this is my first big step outside that world. DataForge is just the beginning — let's see what we can build. 🔧🔥
       <br><br>
-      Connect with me on <a href="https://www.linkedin.com/in/reneelueke?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer"
->LinkedIn</a>!
+      Connect with me on <a href="https://www.linkedin.com/in/reneelueke?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">LinkedIn</a>!
     </p>
     <div style="clear: both;"></div>
   </section>
@@ -318,22 +321,18 @@
 <footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
   <div>© 2025 DataForge</div>
   <div style="margin-top: 8px;">
-    <a href="Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer"
->Privacy Policy</a> |
-    <a href="Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer"
->Terms of Service</a> |
-    <a href="Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer"
->Cookie Policy</a> |
-     <a href="contact.html" target="_blank" rel="noopener noreferrer"
->Contact Form</a>
+    <a href="Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> |
+    <a href="Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a> |
+    <a href="Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a> |
+     <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Form</a>
   </div>
   <div style="margin-top: 12px;">
     <span>Visitors to The Forge:</span>
     <img 
       src="https://hitwebcounter.com/counter/counter.php?page=21131817&style=0006&nbdigits=5&type=page&initCount=3" 
       alt="Visitor Counter" 
-      style="vertical-align: middle; margin-left: 6px;"
-
+      style="float: none; width: auto; margin: 0 0 0 6px; vertical-align: middle; border-radius: 0;"
+    />
   </div>
 </footer>
 
