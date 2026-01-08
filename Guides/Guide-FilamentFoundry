@@ -3,80 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to Track Filament Usage with Filament Foundry - DataForgeApps Guides</title>
+  <title>Filament Foundry Guides | DataForgeApps</title>
+  <meta name="description" content="Step-by-step guides for using Filament Foundry to track 3D printing filament and project usage.">
   <style>
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
-    h1 { color: #2c3e50; }
-    h2 { color: #34495e; margin-top: 30px; }
-    h3 { color: #555; margin-top: 20px; }
+    h1, h2, h3 { color: #2c3e50; }
+    section { margin-bottom: 40px; }
+    ul { padding-left: 20px; }
     a { color: #007acc; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    ul { margin-left: 20px; }
-    footer { margin-top: 40px; font-size: 0.9rem; color: #aaa; text-align: center; }
+    footer { margin-top: 60px; font-size: 0.9rem; color: #aaa; text-align: center; }
   </style>
 </head>
 <body>
 
-<h1>How to Track Filament Usage Like a Pro with Filament Foundry</h1>
-<p>Effective filament tracking is essential for makers, hobbyists, and small production shops. Understanding how much filament you use, which projects consume the most, and when to reorder spools can save money, reduce waste, and make your 3D printing workflow more efficient. In this guide, we’ll walk you through how to use <strong>GearSmith</strong> to track filament usage like a pro.</p>
+<h1>Filament Foundry Guides</h1>
+<p>Filament Foundry helps 3D printing enthusiasts track filament, monitor usage, and reduce waste.</p>
 
-<h2>Why Tracking Filament Matters</h2>
-<p>Many 3D printing users underestimate how much filament they consume. Without proper tracking, you might:</p>
+<section>
+<h2>Getting Started</h2>
 <ul>
-  <li>Run out of filament mid-print, ruining projects.</li>
-  <li>Waste money buying more filament than necessary.</li>
-  <li>Have difficulty analyzing cost per print or per project.</li>
+<li>Add your filament types, colors, and quantities.</li>
+<li>Log the printer and filament used for each print.</li>
+<li>Monitor material usage over time.</li>
 </ul>
-<p>Fulament Foundry makes it easy to log and monitor filament usage so you can make data-driven decisions.</p>
+</section>
 
-<h2>Step 1: Set Up Your Filament Foundry Account</h2>
-<p>Before you can start tracking, you need to create your GearSmith account:</p>
-<ol>
-  <li>Go to the <a href="/FilamentFoundry/fulamentfoundryprivacy-policy.html">Filament Foundry App page</a> and download the app.</li>
-  <li>Open the app and create a new account with your email and password.</li>
-  <li>Verify your email address to unlock full features.</li>
-</ol>
-
-<h2>Step 2: Add Your Filament Spools</h2>
-<p>Once your account is ready, add your filament inventory:</p>
-<ol>
-  <li>Click <strong>Add New Spool</strong> in the app dashboard.</li>
-  <li>Enter the filament type (PLA, ABS, PETG, etc.), color, and spool weight.</li>
-  <li>Optional: Add a purchase date and cost to track usage cost.</li>
-  <li>Save the spool entry. Repeat for all spools in your inventory.</li>
-</ol>
-
-<h2>Step 3: Log Filament Usage per Print</h2>
-<p>Tracking usage per print allows you to understand consumption patterns:</p>
-<ol>
-  <li>After starting a print, select the spool used in GearSmith.</li>
-  <li>Enter the estimated filament used for the print (GearSmith can calculate automatically if you provide G-code).</li>
-  <li>Log the date, project name, and notes for reference.</li>
-</ol>
-
-<h2>Step 4: Analyze Your Usage (Coming Soon!)</h2>
-<p>Filament Foundry provides reports to help you manage your filament more efficiently:</p>
+<section>
+<h2>Managing Inventory</h2>
 <ul>
-  <li><strong>Usage by spool:</strong> See which spools are running low.</li>
-  <li><strong>Usage by project:</strong> Understand which types of prints consume the most filament.</li>
-  <li><strong>Cost tracking:</strong> Know the cost per print or per spool.</li>
+<li>Update filament stock after each print.</li>
+<li>Remove or archive depleted spools.</li>
+<li>Set alerts for low filament levels.</li>
 </ul>
+</section>
 
-<h2>Step 5: Tips for Pro-Level Tracking</h2>
+<section>
+<h2>Tracking Projects</h2>
 <ul>
-  <li>Always log prints immediately after starting or finishing to maintain accurate records.</li>
-  <li>Use consistent naming conventions for projects to avoid duplicate entries.</li>
-  <li>Periodically check reports to anticipate spool shortages and reorder in advance.</li>
-  <li>Combine filament tracking with inventory and cost analysis for maximum efficiency.</li>
+<li>Log project details (printer, filament, settings).</li>
+<li>Mark prints as successful or failed.</li>
+<li>Analyze filament usage trends.</li>
 </ul>
+</section>
 
-<h2>Conclusion</h2>
-<p>By following these steps, you’ll gain complete visibility into your filament usage, reduce waste, and save money on 3D printing materials. Filament Foundry is a powerful tool for both hobbyists and small production shops, but the real value comes from consistent tracking and analysis.</p>
-<p>For more guides on maximizing your tools, visit our <a href="/guides/">Guides section</a> or check out other <a href="/FilamentFoundry/FulamentFoundryprivacy-policy.html">Filament Foundry resources</a>.</p>
+<section>
+<h2>Back to Guides</h2>
+<p><a href="index.html">&rarr; Return to all Guides</a></p>
+</section>
 
-<footer>
-  <p>© 2026 DataForgeApps | <a href="/Site_Level_Docs/privacy.html">Privacy Policy</a></p>
-</footer>
+<footer>© 2025 DataForgeApps</footer>
 
 </body>
 </html>
