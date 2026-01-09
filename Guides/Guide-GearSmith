@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GearSmith Guides | DataForgeApps</title>
+  <meta name="description" content="Step-by-step guides for using GearSmith to track vehicle maintenance and repairs.">
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
+    h1, h2, h3 { color: #2c3e50; }
+    section { margin-bottom: 40px; }
+    ul { padding-left: 20px; }
+    a { color: #007acc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { margin-top: 60px; font-size: 0.9rem; color: #aaa; text-align: center; }
+  </style>
+</head>
+<body>
+
+<h1>GearSmith Guides</h1>
+<p>Welcome! GearSmith helps you track vehicle maintenance, service history, and repairs.</p>
+
+<section>
+<h2>Getting Started</h2>
+<ul>
+<li>Add your vehicles to the app.</li>
+<li>Set up maintenance schedules (oil changes, tire rotations, etc.).</li>
+<li>Enable reminders for upcoming service.</li>
+</ul>
+</section>
+
+<section>
+<h2>Logging Maintenance</h2>
+<ul>
+<li>Open a vehicle profile.</li>
+<li>Click "Add Service" and fill in details (date, type, cost, notes).</li>
+<li>Attach receipts or photos if needed.</li>
+</ul>
+</section>
+
+<section>
+<h2>Viewing Service History</h2>
+<ul>
+<li>Open the vehicle profile.</li>
+<li>Scroll through service records.</li>
+<li>Use filters to find specific entries.</li>
+</ul>
+</section>
+
+<section>
+<h2>Back to Guides</h2>
+<p><a href="index.html">&rarr; Return to all Guides</a></p>
+</section>
+
+<footer>© 2025 DataForgeApps</footer>
+
+</body>
+</html>

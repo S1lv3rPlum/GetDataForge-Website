@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filament Foundry Guides | DataForgeApps</title>
+  <meta name="description" content="Step-by-step guides for using Filament Foundry to track 3D printing filament and project usage.">
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
+    h1, h2, h3 { color: #2c3e50; }
+    section { margin-bottom: 40px; }
+    ul { padding-left: 20px; }
+    a { color: #007acc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { margin-top: 60px; font-size: 0.9rem; color: #aaa; text-align: center; }
+  </style>
+</head>
+<body>
+
+<h1>Filament Foundry Guides</h1>
+<p>Filament Foundry helps 3D printing enthusiasts track filament, monitor usage, and reduce waste.</p>
+
+<section>
+<h2>Getting Started</h2>
+<ul>
+<li>Add your filament types, colors, and quantities.</li>
+<li>Log the printer and filament used for each print.</li>
+<li>Monitor material usage over time.</li>
+</ul>
+</section>
+
+<section>
+<h2>Managing Inventory</h2>
+<ul>
+<li>Update filament stock after each print.</li>
+<li>Remove or archive depleted spools.</li>
+<li>Set alerts for low filament levels.</li>
+</ul>
+</section>
+
+<section>
+<h2>Tracking Projects</h2>
+<ul>
+<li>Log project details (printer, filament, settings).</li>
+<li>Mark prints as successful or failed.</li>
+<li>Analyze filament usage trends.</li>
+</ul>
+</section>
+
+<section>
+<h2>Back to Guides</h2>
+<p><a href="index.html">&rarr; Return to all Guides</a></p>
+</section>
+
+<footer>© 2025 DataForgeApps</footer>
+
+</body>
+</html>
