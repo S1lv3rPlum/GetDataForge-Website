@@ -5,63 +5,228 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GearSmith Guides | DataForgeApps</title>
   <meta name="description" content="Step-by-step guides for using GearSmith to track vehicle maintenance and repairs.">
+  <link rel="stylesheet" href="guides-theme.css">
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
-    h1, h2, h3 { color: #2c3e50; }
-    section { margin-bottom: 40px; }
-    ul { padding-left: 20px; }
-    a { color: #007acc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    footer { margin-top: 60px; font-size: 0.9rem; color: #aaa; text-align: center; }
+    /* GearSmith custom accent color */
+    body.gearsmith {
+      --accent-color: #4A90A4;
+      --accent-light: rgba(74, 144, 164, 0.05);
+      --accent-section: rgba(74, 144, 164, 0.02);
+    }
   </style>
 </head>
-<body>
 
-<h1>GearSmith Guides</h1>
-<p>Welcome! GearSmith helps you track vehicle maintenance, service history, and repairs.</p>
+<body class="gearsmith">
+  <div class="content-wrapper">
+    
+    <!-- Header with Logo -->
+    <header class="guide-header">
+      <div class="guide-logo">
+        <img src="../GearSmith/GearSmithLogo.png" alt="GearSmith Logo">
+      </div>
+      <h1>GearSmith Guides</h1>
+    </header>
 
-<section>
-<h2>Getting Started</h2>
-<ul>
-<li>Add your vehicles to the app.</li>
-<li>Set up maintenance schedules (oil changes, tire rotations, etc.).</li>
-<li>Enable reminders for upcoming service.</li>
-</ul>
-</section>
+    <!-- Main Content -->
+    <main class="guide-content">
+      <a href="index.html" class="back-link">← Back to All Guides</a>
 
-<section>
-<h2>Logging Maintenance</h2>
-<ul>
-<li>Open a vehicle profile.</li>
-<li>Click "Add Service" and fill in details (date, type, cost, notes).</li>
-<li>Attach receipts or photos if needed.</li>
-</ul>
-</section>
+      <p class="guide-intro">
+        Welcome! GearSmith helps you track vehicle maintenance, service history, and repairs.
+        Whether you're managing one car or an entire household fleet, GearSmith keeps everything
+        organized in one place.
+      </p>
 
-<section>
-<h2>Viewing Service History</h2>
-<ul>
-<li>Open the vehicle profile.</li>
-<li>Scroll through service records.</li>
-<li>Use filters to find specific entries.</li>
-</ul>
-</section>
+      <!-- Getting Started -->
+      <section class="guide-section">
+        <h2>Getting Started</h2>
+        <p>
+          Start tracking your vehicles in just a few simple steps:
+        </p>
+        <ul>
+          <li><strong>Add your vehicles:</strong> Enter details like make, model, year, and VIN</li>
+          <li><strong>Set up maintenance schedules:</strong> Configure reminders for oil changes, tire rotations, inspections, and more</li>
+          <li><strong>Enable reminders:</strong> Get notifications when service is due so you never miss important maintenance</li>
+        </ul>
+        <p>
+          <strong>Pro Tip:</strong> Add all your household vehicles at once, even if they don't need
+          service right away. It's easier to have everything in one place from the start.
+        </p>
+      </section>
 
-<section>
-<h2>Back to Guides</h2>
-<p><a href="index.html">&rarr; Return to all Guides</a></p>
-  <h2>Back to Home</h2>
-  <p><a href="../index.html">🏠 Return Home</a></p>
-</section>
+      <!-- Logging Maintenance -->
+      <section class="guide-section">
+        <h2>Logging Maintenance</h2>
+        <p>
+          Keep detailed records of every service, repair, and modification:
+        </p>
+        <ol>
+          <li>Open the vehicle profile you want to update</li>
+          <li>Click "Add Service" or the + button</li>
+          <li>Fill in service details:
+            <ul>
+              <li>Service date</li>
+              <li>Service type (oil change, tire rotation, brake service, etc.)</li>
+              <li>Cost and mileage</li>
+              <li>Service provider/shop name</li>
+              <li>Notes about the work performed</li>
+            </ul>
+          </li>
+          <li>Attach receipts or photos if needed (great for warranty claims!)</li>
+          <li>Save the entry</li>
+        </ol>
+        <h3>What to Track:</h3>
+        <p>
+          Don't limit yourself to just routine maintenance! Consider logging:
+        </p>
+        <ul>
+          <li>Repairs and replacements</li>
+          <li>Modifications and upgrades</li>
+          <li>Tire changes and rotations</li>
+          <li>Fluid top-offs</li>
+          <li>Inspections and emissions tests</li>
+          <li>Accidents or insurance claims</li>
+        </ul>
+      </section>
 
-<footer>
-  <div>© 2025 DataForgeApps</div>div>
-<div>
-          <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-          <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-          <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-          <a href="../contact.html" target="_blank">Contact Form</a>
-        </div>
-</footer>
+      <!-- Viewing Service History -->
+      <section class="guide-section">
+        <h2>Viewing Service History</h2>
+        <p>
+          Access your complete service history anytime:
+        </p>
+        <ul>
+          <li><strong>Open the vehicle profile:</strong> Select the vehicle from your dashboard</li>
+          <li><strong>Scroll through service records:</strong> See all entries in chronological order</li>
+          <li><strong>Use filters:</strong> Find specific service types, date ranges, or shops quickly</li>
+          <li><strong>Export records:</strong> Generate reports for tax purposes, resale, or warranty claims</li>
+        </ul>
+        <p>
+          <strong>Best Practice:</strong> Review your service history before selling a vehicle.
+          A complete maintenance log can increase resale value and buyer confidence!
+        </p>
+      </section>
+
+      <!-- Setting Up Reminders -->
+      <section class="guide-section">
+        <h2>Setting Up Maintenance Reminders</h2>
+        <p>
+          Never miss important maintenance with automatic reminders:
+        </p>
+        <h3>How to Set Reminders:</h3>
+        <ol>
+          <li>Go to vehicle settings</li>
+          <li>Select "Maintenance Schedule"</li>
+          <li>Choose service type (oil change, tire rotation, etc.)</li>
+          <li>Set reminder frequency:
+            <ul>
+              <li>By mileage (e.g., every 5,000 miles)</li>
+              <li>By time (e.g., every 6 months)</li>
+              <li>By both mileage and time</li>
+            </ul>
+          </li>
+          <li>Enable notifications</li>
+        </ol>
+        <p>
+          GearSmith will alert you when service is coming due, giving you time to schedule
+          an appointment.
+        </p>
+      </section>
+
+      <!-- Managing Multiple Vehicles -->
+      <section class="guide-section">
+        <h2>Managing Multiple Vehicles</h2>
+        <p>
+          Keep track of your whole household fleet with ease:
+        </p>
+        <ul>
+          <li><strong>Dashboard view:</strong> See all vehicles and their upcoming maintenance at a glance</li>
+          <li><strong>Shared access:</strong> Allow family members to view and log service for shared vehicles</li>
+          <li><strong>Vehicle groups:</strong> Organize by driver, vehicle type, or any custom category</li>
+          <li><strong>Comparison reports:</strong> See which vehicles cost the most to maintain</li>
+        </ul>
+      </section>
+
+      <!-- Tips & Best Practices -->
+      <section class="guide-section">
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li>
+            <strong>Log everything immediately:</strong> Add service records right after maintenance
+            while details are fresh. Keep receipts in your glove box to enter later if needed.
+          </li>
+          <li>
+            <strong>Take photos:</strong> Snap pics of receipts, damaged parts, or work in progress.
+            These are invaluable for warranty claims and insurance.
+          </li>
+          <li>
+            <strong>Track fuel economy:</strong> Log fill-ups to monitor MPG trends. Sudden drops
+            can indicate maintenance issues.
+          </li>
+          <li>
+            <strong>Use consistent shop names:</strong> If you visit "Joe's Auto," always enter it
+            the same way for easier filtering and reporting.
+          </li>
+          <li>
+            <strong>Add modifications:</strong> Log upgrades and aftermarket parts. This helps with
+            resale and insurance documentation.
+          </li>
+          <li>
+            <strong>Set conservative reminders:</strong> Better to get reminded a bit early than to
+            miss important service by waiting too long.
+          </li>
+        </ul>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section class="guide-section">
+        <h2>Troubleshooting</h2>
+        <h3>Not receiving reminders?</h3>
+        <ul>
+          <li>Check that notifications are enabled in your device settings</li>
+          <li>Verify reminder settings in the vehicle profile</li>
+          <li>Ensure you've entered current mileage accurately</li>
+        </ul>
+        
+        <h3>Need to edit a past entry?</h3>
+        <p>
+          Tap any service record to view details, then select "Edit" to make changes or "Delete"
+          to remove it entirely.
+        </p>
+        
+        <h3>Lost receipts?</h3>
+        <p>
+          Most shops can provide duplicate receipts or email copies. Add them to your records
+          as soon as you get them!
+        </p>
+      </section>
+
+      <!-- Need More Help -->
+      <section class="guide-section">
+        <h2>Need More Help?</h2>
+        <p>
+          Questions or need support? We're here to help!
+        </p>
+        <ul>
+          <li><a href="../contact.html">Contact Support</a></li>
+          <li><a href="index.html">Browse Other Guides</a></li>
+          <li><a href="../index.html">Return to DataForge Home</a></li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="guide-footer">
+      <div>© 2025 DataForgeApps</div>
+      <div style="margin-top: 8px;">
+        <a href="../Site_Level_Docs/privacy.html">Privacy Policy</a> |
+        <a href="../Site_Level_Docs/terms.html">Terms of Service</a> |
+        <a href="../Site_Level_Docs/cookies.html">Cookie Policy</a> |
+        <a href="../contact.html">Contact Form</a>
+      </div>
+    </footer>
+
+  </div>
 </body>
 </html>
