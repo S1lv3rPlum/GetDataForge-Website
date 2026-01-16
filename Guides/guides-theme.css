@@ -1,0 +1,294 @@
+/* ============================================
+   DataForge Guides Theme CSS
+   Version: 1.0
+   Author: DataForge Apps
+   
+   CUSTOMIZATION NOTES:
+   - Change --accent-color for different apps
+   - Adjust --pattern-opacity for pattern intensity
+   - Modify --pattern-size for geometric pattern scale
+   ============================================ */
+
+:root {
+    /* Primary Colors - Change these per app */
+    --accent-color: #007BA7;  /* Cerulean - Default for main Guides page */
+    --accent-light: rgba(0, 123, 167, 0.05);
+    --accent-section: rgba(0, 123, 167, 0.02);
+    
+    /* Pattern Settings */
+    --pattern-opacity: 0.06;
+    --pattern-size: 80px;
+    
+    /* Neutral Colors */
+    --text-primary: #333;
+    --text-secondary: #555;
+    --border-color: #e0e0e0;
+    --background-white: #ffffff;
+    --background-light: #fafafa;
+}
+
+/* ============================================
+   BODY & MAIN CONTAINER
+   ============================================ */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    background: var(--background-white);
+    margin: 0;
+    padding: 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Geometric Pattern Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(30deg, var(--accent-color) 12%, transparent 12.5%, transparent 87%, var(--accent-color) 87.5%, var(--accent-color)),
+        linear-gradient(150deg, var(--accent-color) 12%, transparent 12.5%, transparent 87%, var(--accent-color) 87.5%, var(--accent-color)),
+        linear-gradient(30deg, var(--accent-color) 12%, transparent 12.5%, transparent 87%, var(--accent-color) 87.5%, var(--accent-color)),
+        linear-gradient(150deg, var(--accent-color) 12%, transparent 12.5%, transparent 87%, var(--accent-color) 87.5%, var(--accent-color));
+    background-size: var(--pattern-size) calc(var(--pattern-size) * 1.75);
+    background-position: 0 0, 0 0, calc(var(--pattern-size) / 2) calc(var(--pattern-size) * 0.875), calc(var(--pattern-size) / 2) calc(var(--pattern-size) * 0.875);
+    mask-image: radial-gradient(ellipse at top right, black 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at top right, black 0%, transparent 70%);
+    opacity: var(--pattern-opacity);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Content wrapper to sit above background */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   HEADER SECTION
+   ============================================ */
+.guide-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 40px 60px 30px 60px;
+    background: linear-gradient(135deg, var(--accent-light) 0%, rgba(0, 166, 214, 0.02) 100%);
+    position: relative;
+}
+
+.guide-logo {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.guide-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.guide-header h1 {
+    color: var(--accent-color);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+.guide-content {
+    padding: 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.guide-intro {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    font-size: 16px;
+}
+
+/* Back to Home Link */
+.back-link {
+    display: inline-block;
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-bottom: 30px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.back-link:hover {
+    opacity: 0.7;
+}
+
+/* ============================================
+   SECTION STYLING
+   ============================================ */
+.guide-section {
+    margin-bottom: 35px;
+    background: var(--accent-section);
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.guide-section:hover {
+    transform: translateX(2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.guide-section h2,
+.guide-section h3 {
+    color: var(--accent-color);
+    font-size: 24px;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+.guide-section h3 {
+    font-size: 20px;
+}
+
+.guide-section p {
+    margin: 0 0 15px 0;
+    line-height: 1.8;
+}
+
+.guide-section ul {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.guide-section li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Section Links */
+.guide-section a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.guide-section a:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+/* Arrow links */
+.arrow-link {
+    display: inline-block;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: transform 0.2s;
+}
+
+.arrow-link:hover {
+    transform: translateX(5px);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.guide-footer {
+    text-align: center;
+    padding: 40px 60px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 60px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.guide-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.guide-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    .guide-header {
+        padding: 30px 20px 20px 20px;
+    }
+    
+    .guide-header h1 {
+        font-size: 24px;
+    }
+    
+    .guide-logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .guide-content {
+        padding: 30px 20px;
+    }
+    
+    .guide-section {
+        padding: 20px;
+    }
+    
+    .guide-section h2 {
+        font-size: 20px;
+    }
+    
+    .guide-footer {
+        padding: 30px 20px;
+    }
+}
+
+/* ============================================
+   APP-SPECIFIC COLOR OVERRIDES
+   Place these in individual HTML files or create
+   separate CSS files for each app
+   ============================================ */
+
+/* Example for GearSmith:
+body.gearsmith {
+    --accent-color: #007BA7;
+}
+*/
+
+/* Example for Stock Hammer:
+body.stockhammer {
+    --accent-color: #5A6C7D;
+}
+*/
+
+/* Example for Filament Foundry:
+body.filamentfoundry {
+    --accent-color: #E85D75;
+}
+*/
+
+/* Example for The Juke:
+body.thejuke {
+    --accent-color: #9B59B6;
+}
+*/
+
+/* Example for Spark Search:
+body.sparksearch {
+    --accent-color: #F39C12;
+}
+*/
