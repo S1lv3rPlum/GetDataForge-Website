@@ -4,65 +4,207 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Filament Foundry Guides | DataForgeApps</title>
-  <meta name="description" content="Step-by-step guides for using Filament Foundry to track 3D printing filament and project usage.">
+  <meta name="description" content="Step-by-step guides for Filament Foundry - track your 3D printing filament inventory and usage.">
+  <link rel="stylesheet" href="guides-theme.css">
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
-    h1, h2, h3 { color: #2c3e50; }
-    section { margin-bottom: 40px; }
-    ul { padding-left: 20px; }
-    a { color: #007acc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    footer { margin-top: 60px; font-size: 0.9rem; color: #aaa; text-align: center; }
+    /* Filament Foundry custom accent color */
+    body.filamentfoundry {
+      --accent-color: #E85D75;
+      --accent-light: rgba(232, 93, 117, 0.05);
+      --accent-section: rgba(232, 93, 117, 0.02);
+    }
   </style>
 </head>
-<body>
 
-<h1>Filament Foundry Guides</h1>
-<p>Filament Foundry helps 3D printing enthusiasts track filament, monitor usage, and reduce waste.</p>
+<body class="filamentfoundry">
+  <div class="content-wrapper">
+    
+    <!-- Header with Logo -->
+    <header class="guide-header">
+      <div class="guide-logo">
+        <img src="../Filament_Foundry/filamentlogo.png" alt="Filament Foundry Logo">
+      </div>
+      <h1>Filament Foundry Guides</h1>
+    </header>
 
-<section>
-<h2>Getting Started</h2>
-<ul>
-<li>Add your filament types, colors, and quantities.</li>
-<li>Log the printer and filament used for each print.</li>
-<li>Monitor material usage over time.</li>
-</ul>
-</section>
+    <!-- Main Content -->
+    <main class="guide-content">
+      <a href="index.html" class="back-link">← Back to All Guides</a>
 
-<section>
-<h2>Managing Inventory</h2>
-<ul>
-<li>Update filament stock after each print.</li>
-<li>Remove or archive depleted spools.</li>
-<li>Set alerts for low filament levels.</li>
-</ul>
-</section>
+      <p class="guide-intro">
+        Welcome to the Filament Foundry guide! Learn how to track your 3D printing filament inventory,
+        monitor usage, and reduce waste across your projects.
+      </p>
 
-<section>
-<h2>Tracking Projects</h2>
-<ul>
-<li>Log project details (printer, filament, settings).</li>
-<li>Mark prints as successful or failed.</li>
-<li>Analyze filament usage trends.</li>
-</ul>
-</section>
+      <!-- Getting Started -->
+      <section class="guide-section">
+        <h2>Getting Started</h2>
+        <p>
+          Filament Foundry helps you keep track of all your 3D printing materials in one place.
+          Whether you're managing a small personal collection or a larger inventory for a business,
+          this app makes it easy to know what you have, what you've used, and when to restock.
+        </p>
+        <h3>Key Features:</h3>
+        <ul>
+          <li>Track filament types, colors, and quantities</li>
+          <li>Log completed and failed prints</li>
+          <li>Monitor material usage over time</li>
+          <li>Get alerts when spools run low</li>
+          <li>Organize by brand, type, and color</li>
+        </ul>
+      </section>
 
-<section>
-<h2>Back to Guides</h2>
-<p><a href="index.html">&rarr; Return to all Guides</a></p>
-  <h2>Back to Home</h2>
-  <p><a href="../index.html">🏠 Return Home</a></p>
-</section>
+      <!-- Adding Filament -->
+      <section class="guide-section">
+        <h2>Adding Filament to Your Inventory</h2>
+        <p>
+          Start by adding all your filament spools to the app. For each spool, you'll record:
+        </p>
+        <ul>
+          <li><strong>Brand:</strong> Manufacturer name (e.g., Hatchbox, eSun, Overture)</li>
+          <li><strong>Type:</strong> Material type (PLA, PETG, ABS, TPU, etc.)</li>
+          <li><strong>Color:</strong> Color name or description</li>
+          <li><strong>Weight:</strong> Initial weight in grams</li>
+ <!--         <li><strong>Cost:</strong> Price per spool (optional, helps with budget tracking)</li>   -->
+        </ul>
+        <p>
+          <strong>Pro Tip:</strong> Weigh your spools including the spool core itself when you first add them.
+          This gives you a baseline to track usage accurately.
+        </p>
+      </section>
 
-<footer>
-  <div>© 2025 DataForgeApps</div>div>
-<div>
-          <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-          <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-          <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-          <a href="../contact.html" target="_blank">Contact Form</a>
-        </div>
-</footer>
+      <!-- Tracking Usage -->
+      <section class="guide-section">
+        <h2>Tracking Print Usage</h2>
+        <p>
+          After each print job, log your usage to keep your inventory accurate:
+        </p>
+        <ol>
+          <li>Select the spool you used from your inventory</li>
+          <li>Enter the weight used (or weigh the spool again to calculate)</li>
+          <li>Add print details: project name</li>  <!--add notes ? -->
+          <li>Save the entry</li>
+        </ol>
+        <p>
+          The app will automatically update your remaining filament weight and show you how much
+          you've used over time.
+        </p>
+        <h3>Failed Prints:</h3>
+        <p>
+          Don't forget to log failed prints too! This helps you track wasted material and
+          identify problem filaments or settings. Mark prints as "failed" 
+        </p>  <!-- and add notes
+          about what went wrong. -->
+      </section>
 
+      <!-- Managing Inventory -->
+<!--      <section class="guide-section">
+        <h2>Managing Your Inventory</h2>
+        <p>
+          Keep your filament collection organized with these features:
+        </p>
+        <ul>
+          <li><strong>Search & Filter:</strong> Find spools by type, color, or brand quickly</li> 
+          <li><strong>Low Stock Alerts:</strong> Set weight thresholds to get notified when spools run low</li>
+          <li><strong>Archive Empty Spools:</strong> Move finished spools to archive to keep your active inventory clean</li>
+          <li><strong>Sort Options:</strong> Organize by date added, remaining weight, or last used</li>
+        </ul>
+        <p>
+          <strong>Best Practice:</strong> Review your inventory monthly and archive any spools
+          you've fully used. This keeps your active list manageable.
+        </p>
+      </section>   -->
+
+      <!-- Reports & Insights -->
+      <section class="guide-section">
+        <h2>Reports & Insights</h2>
+        <p>
+          Use Filament Foundry's reporting features to understand your printing patterns:
+        </p>
+        <ul>
+          <li><strong>Usage by Type:</strong> See which materials you use most often</li>
+          <li><strong>Cost Analysis:</strong> Track how much you're spending on filament</li>
+          <li><strong>Success Rate:</strong> Monitor your print success vs. failure ratio</li>
+          <li><strong>Monthly Trends:</strong> View usage patterns over time</li>
+        </ul>
+        <p>
+          These insights help you make smarter purchasing decisions and optimize your printing workflow.
+        </p>
+      </section>
+
+      <!-- Tips & Best Practices -->
+      <section class="guide-section">
+        <h2>Tips & Best Practices</h2>
+        <ul>
+          <li>
+            <strong>Weigh regularly:</strong> Re-weigh spools every few prints to ensure accuracy.
+            Small errors compound over time.
+          </li>
+          <li>
+     <!--       <strong>Add notes:</strong> Record print settings, nozzle temperature, and any issues.
+            This creates a valuable reference for future prints.  -->
+          </li>
+          <li>
+      <!--      <strong>Set reorder points:</strong> Don't wait until you're completely out! Set alerts
+            at 200-300g remaining so you have time to restock. -->
+          </li>
+          <li>
+ <!--           <strong>Track storage conditions:</strong> Note where each spool is stored (dry box,
+            shelf, etc.) to monitor humidity exposure.  -->
+          </li>
+          <li>
+            <strong>Color consistency:</strong> Use consistent color naming (e.g., "Red" vs "Crimson")
+            to make searching easier.
+          </li>
+        </ul>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section class="guide-section">
+        <h2>Troubleshooting</h2>
+        <h3>Inventory doesn't match reality?</h3>
+        <p>
+          If your recorded amounts don't match your physical spools, try these steps:
+        </p>
+        <ul>
+          <li>Re-weigh all active spools and update them manually</li>
+          <li>Check that you're including spool core weight in your measurements</li>
+          <li>Review recent print logs for any missed entries</li>
+        </ul>
+        
+        <h3>Need to adjust a past entry?</h3>
+        <p>
+          You can edit or delete previous print logs from the usage history. Just tap the entry
+          and select "Edit" or "Delete" from the menu.
+        </p>
+      </section>
+
+      <!-- Need More Help -->
+      <section class="guide-section">
+        <h2>Need More Help?</h2>
+        <p>
+          Still have questions? We're here to help!
+        </p>
+        <ul>
+          <li><a href="../contact.html">Contact Support</a></li>
+          <li><a href="index.html">Browse Other Guides</a></li>
+          <li><a href="../index.html">Return to DataForge Home</a></li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="guide-footer">
+      <div>© 2025 DataForgeApps</div>
+      <div style="margin-top: 8px;">
+        <a href="../Site_Level_Docs/privacy.html">Privacy Policy</a> |
+        <a href="../Site_Level_Docs/terms.html">Terms of Service</a> |
+        <a href="../Site_Level_Docs/cookies.html">Cookie Policy</a> |
+        <a href="../contact.html">Contact Form</a>
+      </div>
+    </footer>
+
+  </div>
 </body>
 </html>

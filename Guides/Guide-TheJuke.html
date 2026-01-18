@@ -1,82 +1,348 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Juke - Band and Audience Guides | DataForgeApps</title>
-<style>
-  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
-  h1, h2 { color: #2c3e50; }
-  section { margin-bottom: 40px; }
-  ul { padding-left: 20px; }
-  a { color: #007acc; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  footer { margin-top: 60px; font-size: 0.9rem; color: #aaa; text-align: center; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Juke Guides | DataForgeApps</title>
+  <meta name="description" content="Step-by-step guides for using The Juke - a live music engagement app for bands and audiences.">
+  <link rel="stylesheet" href="guides-theme.css">
+  <style>
+    /* The Juke custom accent color */
+    body.thejuke {
+      --accent-color: #9B59B6;
+      --accent-light: rgba(155, 89, 182, 0.05);
+      --accent-section: rgba(155, 89, 182, 0.02);
+    }
+  </style>
 </head>
-<body>
 
-<h1>The Juke - Audience Guides</h1>
-<p>This app helps bands and performers manage audience engagement and analytics.</p>
+<body class="thejuke">
+  <div class="content-wrapper">
+    
+    <!-- Header with Logo -->
+    <header class="guide-header">
+      <div class="guide-logo">
+        <img src="../The_Juke_App/Juke_icon.png" alt="The Juke Logo">
+      </div>
+      <h1>The Juke Guides</h1>
+    </header>
 
-<section>
-<h2>Getting Started</h2>
-<ul>
-<li>Sign in or create an account.</li>
-<li>Add your event or band profile.</li>
-<li>Invite audience members or link social profiles.</li>
-</ul>
-</section>
+    <!-- Main Content -->
+    <main class="guide-content">
+      <a href="index.html" class="back-link">← Back to All Guides</a>
 
-<section>
-<h2>Tracking Audience Interaction</h2>
-<ul>
-<li>Log attendee feedback.</li>
-<li>Monitor engagement metrics.</li>
-<li>Export reports for review.</li>
-</ul>
-</section>
+      <p class="guide-intro">
+        Welcome! The Juke is a two-part app that connects bands and audiences during live music events.
+        Bands can share their setlist in real-time, accept song requests, and collect tips digitally—while
+        audiences can follow along with what's coming up, request their favorite songs, and support the band
+        without leaving their table.
+      </p>
 
+      <!-- ========================================
+           FOR BANDS
+           ======================================== -->
+      
+      <section class="guide-section">
+        <h2>🎸 For Bands: Getting Started</h2>
+        <p>
+          Set up your band profile and start engaging with your audience in minutes:
+        </p>
+        <ul>
+         <li><strong>Create your band Username:</strong> Add your band name, logo, and profile links</li>
+       <!--   <li><strong>Add band members:</strong> Invite your bandmates and assign roles (lead vocals, guitar, drums, etc.)</li> -->
+          <li><strong>Build your song library:</strong> Add all the songs in your repertoire</li>
+       <!--    <li><strong>Create your first event:</strong> Set up your venue, date, and time</li>  -->
+          <li><strong>Generate your Band code:</strong> Share this with your audience so they can connect</li>
+        </ul>
+        <p>
+          <strong>Pro Tip:</strong> Set up your song library before your first gig. You can always add more
+          songs later, but starting with a solid list makes creating setlists much faster.
+        </p>
+      </section>
 
+      <section class="guide-section">
+        <h2>🎵 Building Your Setlist</h2>
+        <p>
+          Create engaging setlists that keep your audience excited:
+        </p>
+        <h3>Creating a Setlist:</h3>
+        <ol>
+          <li>Click "New Setlist" for your event</li>
+          <li>Add songs from your library in the order you'll perform them</li>
+          <li>Mark breaks between sets (15-minute break, intermission, etc.)</li>
+          <li>Reorder songs with drag-and-drop if plans change</li>
+          <li>Save and publish to make it visible to your audience</li>
+        </ol>
+        
+        <h3>During Your Performance:</h3>
+        <ul>
+          <li><strong>Add spontaneous songs:</strong> Drop in surprise covers or requests</li>
+          <li><strong>Update break times:</strong> Running long? Adjust your break timing in real-time</li>
+          <li><strong>Confirm queued songs have been played:</strong> Keep the audience's request queue up to date<li>
+        </ul>
+        
+        </section>
 
-<h1>The Juke - Band Guides</h1>
-<p>This app helps bands manage their internal workflows, schedules, and content sharing.</p>
+      <section class="guide-section">
+        <h2>🎤 Managing Song Requests</h2>
+        <p>
+          Let your audience request songs while you stay in control:
+        </p>
+        <h3>Setting Up Requests:</h3>
+        <ul>
+          <li>Mark songs in your library as "Requestable" or "Not Requestable"</li>
+          <li>Set a maximum number of requests per event (prevent spam)</li>
+          <li>Set a tip value for requests (more on that below)</li>
+          <li>Optionally require an additional charge to move your request to the top of the queue</li>
+        </ul>
+        
+        <h3>Reviewing Requests:</h3>
+        <ul>
+          <li>View all incoming requests in the requests queue</li>
+          <li>See who requested what and when</li>
+          <li>Accept requests to add them to your setlist</li>
+          <li>Decline requests that don't fit the vibe or timing</li>
+        </ul>
+        
+        <p>
+          <strong>Pro Tip:</strong> Don't accept every request immediately. Review them during breaks
+          and add the ones that fit your planned flow. Your audience will understand—they just want
+          to be heard!
+        </p>
+      </section>
 
-<section>
-<h2>Getting Started</h2>
-<ul>
-<li>Create your band profile.</li>
-<li>Add band members and roles.</li>
-<li>Set up practice and performance schedules.</li>
-</ul>
-</section>
+      <section class="guide-section">
+        <h2>💰 Collecting Digital Tips</h2>
+        <p>
+          Make it easy for your audience to support you financially:
+        </p>
+        <h3>Setting Up Tips:</h3>
+        <ul>
+          <li>Connect your payment method (PayPal, Venmo, Cash App, Stripe, etc.)</li>
+          <li>Set suggested tip amounts ($5, $10, $20, custom)</li>
+          <li>Enable tips for general support or specific song requests</li>
+          <li>Add a thank-you message that appears after tipping</li>
+        </ul>
+        
+        <h3>Tip Features:</h3>
+        <ul>
+          <li><strong>Shoutouts:</strong> Optionally display tipper names on the audience screen</li>
+          <li><strong>Real-time notifications:</strong> Get alerted when requests and tips come in</li>
+        </ul>
+        
+        <p>
+          <strong>Best Practice:</strong> Mention tips and requests a couple times during your show ("Hey folks, if
+          you're enjoying the music, there's a tip button in The Juke app!") but don't overdo it.
+          Let the music do most of the talking.
+        </p>
+      </section>
 
-<section>
-<h2>Sharing and Collaboration</h2>
-<ul>
-<li>Upload rehearsal or performance recordings.</li>
-<li>Share notes and updates with members.</li>
-<li>Track band progress and project status.</li>
-</ul>
-</section>
+    <!--  <section class="guide-section">
+        <h2>📊 Band Analytics & Insights</h2>
+        <p>
+          Understand what songs work and what your audience loves:
+        </p>
+        <ul>
+          <li><strong>Most requested songs:</strong> See which songs people ask for most often</li>
+          <li><strong>Audience engagement:</strong> Track how many people connected to your event</li>
+          <li><strong>Tip totals:</strong> View earnings per event and over time</li>
+          <li><strong>Song performance:</strong> See which songs get the best response</li>
+          <li><strong>Peak times:</strong> Identify when your audience is most engaged</li>
+          <li><strong>Venue insights:</strong> Compare performance across different venues</li>
+        </ul>
+        <p>
+          Use this data to refine your setlists, understand your fanbase, and book smarter gigs.
+        </p>
+      </section> -->
 
-<section>
-<h2>Back to Guides</h2>
-<p><a href="index.html">&rarr; Return to all Guides</a></p>
-  <h2>Back to Home</h2>
-  <p><a href="../index.html">🏠 Return Home</a></p>
-</section>
+      <!-- ========================================
+           FOR AUDIENCE
+           ======================================== -->
 
-<footer>
-  <div>© 2025 DataForgeApps</div>div>
-<div>
-          <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-          <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-          <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-          <a href="../contact.html" target="_blank">Contact Form</a>
-        </div>
-</footer>
+      <section class="guide-section">
+        <h2>🎧 For Audience: Getting Started</h2>
+        <p>
+          Connect to live shows and engage with your favorite bands:
+        </p>
+        <h3>Attending an Event:</h3>
+        <ol>
+          <li>Download The Juke app or visit the web version</li>
+          <li>Look for the band code (usually displayed at the venue or on social media)</li>
+          <li>Or, Select the Band name from the list of participating bands</li>
+          <li>View the live setlist and upcoming songs</li>
+        </ol>
+        <p>
+          <strong>That's it!</strong> You're now connected and can see what's happening in real-time.
+        </p>
+      </section>
 
+      <section class="guide-section">
+        <h2>📋 Following the Setlist</h2>
+        <p>
+          Stay in the know about what's coming up:
+        </p>
+        <ul>
+          <li><strong>Now Playing:</strong> See what song is currently being performed</li>
+          <li><strong>Up Next:</strong> Know what's coming so you can plan your bathroom/bar runs</li>
+          <li><strong>Full Setlist:</strong> Scroll through the entire planned show</li>
+          <li><strong>Breaks:</strong> See when intermissions are scheduled</li>
+          <li><strong>Set Length:</strong> Know roughly how long the show will run</li>
+        </ul>
+        <p>
+          <strong>Pro Tip:</strong> Waiting for your favorite song? Check the setlist to see when it's
+          coming up so you can be back at your table (or on the dance floor!) in time.
+        </p>
+      </section>
+
+      <section class="guide-section">
+        <h2>🎶 Requesting Songs</h2>
+        <p>
+          Want to hear a specific song? Request it right from your phone:
+        </p>
+        <h3>How to Request:</h3>
+        <ol>
+          <li>Browse the band's requestable songs</li>
+          <li>Tap the song you want to hear</li>
+          <li>Add an optional message or dedication</li>
+          <li>Submit your request</li>
+          <li>Watch the requests queue to see if it gets accepted</li>
+        </ol>
+        
+        <h3>Request Etiquette:</h3>
+        <ul>
+          <li>Be patient—bands may not accept requests immediately</li>
+          <li>Respect if your request isn't accepted—timing matters!</li>
+          
+        </ul>
+      </section>
+
+      <section class="guide-section">
+        <h2>💵 Supporting the Band with Tips</h2>
+        <p>
+          Show your appreciation with digital tips:
+        </p>
+        <h3>How to Tip:</h3>
+        <ol>
+          <li>Tap the "Tip the Band" button</li>
+          <li>Choose a preset amount or enter a custom tip</li>
+          <li>Add an optional message (shoutout, thank you, etc.)</li>
+          <li>Complete payment through your preferred method</li>
+         
+        </ol>
+        
+        <h3>Why Tip?</h3>
+        <ul>
+          <li>Support live music and help bands make a living</li>
+          <li>Show appreciation for great performances</li>
+          <li>Get your song request prioritized</li>
+          <li>See your name featured (if you want the recognition)</li>
+        </ul>
+        
+        <p>
+          <strong>Remember:</strong> Every tip, no matter the size, helps support the artists who make
+          your night memorable!
+        </p>
+      </section>
+
+      <!-- ========================================
+           SHARED SECTIONS
+           ======================================== -->
+
+      <section class="guide-section">
+        <h2>🔐 Privacy & Safety</h2>
+        <p>
+          The Juke is designed with privacy in mind:
+        </p>
+        <h3>For Audience:</h3>
+        <ul>
+          <li>You can participate anonymously—no account required</li>
+          <li>Choose whether to display your name when tipping or requesting</li>
+          <li>Your personal information is never shared with bands</li>
+          <li>Leave an event anytime without trace</li>
+        </ul>
+        
+        <h3>For Bands:</h3>
+        <ul>
+          <li>Control what information is visible to your audience</li>
+          <li>All payment processing is secure and encrypted</li>
+          
+        </ul>
+      </section>
+
+      <section class="guide-section">
+        <h2>💡 Tips & Best Practices</h2>
+        <h3>For Bands:</h3>
+        <ul>
+          <li>Promote your band code on social media before the show</li>
+          <li>Display the event code prominently at the venue (on stage, at the bar, etc.)</li>
+          <li>Acknowledge requests and tips during your show—it encourages more engagement</li>
+          <li>Keep your setlist updated in real-time so audiences can follow along</li>
+          <li>Use breaks to check requests and plan your next set</li>
+          <li>Thank your top tippers at the end of the night</li>
+        </ul>
+        
+        <h3>For Audience:</h3>
+        <ul>
+          <li>Connect at the start of the show so you don't miss anything</li>
+          <li>Use the setlist to plan drink/bathroom breaks smartly</li>
+          <li>Be thoughtful with requests—pick songs that fit the vibe</li>
+          <li>Tip if you can—it directly supports the musicians</li>
+          <li>Share the band code with friends at your table</li>
+        </ul>
+      </section>
+
+      <section class="guide-section">
+        <h2>🔧 Troubleshooting</h2>
+        <h3>Can't connect to an event?</h3>
+        <ul>
+         
+          <li>Make sure you have internet connection</li>
+       
+          <li>Try refreshing the app or page</li>
+        </ul>
+        
+        <h3>Request List Queue not updating?</h3>
+        <ul>
+          <li>Refresh your connection</li>
+          <li>Check your internet—weak signal can cause delays</li>
+          <li>Band may be on a break—updates will resume when they're back</li>
+        </ul>
+        
+        <h3>Payment issues?</h3>
+        <ul>
+          <li>Verify your payment method is valid</li>
+          <li>Check for sufficient funds</li>
+          <li>Try a different payment method</li>
+          <li>Contact support if the issue persists</li>
+        </ul>
+      </section>
+
+      <!-- Need More Help -->
+      <section class="guide-section">
+        <h2>Need More Help?</h2>
+        <p>
+          Questions or feedback? We'd love to hear from you!
+        </p>
+        <ul>
+          <li><a href="../contact.html">Contact Support</a></li>
+          <li><a href="index.html">Browse Other Guides</a></li>
+          <li><a href="../index.html">Return to DataForge Home</a></li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="guide-footer">
+      <div>© 2025 DataForgeApps</div>
+      <div style="margin-top: 8px;">
+        <a href="../Site_Level_Docs/privacy.html">Privacy Policy</a> |
+        <a href="../Site_Level_Docs/terms.html">Terms of Service</a> |
+        <a href="../Site_Level_Docs/cookies.html">Cookie Policy</a> |
+        <a href="../contact.html">Contact Form</a>
+      </div>
+    </footer>
+
+  </div>
 </body>
 </html>
