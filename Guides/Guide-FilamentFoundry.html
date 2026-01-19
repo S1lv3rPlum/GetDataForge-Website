@@ -7,11 +7,58 @@
   <meta name="description" content="Step-by-step guides for Filament Foundry - track your 3D printing filament inventory and usage.">
   <link rel="stylesheet" href="guides-theme.css">
   <style>
-    /* Filament Foundry custom accent color */
+    /* Filament Foundry custom rainbow accent colors */
     body.filamentfoundry {
-      --accent-color: #E85D75;
+      --accent-color: linear-gradient(90deg, #E85D75 0%, #FFB84D 16.67%, #FFF44D 33.33%, #4DFF88 50%, #4DD4FF 66.67%, #8B4DFF 83.33%, #E85D75 100%);
       --accent-light: rgba(232, 93, 117, 0.05);
       --accent-section: rgba(232, 93, 117, 0.02);
+    }
+    
+    /* Apply rainbow gradient to elements that use accent color */
+    body.filamentfoundry .guide-header {
+      background: linear-gradient(90deg, #E85D75 0%, #FFB84D 16.67%, #FFF44D 33.33%, #4DFF88 50%, #4DD4FF 66.67%, #8B4DFF 83.33%, #E85D75 100%) !important;
+    }
+    
+    body.filamentfoundry .back-link {
+      background: linear-gradient(90deg, #E85D75 0%, #FFB84D 25%, #4DFF88 50%, #4DD4FF 75%, #8B4DFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    body.filamentfoundry .back-link:hover {
+      background: linear-gradient(90deg, #8B4DFF 0%, #4DD4FF 25%, #4DFF88 50%, #FFB84D 75%, #E85D75 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    body.filamentfoundry a:not(.back-link) {
+      background: linear-gradient(90deg, #E85D75 0%, #8B4DFF 50%, #4DD4FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    body.filamentfoundry a:not(.back-link):hover {
+      background: linear-gradient(90deg, #FFB84D 0%, #4DFF88 50%, #E85D75 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Rainbow accent for guide intro border */
+    body.filamentfoundry .guide-intro {
+      border-left: 4px solid;
+      border-image: linear-gradient(180deg, #E85D75 0%, #FFB84D 20%, #FFF44D 40%, #4DFF88 60%, #4DD4FF 80%, #8B4DFF 100%) 1;
+    }
+    
+    /* Rainbow accent for section headings */
+    body.filamentfoundry h2 {
+      background: linear-gradient(90deg, #E85D75 0%, #FFB84D 20%, #FFF44D 40%, #4DFF88 60%, #4DD4FF 80%, #8B4DFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
   </style>
 </head>
@@ -65,7 +112,6 @@
           <li><strong>Type:</strong> Material type (PLA, PETG, ABS, TPU, etc.)</li>
           <li><strong>Color:</strong> Color name or description</li>
           <li><strong>Weight:</strong> Initial weight in grams</li>
- <!--         <li><strong>Cost:</strong> Price per spool (optional, helps with budget tracking)</li>   -->
         </ul>
         <p>
           <strong>Pro Tip:</strong> Weigh your spools including the spool core itself when you first add them.
@@ -82,7 +128,7 @@
         <ol>
           <li>Select the spool you used from your inventory</li>
           <li>Enter the weight used (or weigh the spool again to calculate)</li>
-          <li>Add print details: project name</li>  <!--add notes ? -->
+          <li>Add print details: project name</li>
           <li>Save the entry</li>
         </ol>
         <p>
@@ -93,27 +139,8 @@
         <p>
           Don't forget to log failed prints too! This helps you track wasted material and
           identify problem filaments or settings. Mark prints as "failed" 
-        </p>  <!-- and add notes
-          about what went wrong. -->
+        </p>
       </section>
-
-      <!-- Managing Inventory -->
-<!--      <section class="guide-section">
-        <h2>Managing Your Inventory</h2>
-        <p>
-          Keep your filament collection organized with these features:
-        </p>
-        <ul>
-          <li><strong>Search & Filter:</strong> Find spools by type, color, or brand quickly</li> 
-          <li><strong>Low Stock Alerts:</strong> Set weight thresholds to get notified when spools run low</li>
-          <li><strong>Archive Empty Spools:</strong> Move finished spools to archive to keep your active inventory clean</li>
-          <li><strong>Sort Options:</strong> Organize by date added, remaining weight, or last used</li>
-        </ul>
-        <p>
-          <strong>Best Practice:</strong> Review your inventory monthly and archive any spools
-          you've fully used. This keeps your active list manageable.
-        </p>
-      </section>   -->
 
       <!-- Reports & Insights -->
       <section class="guide-section">
@@ -139,18 +166,6 @@
           <li>
             <strong>Weigh regularly:</strong> Re-weigh spools every few prints to ensure accuracy.
             Small errors compound over time.
-          </li>
-          <li>
-     <!--       <strong>Add notes:</strong> Record print settings, nozzle temperature, and any issues.
-            This creates a valuable reference for future prints.  -->
-          </li>
-          <li>
-      <!--      <strong>Set reorder points:</strong> Don't wait until you're completely out! Set alerts
-            at 200-300g remaining so you have time to restock. -->
-          </li>
-          <li>
- <!--           <strong>Track storage conditions:</strong> Note where each spool is stored (dry box,
-            shelf, etc.) to monitor humidity exposure.  -->
           </li>
           <li>
             <strong>Color consistency:</strong> Use consistent color naming (e.g., "Red" vs "Crimson")
