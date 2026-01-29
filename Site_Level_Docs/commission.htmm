@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commission Custom Apps - DataForge Apps</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #007BA7;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #007BA7;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 123, 167, 0.5);
+        }
+
+        .tagline {
+            color: #00B4D8;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .intro {
+            background: rgba(0, 123, 167, 0.1);
+            border-left: 4px solid #007BA7;
+            padding: 25px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+        }
+
+        .intro h2 {
+            color: #00B4D8;
+            margin-bottom: 15px;
+        }
+
+        .intro p {
+            margin-bottom: 10px;
+            color: #e0e0e0;
+        }
+
+        /* Services Grid */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 2px solid #007BA7;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 123, 167, 0.3);
+            border-color: #00B4D8;
+        }
+
+        .service-card h3 {
+            color: #00B4D8;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .service-card p {
+            color: #b0b0b0;
+            font-size: 0.95em;
+        }
+
+        /* Process Section */
+        .process {
+            margin-bottom: 50px;
+        }
+
+        .process h2 {
+            color: #007BA7;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 15px;
+        }
+
+        .step {
+            background: rgba(0, 123, 167, 0.05);
+            padding: 20px;
+            border-left: 5px solid #007BA7;
+            border-radius: 5px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #007BA7;
+            color: #000;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .step h4 {
+            color: #00B4D8;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: #b0b0b0;
+            margin-left: 50px;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 2px solid #007BA7;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .form-section h2 {
+            color: #007BA7;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .form-subtitle {
+            color: #00B4D8;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #00B4D8;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .required {
+            color: #007BA7;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: #0a0a0a;
+            border: 2px solid #333;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #007BA7;
+            box-shadow: 0 0 10px rgba(0, 123, 167, 0.3);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .checkbox-group {
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            margin-bottom: 10px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            accent-color: #007BA7;
+        }
+
+        .checkbox-item label {
+            display: inline;
+            color: #e0e0e0;
+            font-weight: normal;
+        }
+
+        .budget-range {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, #007BA7, #00B4D8);
+            color: #000000;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 123, 167, 0.5);
+        }
+
+        /* Back Link */
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-link a {
+            color: #00B4D8;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #007BA7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .form-row,
+            .budget-range {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .form-section {
+                padding: 25px;
+            }
+        }
+
+        /* Helper text */
+        .helper-text {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="DFlogo.png" alt="DataForge Logo" class="logo">
+            <h1>Commission a Custom App</h1>
+            <p class="tagline">Let's forge your idea into reality</p>
+        </header>
+
+        <section class="intro">
+            <h2>Turn Your Vision Into Software</h2>
+            <p>At DataForge, I specialize in creating custom applications tailored to solve real-world problems. Whether you need a tool to streamline your business, track specialized data, or bring a unique idea to life, I'm here to help.</p>
+            <p>Every app I build is crafted with attention to detail, user experience, and functionality. Let's discuss your project and see how we can work together.</p>
+        </section>
+
+        <section class="services">
+            <div class="service-card">
+                <h3>🛠️ Business Tools</h3>
+                <p>Custom inventory systems, tracking tools, and workflow automation designed specifically for your operations.</p>
+            </div>
+            <div class="service-card">
+                <h3>📱 Mobile Apps</h3>
+                <p>Native and cross-platform mobile applications for iOS and Android that deliver seamless experiences.</p>
+            </div>
+            <div class="service-card">
+                <h3>🌐 Web Applications</h3>
+                <p>Responsive web apps that work flawlessly across devices, from simple dashboards to complex platforms.</p>
+            </div>
+            <div class="service-card">
+                <h3>🔧 Specialized Solutions</h3>
+                <p>Niche applications for hobbies, communities, or unique use cases—if you can imagine it, we can build it.</p>
+            </div>
+        </section>
+
+        <section class="process">
+            <h2>How It Works</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Initial Consultation</h4>
+                    <p>Share your idea using the form below. I'll review your requirements and reach out to discuss the project scope, features, and timeline.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Proposal & Quote</h4>
+                    <p>I'll provide a detailed proposal outlining the development plan, milestones, and pricing based on your specific needs.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>Development</h4>
+                    <p>Once we agree on terms, I'll start building your app with regular updates and opportunities for feedback throughout the process.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h4>Delivery & Support</h4>
+                    <p>Your completed app is delivered with documentation, and I'm available for ongoing support and future enhancements.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Start Your Project</h2>
+            <p class="form-subtitle">Fill out the form below and I'll get back to you within 1-2 business days</p>
+            
+            <form id="commissionForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="hidden" name="_subject" value="New App Commission Request">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number (optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company/Organization (optional)</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="appType">Type of Application <span class="required">*</span></label>
+                    <select id="appType" name="appType" required>
+                        <option value="">-- Select One --</option>
+                        <option value="mobile-ios">Mobile App (iOS)</option>
+                        <option value="mobile-android">Mobile App (Android)</option>
+                        <option value="mobile-cross">Mobile App (Cross-Platform)</option>
+                        <option value="web">Web Application</option>
+                        <option value="desktop">Desktop Application</option>
+                        <option value="other">Other/Not Sure</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectTitle">Project Title <span class="required">*</span></label>
+                    <input type="text" id="projectTitle" name="projectTitle" placeholder="e.g., Inventory Tracker, Event Manager, etc." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Project Description <span class="required">*</span></label>
+                    <textarea id="description" name="description" placeholder="Tell me about your app idea, what problem it solves, who will use it, and any key features you envision..." required></textarea>
+                    <p class="helper-text">The more detail you provide, the better I can understand your needs</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Key Features Needed</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="userAuth" name="features[]" value="User Authentication">
+                            <label for="userAuth">User Authentication/Login</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="database" name="features[]" value="Database Storage">
+                            <label for="database">Database/Data Storage</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="notifications" name="features[]" value="Push Notifications">
+                            <label for="notifications">Push Notifications</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="payments" name="features[]" value="Payment Processing">
+                            <label for="payments">Payment Processing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="api" name="features[]" value="API Integration">
+                            <label for="api">Third-Party API Integration</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="reporting" name="features[]" value="Reporting/Analytics">
+                            <label for="reporting">Reporting/Analytics</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="multiuser" name="features[]" value="Multi-User Support">
+                            <label for="multiuser">Multi-User/Collaboration Features</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">Desired Timeline <span class="required">*</span></label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="">-- Select One --</option>
+                        <option value="asap">As soon as possible</option>
+                        <option value="1-2months">1-2 months</option>
+                        <option value="3-6months">3-6 months</option>
+                        <option value="flexible">Flexible/No rush</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">Budget Range (optional)</label>
+                    <select id="budget" name="budget">
+                        <option value="">-- Select One --</option>
+                        <option value="under5k">Under $5,000</option>
+                        <option value="5k-10k">$5,000 - $10,000</option>
+                        <option value="10k-25k">$10,000 - $25,000</option>
+                        <option value="25k-50k">$25,000 - $50,000</option>
+                        <option value="50k-plus">$50,000+</option>
+                        <option value="not-sure">Not sure yet</option>
+                    </select>
+                    <p class="helper-text">This helps me provide a more accurate initial assessment</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="reference">Reference Apps/Websites (optional)</label>
+                    <textarea id="reference" name="reference" placeholder="Any existing apps or websites that inspire you or are similar to what you're looking for? Include URLs if available."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional">Additional Information</label>
+                    <textarea id="additional" name="additional" placeholder="Anything else I should know about your project?"></textarea>
+                </div>
+
+                <button type="submit">Submit Commission Request</button>
+            </form>
+        </section>
+
+        <div class="back-link">
+            <a href="index.html">← Back to DataForge Apps</a>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handling
+        document.getElementById('commissionForm').addEventListener('submit', function(e) {
+            // You can add custom validation or analytics here
+            console.log('Form submitted');
+        });
+    </script>
+</body>
+</html>
