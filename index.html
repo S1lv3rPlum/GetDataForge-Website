@@ -314,7 +314,183 @@
   </div>
 </section>
    
+<!-- COMMISSION SECTION  -->
 
+<style>
+/* Commission Section Styles - DataForge Theme */
+.commission-section {
+    background: linear-gradient(145deg, #0a0a0a, #000000);
+    border: 3px solid #007BA7;
+    border-radius: 15px;
+    padding: 50px 30px;
+    margin: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.commission-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #007BA7, #00B4D8, #007BA7);
+}
+
+.commission-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.commission-header h2 {
+    color: #007BA7;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0, 123, 167, 0.5);
+}
+
+.commission-header .subtitle {
+    color: #00B4D8;
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+.commission-intro {
+    background: rgba(0, 123, 167, 0.1);
+    border-left: 4px solid #00B4D8;
+    padding: 20px 25px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+
+.commission-intro p {
+    color: #e0e0e0;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.commission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.commission-card {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border: 2px solid #007BA7;
+    padding: 30px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.commission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 123, 167, 0.4);
+    border-color: #00B4D8;
+}
+
+.commission-card .icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.commission-card h3 {
+    color: #00B4D8;
+    margin-bottom: 12px;
+    font-size: 1.4em;
+}
+
+.commission-card p {
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+.commission-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.commission-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #007BA7, #00B4D8);
+    color: #000000;
+    padding: 18px 45px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 123, 167, 0.3);
+}
+
+.commission-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(0, 123, 167, 0.6);
+}
+
+.commission-contact-info {
+    text-align: center;
+    margin-top: 25px;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .commission-section {
+        padding: 30px 20px;
+    }
+    
+    .commission-header h2 {
+        font-size: 2em;
+    }
+    
+    .commission-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<section class="commission-section" id="commission">
+    <div class="commission-header">
+        <h2>🔨 Custom App Development</h2>
+        <p class="subtitle">Have an idea? Let's forge it together.</p>
+    </div>
+
+    <div class="commission-intro">
+        <p>Beyond the apps you see here, I'm available to build custom solutions tailored specifically to your needs. Whether you're looking to streamline your business, solve a unique problem, or bring a creative vision to life, I can help turn your idea into a fully functional application.</p>
+    </div>
+
+    <div class="commission-grid">
+        <div class="commission-card">
+            <div class="icon">🛠️</div>
+            <h3>Business Solutions</h3>
+            <p>Custom tools designed around your workflow, from inventory systems to specialized trackers</p>
+        </div>
+
+        <div class="commission-card">
+            <div class="icon">📱</div>
+            <h3>Mobile & Web Apps</h3>
+            <p>Native and cross-platform applications that work seamlessly across all devices</p>
+        </div>
+
+        <div class="commission-card">
+            <div class="icon">⚡</div>
+            <h3>Specialized Projects</h3>
+            <p>Unique applications for niche markets, hobbies, or community needs</p>
+        </div>
+    </div>
+
+    <div class="commission-cta">
+        <a href="commission.html" class="commission-btn">Start Your Project →</a>
+        <p class="commission-contact-info">Questions? <a href="contact.html" style="color: #00B4D8;">Contact me for a free consultation</a></p>
+    </div>
+</section>
+
+<!-- END COMMISSION SECTION -->
+
+   
   <section>
     <h2>👩‍💻 About the Developer</h2>
     <img src="Renee-Avatar.png" alt="Avatar of Renee, the developer" class="float-left" />
