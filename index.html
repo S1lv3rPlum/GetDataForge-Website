@@ -198,6 +198,23 @@
   padding-left: 55px; /* indent to align with text in header (40px logo + 15px gap) */
 }
 
+   /* stylew for socials in footer */
+     .socials {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between text and icons */
+}
+
+.socials img {
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.socials img:hover {
+  transform: scale(1.1); /* subtle hover effect */
+}
+
   </style>
 
 </head>
@@ -511,7 +528,20 @@
 
 <footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
   <div>© 2025 DataForge</div>
-  <div style="margin-top: 8px;">
+  <div class="socials">
+    <span>Follow us</span>
+    <a href="https://www.facebook.com/share/18DDfH6qLG/" target="_blank" rel="noopener">
+      <img src="facebook-icon.png" alt="Facebook" width="32" height="32">
+    </a>
+    <!-- Future social links go here -->
+    <!-- Example:
+    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener">
+      <img src="twitter-icon.png" alt="Twitter" width="32" height="32">
+    </a>
+    -->
+  </div>
+   
+   <div style="margin-top: 8px;">
     <a href="Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> |
     <a href="Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a> |
     <a href="Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a> |
