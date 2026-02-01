@@ -198,6 +198,23 @@
   padding-left: 55px; /* indent to align with text in header (40px logo + 15px gap) */
 }
 
+   /* stylew for socials in footer */
+     .socials {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between text and icons */
+}
+
+.socials img {
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.socials img:hover {
+  transform: scale(1.1); /* subtle hover effect */
+}
+
   </style>
 
 </head>
@@ -314,7 +331,183 @@
   </div>
 </section>
    
+<!-- COMMISSION SECTION  -->
 
+<style>
+/* Commission Section Styles - DataForge Theme */
+.commission-section {
+    background: linear-gradient(145deg, #0a0a0a, #000000);
+    border: 3px solid #007BA7;
+    border-radius: 15px;
+    padding: 50px 30px;
+    margin: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.commission-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #007BA7, #00B4D8, #007BA7);
+}
+
+.commission-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.commission-header h2 {
+    color: #007BA7;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0, 123, 167, 0.5);
+}
+
+.commission-header .subtitle {
+    color: #00B4D8;
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+.commission-intro {
+    background: rgba(0, 123, 167, 0.1);
+    border-left: 4px solid #00B4D8;
+    padding: 20px 25px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+
+.commission-intro p {
+    color: #e0e0e0;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.commission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.commission-card {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border: 2px solid #007BA7;
+    padding: 30px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.commission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 123, 167, 0.4);
+    border-color: #00B4D8;
+}
+
+.commission-card .icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.commission-card h3 {
+    color: #00B4D8;
+    margin-bottom: 12px;
+    font-size: 1.4em;
+}
+
+.commission-card p {
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+.commission-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.commission-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #007BA7, #00B4D8);
+    color: #000000;
+    padding: 18px 45px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 123, 167, 0.3);
+}
+
+.commission-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(0, 123, 167, 0.6);
+}
+
+.commission-contact-info {
+    text-align: center;
+    margin-top: 25px;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .commission-section {
+        padding: 30px 20px;
+    }
+    
+    .commission-header h2 {
+        font-size: 2em;
+    }
+    
+    .commission-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<section class="commission-section" id="commission">
+    <div class="commission-header">
+        <h2>🔨 Custom App Development</h2>
+        <p class="subtitle">Have an idea? Let's forge it together.</p>
+    </div>
+
+    <div class="commission-intro">
+        <p>Beyond the apps you see here, I'm available to build custom solutions tailored specifically to your needs. Whether you're looking to streamline your business, solve a unique problem, or bring a creative vision to life, I can help turn your idea into a fully functional application.</p>
+    </div>
+
+    <div class="commission-grid">
+        <div class="commission-card">
+            <div class="icon">🛠️</div>
+            <h3>Business Solutions</h3>
+            <p>Custom tools designed around your workflow, from inventory systems to specialized trackers</p>
+        </div>
+
+        <div class="commission-card">
+            <div class="icon">📱</div>
+            <h3>Mobile & Web Apps</h3>
+            <p>Native and cross-platform applications that work seamlessly across all devices</p>
+        </div>
+
+        <div class="commission-card">
+            <div class="icon">⚡</div>
+            <h3>Specialized Projects</h3>
+            <p>Unique applications for niche markets, hobbies, or community needs</p>
+        </div>
+    </div>
+
+    <div class="commission-cta">
+        <a href="commission.html" class="commission-btn">Start Your Project →</a>
+        <p class="commission-contact-info">Questions? <a href="contact.html" style="color: #00B4D8;">Contact me for a free consultation</a></p>
+    </div>
+</section>
+
+<!-- END COMMISSION SECTION -->
+
+   
   <section>
     <h2>👩‍💻 About the Developer</h2>
     <img src="Renee-Avatar.png" alt="Avatar of Renee, the developer" class="float-left" />
@@ -328,14 +521,37 @@
       <br><br>
       My love of coding started with VBA automation in Excel, but this is my first big step outside that world. DataForge is just the beginning — let's see what we can build. 🔧🔥
       <br><br>
-      Connect with me on <a href="https://www.linkedin.com/in/reneelueke?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">LinkedIn</a>!
-    </p>
+       </p>
     <div style="clear: both;"></div>
   </section>
 
+<section id="contact" style="margin-top:40px; padding:30px; background: #f4f6f8; border-radius:10px; text-align:center;">
+  <h2>Contact Data Forge Apps</h2>
+  <p>Have questions or just want to connect? Reach out via email, phone, text, or follow us on Facebook!</p>
+
+  <p>
+    📧 Email: <a href="mailto:DataForgeApps@gmail.com" style="color:#007acc; font-weight:bold;">DataForgeApps@gmail.com</a><br>
+    📞 Call or Text: 
+    <a href="tel:+17162188133" style="color:#007acc; font-weight:bold;">+1 (716) 218‑8133</a> / 
+    <a href="sms:+17162188133" style="color:#007acc; font-weight:bold;">Send a Text</a>
+
+     </p>
+
+  <div style="margin-top: 15px;">
+    <span>👍 Follow us on Facebook:</span>
+    <a href="https://www.facebook.com/share/18DDfH6qLG/" target="_blank" rel="noopener">
+      <img src="facebook-icon.png" alt="Facebook" width="32" height="32" style="vertical-align: middle; margin-left: 6px;">
+    </a>
+     Connect with me on <a href="https://www.linkedin.com/in/reneelueke?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">LinkedIn</a>!
+  </div>
+</section>
+
+   
+
 <footer style="text-align: center; font-size: 0.9rem; margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ddd; color: #aaa;">
   <div>© 2025 DataForge</div>
-  <div style="margin-top: 8px;">
+    
+   <div style="margin-top: 8px;">
     <a href="Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> |
     <a href="Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a> |
     <a href="Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a> |
