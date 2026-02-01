@@ -1,0 +1,260 @@
+/* =========================
+   GLOBAL / BASE STYLES
+   ========================= */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #a2c2e2, #d9f1ff, #ffffff);
+  color: #222;
+  padding: 20px;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: #007BA7;
+  text-shadow: 0 0 20px rgba(0, 123, 167, 0.45);
+}
+
+p {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 1rem auto;
+  line-height: 1.6;
+  color: #333;
+}
+
+a {
+  color: #007acc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   SHARED DATAFORGE SECTION
+   ========================= */
+
+.dataforge-section {
+  background: linear-gradient(145deg, #e0f7ff, #f4f6f8);
+  border: 3px solid #007BA7;
+  border-radius: 15px;
+  padding: 45px 30px;
+  margin: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.dataforge-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #007BA7, #00B4D8, #007BA7);
+}
+
+/* =========================
+   FLOAT IMAGE (ABOUT DEV)
+   ========================= */
+
+img.float-left {
+  float: left;
+  width: 160px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  img.float-left {
+    float: none;
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+}
+
+/* =========================
+   SIDE NAV
+   ========================= */
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: #2c3e50;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  color: #f7f9fb;
+  display: block;
+}
+
+.sidenav a:hover {
+  background-color: #007acc;
+}
+
+.menu-btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  background: #2c3e50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+}
+
+/* =========================
+   ACCORDION (APPS)
+   ========================= */
+
+#app-summaries {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.accordion-item {
+  margin-bottom: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #007BA7;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(135deg, #007BA7, #00B4D8);
+  color: #fff;
+  cursor: pointer;
+  padding: 16px 20px;
+  font-size: 1.1rem;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.accordion-header:hover {
+  background: linear-gradient(135deg, #006a90, #00a3c4);
+}
+
+.accordion-header img {
+  width: 40px;
+  border-radius: 6px;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #f7f9fb;
+  transition: max-height 0.3s ease;
+  padding: 0 20px;
+}
+
+.accordion-content p {
+  margin: 18px 0;
+  color: #222;
+  padding-left: 55px;
+}
+
+/* =========================
+   COMMISSION SECTION
+   ========================= */
+
+.commission-intro {
+  background: rgba(0, 123, 167, 0.07);
+  border-left: 4px solid #00B4D8;
+  padding: 22px 26px;
+  margin-bottom: 40px;
+  border-radius: 6px;
+}
+
+.commission-intro p {
+  color: #222; /* FIXED readability */
+}
+
+.commission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.commission-card {
+  background: linear-gradient(145deg, #e0f7ff, #f4f6f8);
+  border: 2px solid #007BA7;
+  padding: 30px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.commission-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 123, 167, 0.35);
+}
+
+.commission-card h3 {
+  color: #007BA7;
+}
+
+.commission-card p {
+  color: #222;
+}
+
+/* =========================
+   CONTACT + SOCIALS
+   ========================= */
+
+.social-line {
+  margin-top: 15px;
+}
+
+.social-line img {
+  width: 40px;
+  height: 40px;
+  margin-left: 8px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.social-line img:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
