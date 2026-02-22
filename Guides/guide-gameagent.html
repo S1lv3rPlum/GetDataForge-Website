@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataForge Game Agent Guide | DataForgeApps</title>
+  <meta name="description" content="Learn how the DataForge Game Agent works. Understand reinforcement learning, the DQN algorithm, and how to get the most out of the live dashboard.">
+  <link rel="stylesheet" href="../Guides/guides-theme.css">
+  <style>
+    body.gameagent {
+      --accent-color: #7B2FBE;
+      --accent-light: rgba(123, 47, 190, 0.05);
+      --accent-section: rgba(123, 47, 190, 0.02);
+    }
+  </style>
+</head>
+
+<body class="gameagent">
+  <div class="content-wrapper">
+
+    <header class="guide-header">
+      <div class="guide-logo">
+        <span style="font-size:2.5rem;">⚡</span>
+      </div>
+      <h1>DataForge Game Agent Guide</h1>
+    </header>
+
+    <main class="guide-content">
+      <a href="gameagent.html" class="back-link">← Back to Game Agent</a>
+
+      <p class="guide-intro">
+        This guide explains how the DataForge Game Agent works, what you are
+        watching when you run it, and how to get the most out of the live
+        dashboard. No programming experience required — everything is explained
+        in plain language.
+      </p>
+
+      <!-- What is RL -->
+      <section class="guide-section">
+        <h2>What is Reinforcement Learning?</h2>
+        <p>
+          Reinforcement learning is a way of teaching an AI by letting it
+          try things and learn from the results — the same way a person learns
+          to ride a bike or play a sport. The agent takes an action, the
+          environment responds, and the agent receives a reward or penalty
+          depending on how well it did.
+        </p>
+        <p>
+          Over thousands of repetitions, the agent builds up an understanding
+          of which actions lead to good outcomes. It does not start with any
+          knowledge of the game — it figures everything out from scratch
+          through experience.
+        </p>
+        <p>
+          This is the same fundamental approach used by DeepMind to build
+          AlphaGo and by OpenAI to build game-playing agents that beat
+          professional human players.
+        </p>
+      </section>
+
+      <!-- The two agents -->
+      <section class="guide-section">
+        <h2>The Two Agents</h2>
+        <h3>🎲 Random Agent</h3>
+        <p>
+          The Random Agent picks cells completely at random on every move.
+          It has no memory, no strategy, and learns nothing. Its only purpose
+          is to serve as a baseline — a measure of what pure luck looks like.
+          On a standard Beginner board it wins very rarely, and its win rate
+          stays flat no matter how many games it plays.
+        </p>
+        <p>
+          Running the Random Agent first is valuable because it shows you
+          exactly what the Learning Agent has to beat. Any improvement you
+          see in the Learning Agent above the Random Agent's baseline is
+          genuine learned intelligence.
+        </p>
+        <h3>🧠 DQN Learning Agent</h3>
+        <p>
+          The DQN Learning Agent uses a neural network — a mathematical
+          structure loosely inspired by the human brain — to decide which
+          cell to click. At the start it behaves similarly to the Random
+          Agent because its network has no knowledge. Over hundreds of games
+          it gradually learns which moves tend to be safe and which tend to
+          hit mines.
+        </p>
+        <p>
+          DQN stands for Deep Q-Network. The Q refers to a quality score
+          the network assigns to each possible action. The agent picks the
+          action with the highest quality score, and the network updates
+          those scores after every game based on what actually happened.
+        </p>
+      </section>
+
+      <!-- How minesweeper works for the agent -->
+      <section class="guide-section">
+        <h2>How Minesweeper Works for the Agent</h2>
+        <p>
+          The agent sees the board as a grid of numbers. Hidden cells show
+          as -1. Flagged cells show as -2. A revealed mine shows as -3.
+          Revealed safe cells show the number of adjacent mines, exactly
+          as a human player would see.
+        </p>
+        <p>
+          On each turn the agent chooses one of two types of action for
+          any cell on the board — reveal it or flag it as a mine. This gives
+          the agent a much larger decision space than a human clicking with
+          a mouse, which is part of why learning takes many episodes.
+        </p>
+        <h3>Reward Structure</h3>
+        <p>
+          The agent learns through rewards and penalties applied after
+          each action:
+        </p>
+        <ul>
+          <li><strong>Reveal a safe cell:</strong> +1 point</li>
+          <li><strong>Correctly flag a mine:</strong> +5 points</li>
+          <li><strong>Incorrectly flag a safe cell:</strong> -3 points</li>
+          <li><strong>Hit a mine:</strong> -10 points</li>
+          <li><strong>Win the game:</strong> +20 points</li>
+          <li><strong>Each step taken:</strong> -0.1 points (encourages efficiency)</li>
+          <li><strong>Repeated or invalid action:</strong> -0.5 points</li>
+        </ul>
+        <p>
+          The agent does not know these rules explicitly — it discovers
+          them through experience. After enough games it starts to
+          understand that flagging a mine before revealing near it
+          is a good strategy, because the reward signal reinforces that behavior.
+        </p>
+      </section>
+
+      <!-- Difficulty levels -->
+      <section class="guide-section">
+        <h2>Difficulty Levels</h2>
+        <p>
+          Three difficulty levels are available, matching standard
+          Minesweeper conventions:
+        </p>
+        <ul>
+          <li><strong>Beginner:</strong> 9x9 grid, 10 mines, 71 safe cells</li>
+          <li><strong>Medium:</strong> 14x14 grid, 25 mines, 171 safe cells</li>
+          <li><strong>Hard:</strong> 24x24 grid, 50 mines, 526 safe cells</li>
+        </ul>
+        <p>
+          The Learning Agent saves its progress separately for each
+          difficulty level. Training on Beginner does not affect the
+          Medium or Hard models. Starting on Beginner is strongly
+          recommended — the agent learns faster on smaller boards and
+          the results are more visible in the dashboard.
+        </p>
+      </section>
+
+      <!-- Reading the dashboard -->
+      <section class="guide-section">
+        <h2>Reading the Live Dashboard</h2>
+        <p>
+          The dashboard opens automatically alongside the game window
+          and updates after every episode. Here is what each panel shows:
+        </p>
+        <h3>Win Rate Over Time</h3>
+        <p>
+          The main graph at the top. Shows the percentage of games won
+          as a running average. The Random Agent line stays low and flat.
+          The Learning Agent line should gradually trend upward as training
+          progresses — this is the most satisfying thing to watch.
+          Both agents appear on the same graph in contrasting colors
+          when running simultaneously.
+        </p>
+        <h3>Reward Per Episode</h3>
+        <p>
+          A bar chart showing total reward earned each game. Green bars
+          are positive reward episodes. Red bars are losses. Early in
+          training almost all bars are red. As the agent improves,
+          green bars become more frequent and taller.
+        </p>
+        <h3>Steps Per Episode</h3>
+        <p>
+          How many moves the agent made before the game ended. A
+          dotted yellow line shows the 10-episode rolling average.
+          More steps generally means the agent survived longer —
+          so watching this number increase over time is a sign of
+          genuine improvement even before wins appear.
+        </p>
+        <h3>Correct Flags Per Episode</h3>
+        <p>
+          How many mines the agent correctly identified and flagged
+          each game. A Learning Agent that is improving will flag
+          more mines correctly over time as it starts to recognize
+          safe and dangerous patterns.
+        </p>
+        <h3>Stats Panel</h3>
+        <p>
+          Bottom right. Shows a running summary for each agent —
+          total episodes, wins, losses, win rate percentage, high
+          score, and best winning streak.
+        </p>
+      </section>
+
+      <!-- Reading the game window -->
+      <section class="guide-section">
+        <h2>Reading the Game Window</h2>
+        <p>
+          The game window shows the board updating in real time
+          as the agent plays. Here is what the colors and symbols mean:
+        </p>
+        <ul>
+          <li><strong>Gray cell:</strong> Hidden — not yet revealed</li>
+          <li><strong>Dark cell with number:</strong> Revealed safe cell — number shows adjacent mine count</li>
+          <li><strong>Yellow cell with 🚩:</strong> Flagged by the agent as a suspected mine</li>
+          <li><strong>Red cell with 💣:</strong> Mine — game over</li>
+        </ul>
+        <p>
+          Two progress bars run along the bottom of the game window.
+          The yellow bar tracks how many mines have been correctly
+          flagged out of the total. The green bar tracks what
+          percentage of safe cells have been revealed. A winning
+          game fills the green bar completely.
+        </p>
+      </section>
+
+      <!-- Running both agents -->
+      <section class="guide-section">
+        <h2>Running Both Agents Simultaneously</h2>
+        <p>
+          Selecting Both from the agent selection screen launches the
+          Random Agent and the Learning Agent at the same time, each
+          in its own game window. Both agents write their performance
+          data to a shared file, and both dashboards display data from
+          both agents on the same graphs.
+        </p>
+        <p>
+          This is the most informative way to run the program. Watching
+          the Learning Agent's win rate line gradually separate from the
+          Random Agent's flat baseline is a direct visual demonstration
+          of the AI learning in real time.
+        </p>
+      </section>
+
+      <!-- Tips -->
+      <section class="guide-section">
+        <h2>Tips for Getting the Most Out of It</h2>
+        <ul>
+          <li>
+            <strong>Start with Beginner difficulty.</strong> The agent
+            learns faster on smaller boards and improvements show up
+            sooner in the dashboard.
+          </li>
+          <li>
+            <strong>Let it run for at least 500 episodes.</strong>
+            The first 200-300 episodes look mostly random. Real
+            improvement typically becomes visible around episode
+            300-500 as the neural network accumulates enough experience.
+          </li>
+          <li>
+            <strong>Watch the Steps graph, not just wins.</strong>
+            The agent may go hundreds of episodes without a win
+            but still be learning — surviving longer each time.
+            Steps per episode trending upward is a meaningful
+            signal of progress.
+          </li>
+          <li>
+            <strong>Run Both agents for the best comparison.</strong>
+            Seeing the Learning Agent on the same graph as the
+            Random Agent makes improvement much more visible than
+            watching either one alone.
+          </li>
+          <li>
+            <strong>Progress saves automatically.</strong> Close the
+            window at any time — the model saves every 100 episodes.
+            The next run picks up where the last one left off.
+          </li>
+        </ul>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section class="guide-section">
+        <h2>Troubleshooting</h2>
+        <h3>The dashboard does not open</h3>
+        <p>
+          Make sure no other instance of the program is already running.
+          Close all windows and relaunch from the launcher.
+        </p>
+        <h3>The Learning Agent does not seem to be improving</h3>
+        <p>
+          This is normal for the first several hundred episodes.
+          Reinforcement learning requires a large number of games
+          before patterns become consistent. Give it at least
+          500 episodes before drawing conclusions. Watch the
+          Steps per episode graph — if that is trending upward
+          the agent is learning even if wins are not showing yet.
+        </p>
+        <h3>The program runs slowly</h3>
+        <p>
+          Training speed depends on your hardware. A machine without
+          a dedicated NVIDIA GPU will train on CPU only, which is
+          slower. This does not affect the final result — it just
+          takes longer to see improvement.
+        </p>
+        <h3>Need more help?</h3>
+        <ul>
+          <li><a href="gameagent.html#feedback">Submit feedback or a bug report</a></li>
+          <li><a href="https://github.com/S1lv3rPlum/DataForge-Game-Agent" target="_blank">View the source code on GitHub</a></li>
+          <li><a href="../contact.html">Contact DataForge Apps</a></li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer class="guide-footer">
+      <div>© 2025 DataForge Apps</div>
+      <div style="margin-top: 8px;">
+        <a href="../Site_Level_Docs/privacy.html">Privacy Policy</a> |
+        <a href="../Site_Level_Docs/terms.html">Terms of Service</a> |
+        <a href="../Site_Level_Docs/cookies.html">Cookie Policy</a> |
+        <a href="../contact.html">Contact Form</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
