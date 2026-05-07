@@ -1,137 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guides & Tutorials | DataForgeApps</title>
-  <meta name="description" content="Step-by-step guides and tutorials to help you get the most out of DataForgeApps, including GearSmith, Filament Foundry, and more.">
-  <link rel="stylesheet" href="guides-theme.css">
+  <!-- AdSense site verification -->
+  <meta name="google-adsense-account" content="ca-pub-7056143037956286">
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056143037956286"
+     crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Step-by-step guides and tutorials to help you get the most out of DataForgeApps, including GearSmith, Filament Foundry, and more." />
+  <title>Guides &amp; Tutorials | DataForgeApps</title>
+  <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cerulean: #007BA7;
+      --cerulean-dark: #005F87;
+      --cerulean-deep: #004060;
+      --cerulean-pale: #E0F0F7;
+      --cerulean-mid: #B3D9EC;
+      --charcoal: #1A1A2E;
+      --charcoal-soft: #2E2E45;
+      --text: #2A2A3E;
+      --text-muted: #6B7280;
+      --bg: #F7FAFB;
+      --white: #FFFFFF;
+      --card-border: #D6EAF4;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 250, 251, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cerulean-mid);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 36px; width: auto; }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cerulean-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a:hover { color: var(--cerulean); }
+    .nav-active { color: var(--cerulean) !important; }
+
+    .nav-cta {
+      background: var(--cerulean) !important;
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--cerulean-dark) !important; }
+
+    .page-hero {
+      background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-soft) 40%, #0D3A52 100%);
+      color: var(--white);
+      padding: 72px 2rem 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 70% 30%, rgba(0,123,167,0.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .page-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,123,167,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,123,167,0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .page-hero-inner h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-hero-inner h1 span { color: #5EC8E8; }
+
+    .page-hero-inner p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .guides-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 2rem 80px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--cerulean);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .guide-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: box-shadow 0.25s, transform 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .guide-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cerulean), #5EC8E8);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .guide-card:hover {
+      box-shadow: 0 8px 32px rgba(0,123,167,0.12);
+      transform: translateY(-3px);
+      border-color: var(--cerulean-mid);
+    }
+
+    .guide-card:hover::after { opacity: 1; }
+
+    .guide-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1rem;
+    }
+
+    .guide-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: var(--cerulean-pale);
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .guide-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.01em;
+    }
+
+    .guide-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .guide-bullets {
+      list-style: none;
+      margin-bottom: 1.25rem;
+    }
+
+    .guide-bullets li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 3px 0 3px 1.1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .guide-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cerulean);
+      font-size: 0.75rem;
+      top: 4px;
+    }
+
+    .guide-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--cerulean);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .guide-link:hover { gap: 8px; }
+
+    .coming-soon {
+      background: linear-gradient(135deg, var(--cerulean-pale), #cce9f5);
+      border: 1px solid var(--cerulean-mid);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .coming-soon h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .coming-soon p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      margin: 0 0.5rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--cerulean-mid); }
+    .footer-links { margin-bottom: 0.75rem; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .guides-grid { grid-template-columns: 1fr; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-hero-inner > * { animation: fadeUp 0.5s ease both; }
+    .page-hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+    .page-hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+  </style>
 </head>
-
 <body>
-  <div class="content-wrapper">
-    
-    <!-- Header with Logo -->
-    <header class="guide-header">
-      <div class="guide-logo">
-        <img src="../DFlogo.png" alt="DataForge Apps Logo">
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../DFlogo.png" alt="DataForge Logo">
+    <span class="nav-logo-text">DataForge</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#apps">Apps</a></li>
+    <li><a href="../index.html#custom">Custom Dev</a></li>
+    <li><a href="../index.html#guides" class="nav-active">Guides</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../about.html" class="nav-cta">About Me</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <h1>📖 Guides &amp; <span>Tutorials</span></h1>
+    <p>Step-by-step instructions, real-world examples, and best practices to help you get the most out of every DataForge app.</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="guides-content">
+
+  <a class="back-link" href="../index.html">← Back to DataForge</a>
+
+  <div class="guides-grid">
+
+    <a class="guide-card" href="Guide-GearSmith.html">
+      <div class="guide-card-header">
+        <img class="guide-icon" src="../GearSmith/GearSmithLogo.png" alt="GearSmith Logo">
+        <span class="guide-name">GearSmith</span>
       </div>
-      <h1>Guides & Tutorials</h1>
-    </header>
+      <p class="guide-desc">Vehicle maintenance tracking — stay on top of service history, repairs, and routine maintenance for your whole household fleet.</p>
+      <ul class="guide-bullets">
+        <li>Log maintenance and repair records</li>
+        <li>Track service intervals and vehicle history</li>
+        <li>Maintain organized records for multiple vehicles</li>
+      </ul>
+      <span class="guide-link">View GearSmith Guides →</span>
+    </a>
 
-    <!-- Main Content -->
-    <main class="guide-content">
-      <p class="guide-intro">
-        Welcome to the DataForgeApps guides and tutorials hub. Here you'll find
-        step-by-step instructions, real-world examples, and best practices to help
-        you get the most out of each app. Whether you're just getting started or
-        refining your workflow, these guides are designed to help you work smarter
-        and stay organized.
-      </p>
-      <a href="../index.html" class="back-link">🏠 Back to Home</a>
-
-      <!-- GearSmith -->
-      <section class="guide-section">
-        <h2>GearSmith</h2>
-        <p>
-          GearSmith is a vehicle maintenance tracking app designed to help you stay
-          on top of service history, repairs, and routine maintenance.
-        </p>
-        <ul>
-          <li>Log maintenance and repair records</li>
-          <li>Track service intervals and vehicle history</li>
-          <li>Maintain organized records for multiple vehicles</li>
-        </ul>
-        <a href="Guide-GearSmith.html" class="arrow-link">→ View GearSmith Guides</a>
-      </section>
-
-      <!-- Filament Foundry -->
-      <section class="guide-section">
-        <h2>Filament Foundry</h2>
-        <p>
-          Filament Foundry helps 3D printing enthusiasts track filament inventory,
-          monitor print usage, and reduce waste across projects.
-        </p>
-        <ul>
-          <li>Track filament types, colors, and quantities</li>
-          <li>Log completed and failed prints</li>
-          <li>Understand material usage over time</li>
-        </ul>
-        <a href="Guide-FilamentFoundry.html" class="arrow-link">→ View Filament Foundry Guides</a>
-      </section>
-
-      <!-- The Juke -->
-      <section class="guide-section">
-        <h2>The Juke</h2>
-        <p>
-          The Juke is a 2-part App for Live music venues.
-        </p>
-        <p><strong>For Bands:</strong></p>
-        <ul>
-          <li>The Juke enables you to develop a set list (with breaks listed) so listeners can get excited for what's coming up</li>
-          <li>Set which songs the audience members can request</li>
-          <li>Collect tips digitally</li>
-        </ul>
-        <p><strong>For Audience:</strong></p>
-        <ul>
-          <li>The Juke enables you to see the band's set list so you can plan your time on the dance floor</li>
-          <li>Request songs without leaving your table</li>
-        </ul>
-        <a href="Guide-TheJuke.html" class="arrow-link">→ View The Juke Guides</a>
-      </section>
-
-      <!-- Stock Hammer -->
-      <section class="guide-section">
-        <h2>Stock Hammer</h2>
-        <p>
-          Stock Hammer is an inventory management tool designed to help small businesses.
-        </p>
-        <ul>
-          <li>Track Inventory Levels</li>
-          <li>Make sales with live inventory updates</li>
-          <li>Run reports for product popularity trends</li>
-        </ul>
-        <a href="Guide-StockHammer.html" class="arrow-link">→ View Stock Hammer Guides</a>
-      </section>
-
-      <!-- Spark Search -->
-      <section class="guide-section">
-        <h2>Spark Search</h2>
-        <p>
-          Spark Search is a simple, safe search engine for kids.
-        </p>
-        <ul>
-          <li>View a pre-filtered list of safe images</li>
-          <li>Colorable images</li>
-          <li>Viewable search history</li>
-          <li>Manageable banned word list</li>
-        </ul>
-        <a href="Guide-SparkSearch.html" class="arrow-link">→ View Spark Search Guides</a>
-      </section>
-
-      <!-- Coming Soon -->
-      <section class="guide-section">
-        <h2>More Apps Coming Soon</h2>
-        <p>
-          DataForgeApps is continuously expanding. As new apps are released,
-          detailed guides and tutorials will be added here to help you get started
-          quickly and confidently.
-        </p>
-      </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="guide-footer">
-      <div>© 2025 DataForgeApps</div>
-      <div style="margin-top: 8px;">
-        <a href="Site_Level_Docs/privacy.html">Privacy Policy</a> |
-        <a href="Site_Level_Docs/terms.html">Terms of Service</a> |
-        <a href="Site_Level_Docs/cookies.html">Cookie Policy</a> |
-        <a href="contact.html">Contact Form</a>
+    <a class="guide-card" href="Guide-FilamentFoundry.html">
+      <div class="guide-card-header">
+        <img class="guide-icon" src="../Filament_Foundry/filamentlogo.png" alt="Filament Foundry Logo">
+        <span class="guide-name">Filament Foundry</span>
       </div>
-    </footer>
+      <p class="guide-desc">Track filament inventory, monitor print usage, and reduce waste across all your 3D printing projects.</p>
+      <ul class="guide-bullets">
+        <li>Track filament types, colors, and quantities</li>
+        <li>Log completed and failed prints</li>
+        <li>Understand material usage over time</li>
+      </ul>
+      <span class="guide-link">View Filament Foundry Guides →</span>
+    </a>
+
+    <a class="guide-card" href="Guide-TheJuke.html">
+      <div class="guide-card-header">
+        <img class="guide-icon" src="../The_Juke_App/Juke_icon.png" alt="The Juke Logo">
+        <span class="guide-name">The Juke</span>
+      </div>
+      <p class="guide-desc">A two-part app for live music venues — tools for both the band and the audience to make every show more interactive.</p>
+      <ul class="guide-bullets">
+        <li>Build and share your set list with the crowd</li>
+        <li>Let the audience request songs from their table</li>
+        <li>Collect tips digitally</li>
+      </ul>
+      <span class="guide-link">View The Juke Guides →</span>
+    </a>
+
+    <a class="guide-card" href="Guide-StockHammer.html">
+      <div class="guide-card-header">
+        <img class="guide-icon" src="../Stock_Hammer/StockHammerLogo.png" alt="Stock Hammer Logo">
+        <span class="guide-name">Stock Hammer</span>
+      </div>
+      <p class="guide-desc">Inventory management designed for small businesses — keep stock accurate and make smarter restocking decisions.</p>
+      <ul class="guide-bullets">
+        <li>Track inventory levels in real time</li>
+        <li>Record sales with live inventory updates</li>
+        <li>Run reports for product popularity trends</li>
+      </ul>
+      <span class="guide-link">View Stock Hammer Guides →</span>
+    </a>
+
+    <a class="guide-card" href="Guide-SparkSearch.html">
+      <div class="guide-card-header">
+        <img class="guide-icon" src="../Spark_Search/SparkSearchLogo.png" alt="Spark Search Logo">
+        <span class="guide-name">Spark Search</span>
+      </div>
+      <p class="guide-desc">A simple, safe search engine for kids — with parental controls, filtered results, and colorable images.</p>
+      <ul class="guide-bullets">
+        <li>View a pre-filtered list of safe images</li>
+        <li>Colorable images for creative fun</li>
+        <li>Manageable banned word list for parents</li>
+      </ul>
+      <span class="guide-link">View Spark Search Guides →</span>
+    </a>
 
   </div>
+
+  <div class="coming-soon">
+    <h3>More Guides Coming Soon</h3>
+    <p>As new apps are released, detailed guides will be added here to help you get started quickly and confidently.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="../about.html">About</a>
+    <a href="../Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="../Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+    <a href="../Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+    <a href="../contact.html" target="_blank" rel="noopener noreferrer">Contact Form</a>
+  </div>
+  <div>© 2025 DataForge Apps</div>
+</footer>
+
 </body>
 </html>
