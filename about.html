@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- AdSense site verification -->
+  <meta name="google-adsense-account" content="ca-pub-7056143037956286">
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056143037956286"
+     crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Renee — DataForgeApps</title>
+  <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cerulean: #007BA7;
+      --cerulean-dark: #005F87;
+      --cerulean-deep: #004060;
+      --cerulean-pale: #E0F0F7;
+      --cerulean-mid: #B3D9EC;
+      --charcoal: #1A1A2E;
+      --charcoal-soft: #2E2E45;
+      --text: #2A2A3E;
+      --text-muted: #6B7280;
+      --bg: #F7FAFB;
+      --white: #FFFFFF;
+      --card-border: #D6EAF4;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 250, 251, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cerulean-mid);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 36px; width: auto; }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cerulean-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cerulean); }
+
+    .nav-cta {
+      background: var(--cerulean) !important;
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 500 !important;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-soft) 40%, #0D3A52 100%);
+      color: var(--white);
+      padding: 72px 2rem 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 70% 30%, rgba(0,123,167,0.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .page-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,123,167,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,123,167,0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .page-hero-inner img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(94,200,232,0.5);
+      margin-bottom: 1.25rem;
+    }
+
+    .page-hero-inner h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-hero-inner h1 span { color: #5EC8E8; }
+
+    .page-hero-inner p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .about-content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 2rem 80px;
+    }
+
+    .about-section { margin-bottom: 3rem; }
+
+    .about-section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cerulean);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .about-section p {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .cred-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      border-left: 3px solid var(--cerulean);
+    }
+
+    .cred-card .cred-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .cred-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    .cred-card p {
+      font-size: 0.8rem !important;
+      color: var(--text-muted) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.5 !important;
+    }
+
+    .about-divider {
+      border: none;
+      border-top: 1px solid var(--card-border);
+      margin: 3rem 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--cerulean);
+      text-decoration: none;
+      margin-bottom: 2rem;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      margin: 0 0.5rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--cerulean-mid); }
+    .footer-links { margin-bottom: 0.75rem; }
+
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-hero-inner > * { animation: fadeUp 0.5s ease both; }
+    .page-hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+    .page-hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+    .page-hero-inner > *:nth-child(3) { animation-delay: 0.25s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="DFlogo.png" alt="DataForge Logo">
+    <span class="nav-logo-text">DataForge</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#apps">Apps</a></li>
+    <li><a href="index.html#custom">Custom Dev</a></li>
+    <li><a href="index.html#guides">Guides</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="about.html" class="nav-cta">About Me</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <img src="Renee-Avatar.png" alt="Renee, the developer">
+    <h1>Hey, I'm <span>Renee</span> 👋</h1>
+    <p>Engineer by training, spreadsheet wrangler by trade, and indie coder for fun.</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="about-content">
+
+  <a class="back-link" href="index.html">← Back to DataForge</a>
+
+  <div class="about-section">
+    <div class="about-section-label">The Short Version</div>
+    <h2>Who I Am</h2>
+    <p>I'm a Chemical Engineer with a background in manufacturing processes and a Lean Six Sigma Black Belt. My love of coding started with VBA automation in Excel — and it snowballed from there. DataForge is my first big step outside that world, and I'm building it one real problem at a time.</p>
+    <p>When I'm not forging apps, I'm a member of the Marilla Marching Band — one of the few adults in a community band that somehow still gets me to show up every week. 🎶</p>
+  </div>
+
+  <hr class="about-divider">
+
+  <div class="about-section">
+    <div class="about-section-label">Education &amp; Credentials</div>
+    <h2>Background</h2>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <span class="cred-icon">🎓</span>
+        <h3>A.S. Engineering Science</h3>
+        <p>Erie Community College</p>
+      </div>
+      <div class="cred-card">
+        <span class="cred-icon">⚗️</span>
+        <h3>B.S. Chemical Engineering</h3>
+        <p>University of Pittsburgh</p>
+      </div>
+      <div class="cred-card">
+        <span class="cred-icon">📐</span>
+        <h3>M.S. Engineering Management</h3>
+        <p>Ohio University (online)</p>
+      </div>
+      <div class="cred-card">
+        <span class="cred-icon">⚙️</span>
+        <h3>Lean Six Sigma Black Belt</h3>
+        <p>Certified through Kent State University</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="about-divider">
+
+  <div class="about-section">
+    <div class="about-section-label">The Longer Version</div>
+    <h2>How I Got Here</h2>
+    <p>My journey into app development started as a practical problem-solver's detour. Years of manufacturing process work and Lean Six Sigma projects built a habit of asking: <em>why is this hard, and how could it be easier?</em></p>
+    <p>VBA macros scratched that itch for a long time. But eventually the Excel sandbox felt too small. DataForge is what happened when I decided to actually learn to build things properly — Android apps, web apps, Firebase backends, and more.</p>
+    <p>Every app here started as a real need: a friend needed to track a classic Corvette's maintenance, a kid needed a safe way to look up unicorns, a band needed a way to let the crowd request songs. That's the DataForge philosophy — practical tools for real life. 🔧🔥</p>
+  </div>
+
+  <hr class="about-divider">
+
+  <div class="about-section">
+    <div class="about-section-label">Connect</div>
+    <h2>Find Me Online</h2>
+    <p>Always happy to talk shop — whether it's app ideas, engineering nerd stuff, or marching band logistics.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1rem;">
+      <a href="mailto:DataForgeApps@gmail.com" style="display:inline-flex; align-items:center; gap:6px; background:var(--white); border:1px solid var(--card-border); border-radius:999px; padding:9px 18px; font-size:0.875rem; color:var(--text); text-decoration:none;" onmouseover="this.style.borderColor='#007BA7';this.style.color='#007BA7'" onmouseout="this.style.borderColor='var(--card-border)';this.style.color='var(--text)'">📧 Email</a>
+      <a href="https://www.linkedin.com/in/reneelueke" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; background:var(--white); border:1px solid var(--card-border); border-radius:999px; padding:9px 18px; font-size:0.875rem; color:var(--text); text-decoration:none;" onmouseover="this.style.borderColor='#007BA7';this.style.color='#007BA7'" onmouseout="this.style.borderColor='var(--card-border)';this.style.color='var(--text)'">💼 LinkedIn</a>
+      <a href="https://www.facebook.com/share/18DDfH6qLG/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--white); border:1px solid var(--card-border); border-radius:999px; padding:9px 18px; font-size:0.875rem; color:var(--text); text-decoration:none;" onmouseover="this.style.borderColor='#007BA7';this.style.color='#007BA7'" onmouseout="this.style.borderColor='var(--card-border)';this.style.color='var(--text)'">📘 Facebook</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+    <a href="Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+    <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Form</a>
+  </div>
+  <div>© 2025 DataForge Apps</div>
+</footer>
+
+</body>
+</html>
