@@ -1,109 +1,704 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <!-- AdSense site verification -->
+  <!-- AdSense site verification -->
   <meta name="google-adsense-account" content="ca-pub-7056143037956286">
-   <!-- AdSense -->
+  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056143037956286"
      crossorigin="anonymous"></script>
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DataForgeApps</title>
-   <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
-   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --cerulean: #007BA7;
+      --cerulean-dark: #005F87;
+      --cerulean-deep: #004060;
+      --cerulean-pale: #E0F0F7;
+      --cerulean-mid: #B3D9EC;
+      --charcoal: #1A1A2E;
+      --charcoal-soft: #2E2E45;
+      --text: #2A2A3E;
+      --text-muted: #6B7280;
+      --bg: #F7FAFB;
+      --white: #FFFFFF;
+      --card-border: #D6EAF4;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
 
-   
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 250, 251, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cerulean-mid);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 36px; width: auto; }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cerulean-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a:hover { color: var(--cerulean); }
+
+    .nav-cta {
+      background: var(--cerulean) !important;
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--cerulean-dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-soft) 40%, #0D3A52 100%);
+      color: var(--white);
+      padding: 96px 2rem 80px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(0,123,167,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(0,96,135,0.25) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,123,167,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,123,167,0.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,123,167,0.25);
+      border: 1px solid rgba(0,123,167,0.5);
+      color: var(--cerulean-mid);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 span { color: #5EC8E8; }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--cerulean);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary:hover {
+      background: var(--cerulean-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 400;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    /* ── SECTION ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 2rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cerulean);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    /* ── APP GRID ── */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .app-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: box-shadow 0.25s, transform 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cerulean), #5EC8E8);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .app-card:hover {
+      box-shadow: 0 8px 32px rgba(0,123,167,0.12);
+      transform: translateY(-3px);
+      border-color: var(--cerulean-mid);
+    }
+
+    .app-card:hover::after { opacity: 1; }
+
+    .app-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1rem;
+    }
+
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: var(--cerulean-pale);
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .app-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.01em;
+    }
+
+    .app-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .app-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--cerulean);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .app-link:hover { gap: 8px; }
+
+    /* ── BAND ── */
+    .band {
+      background: linear-gradient(135deg, var(--cerulean-pale) 0%, #cce9f5 100%);
+      border-top: 1px solid var(--cerulean-mid);
+      border-bottom: 1px solid var(--cerulean-mid);
+      padding: 72px 2rem;
+    }
+
+    .band-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── CUSTOM DEV CARDS ── */
+    .custom-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .custom-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .custom-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .custom-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .custom-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT TEASER ── */
+    .about-teaser {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .about-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--cerulean-mid);
+      flex-shrink: 0;
+    }
+
+    .about-teaser-text { flex: 1; min-width: 200px; }
+
+    .about-teaser-text h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    .about-teaser-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .about-teaser-text a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--cerulean);
+      text-decoration: none;
+    }
+
+    /* ── GUIDES STRIP ── */
+    .guides-strip {
+      background: var(--charcoal);
+      color: var(--white);
+      padding: 56px 2rem;
+      text-align: center;
+    }
+
+    .guides-strip h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .guides-strip p {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1.75rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.95rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 80px 2rem;
+      text-align: center;
+    }
+
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-chip:hover {
+      border-color: var(--cerulean);
+      color: var(--cerulean);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      margin: 0 0.5rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--cerulean-mid); }
+    .footer-links { margin-bottom: 0.75rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-inner > * { animation: fadeUp 0.6s ease both; }
+    .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+    .hero-inner > *:nth-child(3) { animation-delay: 0.25s; }
+    .hero-inner > *:nth-child(4) { animation-delay: 0.35s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .about-teaser { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Side menu -->
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="GearSmith/gearsmith.html">GearSmith</a>
-    <a href="Stock_Hammer/stockhammer.html">Stock Hammer</a>
-    <a href="Filament_Foundry/filamentfoundry.html">Filament Foundry</a>
-     <a href="The_Juke_App/juke.html">The Juke</a>
-     <a href="Spark_Search/Spark_Search.html">Spark Search</a>
-    <!-- Later, add more: <a href="folder/app2.html">App 2</a>, <a href="folder/app3.html">App 3</a> -->
-  </div>
 
-  <!-- Menu button -->
-  <button class="menu-btn" onclick="openNav()">☰ Apps</button>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="DFlogo.png" alt="DataForge Logo">
+    <span class="nav-logo-text">DataForge</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#apps">Apps</a></li>
+    <li><a href="#custom">Custom Dev</a></li>
+    <li><a href="#guides">Guides</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="about.html" class="nav-cta">About Me</a></li>
+  </ul>
+</nav>
 
-<section id="about" style="display: flex; align-items: center; flex-wrap: wrap; gap: 20px; padding: 20px;">
-  <img src="DFlogo.png" alt="Data Forge Apps Logo" style="max-width:100px; height:auto; flex-shrink: 0;">
-  <div style="flex: 1; text-align: center; min-width: 200px;">
-    <h2>About Data Forge Apps</h2>
-    <p>
-      Welcome! We create apps designed to make everyday tasks easier.  
-      Our first release is live — check out the links in the menu to explore details, 
-      including our vehicle maintenance tracker and more apps as they're released.  
-    </p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">⚒ Indie Built · Practically Designed</div>
+    <h1>Practical tools for <span>real life</span> — built one app at a time.</h1>
+    <p>DataForge makes apps that solve real problems: for makers, mechanics, parents, and performers. Simple, useful, and built with care.</p>
+    <div class="hero-actions">
+      <a href="#apps" class="btn-primary">Explore Apps ↓</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
   </div>
 </section>
-<p>
-  Want to see what we're working on? Use the <strong>☰ Apps</strong> menu to explore.  
-</p>
 
-<p>
-  Interested in testing early versions or contacting us? 
- <a href="contact.html" style="color:#007acc; font-weight:bold; text-decoration:none;" 
-   onmouseover="this.style.textDecoration='underline';" 
-   onmouseout="this.style.textDecoration='none';">
-  Reach out here
-</a>
-</p>
+<!-- APPS -->
+<section id="apps" class="section">
+  <div class="section-label">What We've Built</div>
+  <h2 class="section-title">Our Apps</h2>
+  <p class="section-sub">Each app started with a real need. Browse what's available and check back — more are in the forge.</p>
 
+  <div class="apps-grid">
 
-<section id="app-summaries">
-  <h2>Our Apps</h2>
-  <div class="accordion">
-
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <img src="GearSmith/GearSmithLogo.png" alt="GearSmith Logo">
-        GearSmith
-      </button>
-      <div class="accordion-content">
-        <p>A vehicle maintenance tracker that keeps your cars organized. Originally built for a classic Corvette enthusiast to track maintenance, receipts, modifications, and more, GearSmith quickly became a tool I'd use myself. Keep all your household vehicles organized in one place, with shared logs for everyone who helps care for them. </p>
+    <div class="app-card">
+      <div class="app-card-header">
+        <img class="app-icon" src="GearSmith/GearSmithLogo.png" alt="GearSmith Logo">
+        <span class="app-name">GearSmith</span>
       </div>
+      <p class="app-desc">A vehicle maintenance tracker that keeps your cars organized. Originally built for a classic Corvette enthusiast, GearSmith tracks maintenance, receipts, modifications, and more — with shared logs for everyone who helps care for your vehicles.</p>
+      <a class="app-link" href="GearSmith/gearsmith.html">Learn more →</a>
     </div>
 
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <img src="Stock_Hammer/StockHammerLogo.png" alt="Stock Hammer Logo">
-        Stock Hammer
-      </button>
-      <div class="accordion-content">
-        <p>A simple inventory and parts tracker for makers and small shops. Designed to keep counts accurate, reduce guesswork, and make restocking decisions easier.</p>
+    <div class="app-card">
+      <div class="app-card-header">
+        <img class="app-icon" src="Stock_Hammer/StockHammerLogo.png" alt="Stock Hammer Logo">
+        <span class="app-name">Stock Hammer</span>
       </div>
+      <p class="app-desc">A simple inventory and parts tracker for makers and small shops. Keep counts accurate, reduce guesswork, and make restocking decisions easier.</p>
+      <a class="app-link" href="Stock_Hammer/stockhammer.html">Learn more →</a>
     </div>
 
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <img src="Filament_Foundry/filamentlogo.png" alt="Filament Foundry Logo">
-        Filament Foundry
-      </button>
-      <div class="accordion-content">
-        <p>A 3-D printing filament tracker built for small businesses. Monitor spool weights, usage, and remaining stock to avoid mid-print failures and improve inventory planning.</p>
+    <div class="app-card">
+      <div class="app-card-header">
+        <img class="app-icon" src="Filament_Foundry/filamentlogo.png" alt="Filament Foundry Logo">
+        <span class="app-name">Filament Foundry</span>
+      </div>
+      <p class="app-desc">A 3D printing filament tracker built for small businesses. Monitor spool weights, usage, and remaining stock to avoid mid-print failures and improve inventory planning.</p>
+      <a class="app-link" href="Filament_Foundry/filamentfoundry.html">Learn more →</a>
+    </div>
+
+    <div class="app-card">
+      <div class="app-card-header">
+        <img class="app-icon" src="The_Juke_App/Juke_icon.png" alt="The Juke Logo">
+        <span class="app-name">The Juke</span>
+      </div>
+      <p class="app-desc">Live jukebox app for events — request songs, tip the band, and follow along in real time. Makes shows more interactive and fun.</p>
+      <a class="app-link" href="The_Juke_App/juke.html">Learn more →</a>
+    </div>
+
+    <div class="app-card">
+      <div class="app-card-header">
+        <img class="app-icon" src="Spark_Search/SparkSearchLogo.png" alt="Spark Search Logo">
+        <span class="app-name">Spark Search</span>
+      </div>
+      <p class="app-desc">Inspired by a daughter with a unicorn obsession, Spark Search is a safe search tool for kids — with safe filters and a level of parental control and feedback.</p>
+      <a class="app-link" href="Spark_Search/Spark_Search.html">Learn more →</a>
+    </div>
+
   </div>
-    </div>
+</section>
 
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <img src="The_Juke_App/Juke_icon.png" alt="The Juke Logo">
-        The Juke
-      </button>
-      <div class="accordion-content">
-        <p>Live jukebox app for events — request songs, tip the band, and follow along in real time. I created it to make shows more interactive and fun.</p>
+<!-- CUSTOM DEV -->
+<div class="band" id="custom">
+  <div class="band-inner">
+    <div class="section-label">Work With Me</div>
+    <h2 class="section-title">🔨 Custom App Development</h2>
+    <p class="section-sub">Have an idea? Let's forge it together. I'm available to build custom solutions tailored specifically to your needs.</p>
+
+    <div class="custom-cards">
+      <div class="custom-card">
+        <span class="custom-card-icon">🛠️</span>
+        <h3>Business Solutions</h3>
+        <p>Custom tools designed around your workflow — from inventory systems to specialized trackers.</p>
+      </div>
+      <div class="custom-card">
+        <span class="custom-card-icon">📱</span>
+        <h3>Mobile &amp; Web Apps</h3>
+        <p>Native and cross-platform applications that work seamlessly across all devices.</p>
+      </div>
+      <div class="custom-card">
+        <span class="custom-card-icon">⚡</span>
+        <h3>Specialized Projects</h3>
+        <p>Unique applications for niche markets, hobbies, or community needs.</p>
       </div>
     </div>
 
-     <div class="accordion-item">
-      <button class="accordion-header">
-        <img src="Spark_Search/SparkSearchLogo.png" alt="Spark Search Logo">
+    <div style="margin-top:2rem;">
+      <a href="contact.html" class="btn-primary">Contact me for a free consultation</a>
+    </div>
+
+    <!-- About teaser -->
+    <div class="about-teaser">
+      <img class="about-avatar" src="Renee-Avatar.png" alt="Renee, the developer">
+      <div class="about-teaser-text">
+        <h3>Hey, I'm Renee 👋</h3>
+        <p>Engineer by training, spreadsheet wrangler by trade, and indie coder for fun. Chemical engineer with a Lean Six Sigma Black Belt — and a growing love for building apps from scratch.</p>
+        <a href="about.html">Read my full story →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GUIDES -->
+<div class="guides-strip" id="guides">
+  <h2>📖 Guides &amp; Tutorials</h2>
+  <p>Step-by-step guides, real-world examples, and best practices to help you get the most out of every DataForge app.</p>
+  <a href="/Guides/" class="btn-primary" style="display:inline-flex; margin: 0 auto;">View All Guides →</a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title" style="text-align:center;">Contact DataForge</h2>
+  <p style="color:var(--text-muted); font-size:0.95rem; margin-top:0.5rem;">Questions? Feedback? A wild app idea? Reach out — I'd love to hear from you.</p>
+
+  <div class="contact-methods">
+    <a class="contact-chip" href="mailto:DataForgeApps@gmail.com">📧 DataForgeApps@gmail.com</a>
+    <a class="contact-chip" href="contact.html">📋 Contact Form</a>
+    <a class="contact-chip" href="https://www.facebook.com/share/18DDfH6qLG/" target="_blank" rel="noopener">📘 Facebook</a>
+    <a class="contact-chip" href="https://www.linkedin.com/in/reneelueke" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+    <a href="Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+    <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Form</a>
+  </div>
+  <div>© 2025 DataForge Apps</div>
+  <div style="margin-top: 12px;">
+    <span style="font-size:0.75rem;">Visitors to The Forge: </span>
+    <img
+      src="https://hitwebcounter.com/counter/counter.php?page=21131817&style=0006&nbdigits=5&type=page&initCount=3"
+      alt="Visitor Counter"
+      style="width: auto; margin: 0 0 0 6px; vertical-align: middle; border-radius: 0;"
+    />
+  </div>
+</footer>
+
+</body>
+</html>        <img src="Spark_Search/SparkSearchLogo.png" alt="Spark Search Logo">
         Spark Search
       </button>
       <div class="accordion-content">
