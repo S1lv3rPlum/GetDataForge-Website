@@ -1,109 +1,608 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- AdSense site verification -->
+  <meta name="google-adsense-account" content="ca-pub-7056143037956286">
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056143037956286"
+     crossorigin="anonymous"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Filament Foundry</title>
+  <meta name="description" content="Filament Foundry — track 3D print filament usage, manage spool inventory, and generate usage reports. By DataForge." />
+  <title>Filament Foundry | DataForgeApps</title>
+  <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cerulean: #007BA7;
+      --cerulean-dark: #005F87;
+      --cerulean-deep: #004060;
+      --cerulean-pale: #E0F0F7;
+      --cerulean-mid: #B3D9EC;
+      --charcoal: #1A1A2E;
+      --charcoal-soft: #2E2E45;
+      --text: #2A2A3E;
+      --text-muted: #6B7280;
+      --bg: #F7FAFB;
+      --white: #FFFFFF;
+      --card-border: #D6EAF4;
+      --radius: 12px;
+      --radius-lg: 20px;
+      /* Filament Foundry accent */
+      --ff-pink: #ff0080;
+      --ff-teal: #40e0d0;
+      --ff-purple: #7b68ee;
+      --ff-orange: #ff8c00;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 250, 251, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cerulean-mid);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 36px; width: auto; }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cerulean-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cerulean); }
+
+    .nav-cta {
+      background: var(--cerulean) !important;
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--cerulean-dark) !important; }
+
+    /* ── HERO ── */
+    .page-hero {
       position: relative;
-      min-height: 100vh;
-      background: linear-gradient(165deg, 
-        #ff0080 0%, 
-        #ff8c00 8%, 
-        #ff0080 12%,
-        #40e0d0 18%, 
-        #7b68ee 25%, 
-        #ff1493 30%,
-        #ff8c00 35%,
-        #40e0d0 42%,
-        #7b68ee 48%,
-        #ff0080 55%,
-        #ff8c00 62%,
-        #40e0d0 68%,
-        #ff1493 75%,
-        #7b68ee 82%,
-        #ff8c00 88%,
-        #40e0d0 94%,
-        #ff1493 100%
-      );
-      background-size: 400% 400%;
-      background-attachment: fixed;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a0a2e 0%, #2a0a3e 40%, #0a1a2e 100%);
+      color: var(--white);
+      padding: 72px 2rem 60px;
+      text-align: center;
     }
 
-    /* Rainbow layer lines overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(0,0,0,0.1) 0px,
-        rgba(0,0,0,0.1) 1px,
-        transparent 1px,
-        transparent 4px,
-        rgba(255,255,255,0.08) 4px,
-        rgba(255,255,255,0.08) 5px,
-        transparent 5px,
-        transparent 8px
-      );
+    /* Rainbow filament strands across the hero */
+    .filament-strands {
+      position: absolute;
+      inset: 0;
       pointer-events: none;
-      z-index: 1;
+      overflow: hidden;
     }
 
-    /* Sidebar - 3D printer aluminum extrusion frame */
-    .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 50px;
-      height: 100%;
-      background: linear-gradient(90deg, 
-        #808080 0%, 
-        #b8b8b8 10%,
-        #e0e0e0 20%,
-        #f5f5f5 30%,
-        #e0e0e0 40%,
-        #b8b8b8 50%,
-        #808080 60%,
-        #606060 70%,
-        #808080 80%,
-        #b8b8b8 90%,
-        #808080 100%
-      );
-      box-shadow: 
-        inset -2px 0 4px rgba(0,0,0,0.3),
-        inset 2px 0 2px rgba(255,255,255,0.4);
-      z-index: 2;
-      border-right: 1px solid #999;
-    }
-
-    /* T-slot grooves in the extrusion */
-    .sidebar::before {
+    .filament-strands::before {
       content: '';
       position: absolute;
-      left: 12px;
+      inset: 0;
+      background:
+        linear-gradient(170deg, transparent 30%, rgba(255,0,128,0.18) 40%, transparent 50%),
+        linear-gradient(160deg, transparent 20%, rgba(64,224,208,0.15) 35%, transparent 55%),
+        linear-gradient(175deg, transparent 40%, rgba(123,104,238,0.18) 55%, transparent 65%),
+        linear-gradient(155deg, transparent 10%, rgba(255,140,0,0.12) 30%, transparent 50%);
+    }
+
+    /* Aluminum extrusion sidebar — kept as decorative hero elements */
+    .extrusion-left,
+    .extrusion-right {
+      position: absolute;
       top: 0;
-      width: 8px;
-      height: 100%;
+      bottom: 0;
+      width: 24px;
+      background: linear-gradient(90deg,
+        #606060 0%, #b0b0b0 15%, #e0e0e0 30%,
+        #f0f0f0 50%, #e0e0e0 70%, #a0a0a0 85%, #606060 100%
+      );
+      opacity: 0.5;
+    }
+
+    .extrusion-left {
+      left: 0;
+      border-right: 2px solid var(--ff-teal);
+    }
+
+    .extrusion-right {
+      right: 0;
+      border-left: 2px solid var(--ff-pink);
+    }
+
+    /* Filament layer lines at bottom */
+    .layer-strip {
+      position: absolute;
+      bottom: 0;
+      left: 24px;
+      right: 24px;
+      height: 8px;
       background: repeating-linear-gradient(
-        180deg,
-        #404040 0px,
-        #404040 10px,
-        #606060 10px,
-        #606060 12px,
+        90deg,
+        var(--ff-pink) 0px, var(--ff-pink) 20px,
+        var(--ff-orange) 20px, var(--ff-orange) 40px,
+        var(--ff-teal) 40px, var(--ff-teal) 60px,
+        var(--ff-purple) 60px, var(--ff-purple) 80px
+      );
+      opacity: 0.7;
+    }
+
+    .page-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .app-hero-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      object-fit: contain;
+      background: var(--white);
+      padding: 10px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(64,224,208,0.15);
+      border: 1px solid rgba(64,224,208,0.4);
+      color: var(--ff-teal);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero-inner h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+
+    .page-hero-inner h1 span {
+      background: linear-gradient(90deg, var(--ff-pink), var(--ff-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-hero-inner p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--ff-pink), var(--ff-orange));
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(255,0,128,0.3);
+    }
+
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 400;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    /* ── CONTENT ── */
+    .page-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 2rem 80px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--cerulean);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ff-pink);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .content-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--ff-teal);
+    }
+
+    .content-card p {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .content-card p:last-child { margin-bottom: 0; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-item {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .feature-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+
+    .feature-text h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+    .tag-soon {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .screenshots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .screenshot-item { text-align: center; }
+
+    .screenshot-item img {
+      width: 260px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      border: 1px solid var(--card-border);
+    }
+
+    .caption { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
+
+    .page-divider { border: none; border-top: 1px solid var(--card-border); margin: 2.5rem 0; }
+
+    .cta-band {
+      background: linear-gradient(135deg, #fff0f8, #f0fffe);
+      border: 1px solid #f9c6e0;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-band p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 0.5rem; transition: color 0.2s; }
+    footer a:hover { color: var(--cerulean-mid); }
+    .footer-links { margin-bottom: 0.75rem; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .extrusion-left, .extrusion-right { display: none; }
+      .screenshots { justify-content: center; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-hero-inner > * { animation: fadeUp 0.5s ease both; }
+    .page-hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+    .page-hero-inner > *:nth-child(2) { animation-delay: 0.1s; }
+    .page-hero-inner > *:nth-child(3) { animation-delay: 0.18s; }
+    .page-hero-inner > *:nth-child(4) { animation-delay: 0.26s; }
+    .page-hero-inner > *:nth-child(5) { animation-delay: 0.34s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../DFlogo.png" alt="DataForge Logo">
+    <span class="nav-logo-text">DataForge</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#apps">Apps</a></li>
+    <li><a href="../index.html#custom">Custom Dev</a></li>
+    <li><a href="../index.html#guides">Guides</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../about.html" class="nav-cta">About Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="extrusion-left"></div>
+  <div class="extrusion-right"></div>
+  <div class="layer-strip"></div>
+  <div class="filament-strands"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <img class="app-hero-logo" src="filamentlogo.png" alt="Filament Foundry Logo">
+    <div class="hero-badge">🖨️ 3D Printing Filament Tracker</div>
+    <h1>Filament <span>Foundry</span></h1>
+    <p>Precisely track filament usage, manage your spool library, and generate reports to optimize your 3D printing workflow.</p>
+    <div class="hero-actions">
+      <a href="../contact.html?reason=Beta+Testing+Request" class="btn-primary">🔔 Notify Me When Live</a>
+      <a href="../Guides/Guide-FilamentFoundry.html" class="btn-secondary">📖 View Guide</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="page-content">
+
+  <a class="back-link" href="../index.html">← Back to DataForge</a>
+
+  <div class="section-label">What It Does</div>
+  <h2 class="section-title">App Overview</h2>
+  <div class="content-card">
+    <p>Filament Foundry helps you precisely track the weight of your 3D print filament spools before and after each print job, so you always know how much filament remains. This prevents starting large print jobs without sufficient material and lets you monitor usage by job.</p>
+    <p>Easily manage your entire filament spool library within the app and generate detailed usage reports designed to help 3D printing businesses optimize material purchasing and inventory control.</p>
+    <p>Currently the app relies on manually entered weights and automatically compensates for empty spool weight. An upcoming feature will enable real-time filament usage tracking with a rotary encoder, making management even more effortless.</p>
+  </div>
+
+  <hr class="page-divider">
+
+  <div class="section-label">What's Included</div>
+  <h2 class="section-title">Features</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">⚖️</span>
+      <div class="feature-text">
+        <h3>Weight Tracking</h3>
+        <p>Log filament weight before and after each job to always know exactly how much remains on every spool.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🧮</span>
+      <div class="feature-text">
+        <h3>Spool Tare Compensation</h3>
+        <p>Automatically subtracts empty spool weight for precise net filament measurements every time.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🗂️</span>
+      <div class="feature-text">
+        <h3>Spool Library</h3>
+        <p>Manage your entire filament inventory — brands, colors, materials, and remaining quantities in one place.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">📊</span>
+      <div class="feature-text">
+        <h3>Usage Reports</h3>
+        <p>Generate detailed reports for business insights, inventory planning, and material cost tracking.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🎯</span>
+      <div class="feature-text">
+        <h3>Job-Level Tracking</h3>
+        <p>See exactly how much filament each print job consumed — useful for quoting and cost analysis.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🔄</span>
+      <div class="feature-text">
+        <h3>Rotary Encoder Support <span class="tag-soon">Coming Soon</span></h3>
+        <p>Real-time filament length tracking via rotary encoder — no more manual weight entries.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="page-divider">
+
+  <div class="section-label">See It In Action</div>
+  <h2 class="section-title">Screenshots</h2>
+  <div class="screenshots">
+    <div class="screenshot-item">
+      <img src="placeholder1.png" alt="Filament Weight Tracking Dashboard">
+      <div class="caption">Filament Weight Tracking Dashboard</div>
+    </div>
+    <div class="screenshot-item">
+      <img src="placeholder2.png" alt="Print Job History & Usage">
+      <div class="caption">Print Job History &amp; Usage</div>
+    </div>
+  </div>
+
+  <hr class="page-divider">
+
+  <div class="cta-band">
+    <h2>🚀 Coming to Google Play</h2>
+    <p>Filament Foundry is preparing for launch. Sign up to be notified when it's live on the Play Store.</p>
+    <a href="../contact.html?reason=Beta+Testing+Request" class="btn-primary">Notify Me When It's Live</a>
+  </div>
+
+  <div class="content-card">
+    <div class="section-label">Privacy</div>
+    <h2 class="section-title" style="font-size:1.2rem; margin-bottom:0.75rem;">Your Data</h2>
+    <p>A detailed <a href="filamentfoundry-privacy-policy.html" target="_blank" style="color:var(--ff-pink); font-weight:500;">Privacy Policy</a> will be provided upon release, covering how filament data and user information are handled.</p>
+    <div style="margin-top:1rem;">
+      <a href="../contact.html?reason=Data+Deletion+Request" class="btn-primary" style="font-size:0.875rem; padding:10px 20px;">Request Data Deletion</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="../about.html">About</a>
+    <a href="../Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="../Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+    <a href="../Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+    <a href="../contact.html" target="_blank" rel="noopener noreferrer">Contact Form</a>
+  </div>
+  <div>© 2025 DataForge Apps | Built with ❤️ by Renee</div>
+</footer>
+
+</body>
+</html>        #606060 12px,
         #404040 12px,
         #404040 22px
       );
