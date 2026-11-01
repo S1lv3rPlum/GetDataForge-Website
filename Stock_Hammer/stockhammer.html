@@ -1,421 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- AdSense site verification -->
+  <meta name="google-adsense-account" content="ca-pub-7056143037956286">
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056143037956286"
+     crossorigin="anonymous"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stock Hammer - Inventory & POS</title>
+  <meta name="description" content="Stock Hammer — inventory and point of sale management for small businesses and makers. By DataForge." />
+  <title>Stock Hammer | DataForgeApps</title>
+  <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cerulean: #007BA7;
+      --cerulean-dark: #005F87;
+      --cerulean-deep: #004060;
+      --cerulean-pale: #E0F0F7;
+      --cerulean-mid: #B3D9EC;
+      --charcoal: #1A1A2E;
+      --charcoal-soft: #2E2E45;
+      --text: #2A2A3E;
+      --text-muted: #6B7280;
+      --bg: #F7FAFB;
+      --white: #FFFFFF;
+      --card-border: #D6EAF4;
+      --radius: 12px;
+      --radius-lg: 20px;
+      /* Stock Hammer accent — cardboard/warehouse browns */
+      --sh-brown: #8b5a2b;
+      --sh-brown-dark: #704214;
+      --sh-tan: #c19a6b;
+      --sh-tan-light: #d4a574;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
       line-height: 1.6;
-      position: relative;
-      min-height: 100vh;
-      background: #c19a6b;
-      background-attachment: fixed;
+      overflow-x: hidden;
     }
 
-    /* Cardboard texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
+    /* ── NAV ── */
+    nav {
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 50px,
-          rgba(139, 90, 43, 0.03) 50px,
-          rgba(139, 90, 43, 0.03) 51px
-        );
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Sidebar - Corrugated cardboard edge view */
-    .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 60px;
-      height: 100%;
-      background: linear-gradient(90deg, 
-        #8b5a2b 0%, 
-        #a67c52 20%,
-        #c19a6b 40%,
-        #a67c52 60%,
-        #8b5a2b 100%
-      );
-      z-index: 2;
-      border-right: 2px solid #704214;
-    }
-
-    /* Corrugated wave pattern - the wavy middle layer */
-    .sidebar::before {
-      content: '';
-      position: absolute;
-      left: 15px;
-      top: 0;
-      width: 30px;
-      height: 100%;
-      background-image: repeating-linear-gradient(
-        180deg,
-        #d4a574 0px,
-        #d4a574 8px,
-        #b8956e 8px,
-        #b8956e 10px,
-        #d4a574 10px,
-        #d4a574 18px,
-        #b8956e 18px,
-        #b8956e 20px
-      );
-      clip-path: polygon(
-        0% 0%, 
-        100% 2%, 
-        100% 8%, 
-        0% 10%,
-        0% 12%,
-        100% 14%,
-        100% 20%,
-        0% 22%,
-        0% 24%,
-        100% 26%,
-        100% 32%,
-        0% 34%,
-        0% 36%,
-        100% 38%,
-        100% 44%,
-        0% 46%,
-        0% 48%,
-        100% 50%,
-        100% 56%,
-        0% 58%,
-        0% 60%,
-        100% 62%,
-        100% 68%,
-        0% 70%,
-        0% 72%,
-        100% 74%,
-        100% 80%,
-        0% 82%,
-        0% 84%,
-        100% 86%,
-        100% 92%,
-        0% 94%,
-        0% 96%,
-        100% 98%,
-        100% 100%
-      );
-    }
-
-    /* Flat outer layers of cardboard */
-    .sidebar::after {
-      content: '';
-      position: absolute;
-      left: 5px;
-      top: 0;
-      width: 3px;
-      height: 100%;
-      background: #8b5a2b;
-      box-shadow: 47px 0 0 #8b5a2b;
-    }
-
-    /* Main content area */
-    .content-wrapper {
-      margin-left: 80px;
-      padding: 20px;
-      max-width: 1000px;
-      position: relative;
-      z-index: 2;
-    }
-
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 40px;
-      border-radius: 12px;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      text-align: center;
-      border: 3px solid #d4a574;
-    }
-
-    header img {
-      width: 120px;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-    }
-
-    h1 {
-      color: #3e2723;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      color: #3e2723;
-      margin-bottom: 15px;
-      font-size: 1.8rem;
-    }
-
-    header p {
-      color: #555;
-      font-size: 1.1rem;
-      margin: 5px 0;
-    }
-
-    header a {
-      color: #8b5a2b;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    header a:hover {
-      color: #704214;
-      text-decoration: underline;
-    }
-
-    /* Content sections */
-    section {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border-left: 6px solid #8b5a2b;
-      position: relative;
-    }
-
-    /* Barcode accent on sections */
-    section::after {
-      content: '';
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 80px;
-      height: 40px;
-      background: 
-        repeating-linear-gradient(
-          90deg,
-          #000 0px,
-          #000 2px,
-          transparent 2px,
-          transparent 4px,
-          #000 4px,
-          #000 5px,
-          transparent 5px,
-          transparent 9px,
-          #000 9px,
-          #000 12px,
-          transparent 12px,
-          transparent 14px
-        );
-      opacity: 0.1;
-    }
-
-    p {
-      font-size: 1.1rem;
-      color: #555;
-      margin-bottom: 15px;
-    }
-
-    ul {
-      margin-left: 25px;
-      color: #555;
-      list-style-type: disc;
-    }
-
-    li {
-      margin-bottom: 10px;
-      font-size: 1.05rem;
-    }
-
-    .screenshots {
+      z-index: 100;
+      background: rgba(247, 250, 251, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cerulean-mid);
+      padding: 0 2rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin: 20px 0;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
     }
 
-    .screenshots > div {
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 36px; width: auto; }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cerulean-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cerulean); }
+
+    .nav-cta {
+      background: var(--cerulean) !important;
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--cerulean-dark) !important; }
+
+    /* ── HERO ── */
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #2a1a0a 0%, #3e2a14 50%, #1a0f05 100%);
+      color: var(--white);
+      padding: 72px 2rem 60px;
       text-align: center;
     }
 
-    .screenshots img {
-      width: 280px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    /* Corrugated cardboard flanking panels */
+    .cardboard-left,
+    .cardboard-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 32px;
     }
 
-    .caption {
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 8px;
+    .cardboard-left {
+      left: 0;
+      background: linear-gradient(90deg,
+        #5a3a1a 0%, #8b6040 30%, #a07850 50%, #8b6040 70%, #5a3a1a 100%
+      );
+      border-right: 3px solid var(--sh-tan-light);
     }
 
-    a {
-      color: #8b5a2b;
-      text-decoration: none;
-      font-weight: bold;
+    .cardboard-right {
+      right: 0;
+      background: linear-gradient(90deg,
+        #5a3a1a 0%, #8b6040 30%, #a07850 50%, #8b6040 70%, #5a3a1a 100%
+      );
+      border-left: 3px solid var(--sh-tan-light);
     }
 
-    a:hover {
-      color: #704214;
-      text-decoration: underline;
+    /* Corrugation wave lines */
+    .cardboard-left::before,
+    .cardboard-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        180deg,
+        rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 6px,
+        transparent 6px, transparent 10px,
+        rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 12px,
+        transparent 12px, transparent 16px
+      );
     }
 
-    .contact-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #8b5a2b, #c19a6b);
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 8px;
-      margin-top: 10px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      text-decoration: none;
+    /* Barcode strip at bottom */
+    .barcode-strip {
+      position: absolute;
+      bottom: 0;
+      left: 32px;
+      right: 32px;
+      height: 10px;
+      background: repeating-linear-gradient(
+        90deg,
+        #000 0px, #000 3px,
+        transparent 3px, transparent 5px,
+        #000 5px, #000 6px,
+        transparent 6px, transparent 10px,
+        #000 10px, #000 14px,
+        transparent 14px, transparent 16px
+      );
+      opacity: 0.35;
     }
 
-    .contact-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-      text-decoration: none;
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 60% 40%, rgba(139,90,43,0.2) 0%, transparent 60%);
+      pointer-events: none;
     }
 
-    .badge-button {
-      display: inline-block;
-      background-color: #ff6b6b;
-      color: #fff;
-      font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 12px;
+    .page-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(139,90,43,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139,90,43,0.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .app-hero-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      object-fit: contain;
+      background: var(--white);
+      padding: 10px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(193,154,107,0.2);
+      border: 1px solid rgba(193,154,107,0.45);
+      color: var(--sh-tan-light);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero-inner h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+
+    .page-hero-inner h1 span { color: var(--sh-tan-light); }
+
+    .page-hero-inner p {
+      color: rgba(255,255,255,0.65);
       font-size: 1rem;
-      text-decoration: none;
-      margin-left: 10px;
-      vertical-align: middle;
-      transition: background 0.3s;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 2rem;
     }
 
-    .badge-button:hover {
-      background-color: #ff3b3b;
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--sh-brown), var(--sh-tan));
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(139,90,43,0.4);
+    }
+
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 400;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    /* ── CONTENT ── */
+    .page-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 2rem 80px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--cerulean);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sh-brown);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .content-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--sh-brown);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle barcode watermark on cards */
+    .content-card::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 60px;
+      height: 30px;
+      background: repeating-linear-gradient(
+        90deg,
+        #000 0px, #000 2px,
+        transparent 2px, transparent 4px,
+        #000 4px, #000 5px,
+        transparent 5px, transparent 8px
+      );
+      opacity: 0.05;
+    }
+
+    .content-card p {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .content-card p:last-child { margin-bottom: 0; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-item {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .feature-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+
+    .feature-text h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+    .tag-soon {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .page-divider { border: none; border-top: 1px solid var(--card-border); margin: 2.5rem 0; }
+
+    .cta-band {
+      background: linear-gradient(135deg, #fdf6ee, #f5e8d5);
+      border: 1px solid #e8c99a;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-band p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
     footer {
-      background: rgba(62, 39, 35, 0.95);
-      color: #aaa;
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 2rem;
       text-align: center;
-      font-size: 0.9rem;
-      padding: 30px 20px;
-      margin-top: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
-    footer a {
-      color: #d4a574;
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 0.5rem; transition: color 0.2s; }
+    footer a:hover { color: var(--cerulean-mid); }
+    .footer-links { margin-bottom: 0.75rem; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .cardboard-left, .cardboard-right { display: none; }
     }
 
-    footer div:last-child {
-      margin-top: 10px;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 40px;
-      }
-      
-      .sidebar::before {
-        left: 10px;
-        width: 20px;
-      }
-
-      .content-wrapper {
-        margin-left: 50px;
-        padding: 10px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-    }
+    .page-hero-inner > * { animation: fadeUp 0.5s ease both; }
+    .page-hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+    .page-hero-inner > *:nth-child(2) { animation-delay: 0.1s; }
+    .page-hero-inner > *:nth-child(3) { animation-delay: 0.18s; }
+    .page-hero-inner > *:nth-child(4) { animation-delay: 0.26s; }
+    .page-hero-inner > *:nth-child(5) { animation-delay: 0.34s; }
   </style>
 </head>
 <body>
-  <!-- Sidebar - Corrugated cardboard edge cross-section -->
-  <div class="sidebar"></div>
 
-  <div class="content-wrapper">
-    <header>
-      <img src="StockHammerLogo.png" alt="Stock Hammer Logo" style="width:120px; margin-bottom: 10px;" />
-      <h1>Stock Hammer</h1>
-      <p>An inventory and point of sales management app</p>
-      <p><a href="../index.html">🏠 Back to Home</a></p>
-    </header>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../DFlogo.png" alt="DataForge Logo">
+    <span class="nav-logo-text">DataForge</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#apps">Apps</a></li>
+    <li><a href="../index.html#custom">Custom Dev</a></li>
+    <li><a href="../index.html#guides">Guides</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../about.html" class="nav-cta">About Me</a></li>
+  </ul>
+</nav>
 
-    <section>
-      <h2>App Overview</h2>
-      <p>
-        Stock Hammer is designed to simplify inventory management and streamline your point of sales operations. Whether you run a small retail store or manage a warehouse, Stock Hammer helps you keep track of stock levels, sales, and purchases in one easy-to-use app.
-        Although still in development, our goal is to empower businesses with real-time insights and efficient transaction tracking.
-      </p>
-    </section>
-
-    <section>
-      <h2>Features</h2>
-      <ul>
-        <li>Track inventory levels.</li>
-        <li>Manage sales and purchases seamlessly.</li>
-        <li>Generate reports to analyze sales trends.</li>
-        <li>Offline-first design to let you manage inventory without internet connection.</li>
-        <li><em>Future updates:</em> Integrations with popular e-commerce platforms and advanced analytics dashboard.</li>
-      </ul>
-    </section>
-
-   
-    <section>
-      <h2>Download & Beta Access</h2>
-      <p>
-        Stock Hammer is coming soon to the Google Play Store and other platforms!<br />
-        <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
-          Notify Me When It's Live
-        </a>
-      </p>
-    </section>
-
-    <section>
-      <p>
-  Learn how to use <strong>Stock Hammer</strong> to track, manage, and analyze stock performance with easy-to-follow guides and tips.
-  <a href="../Guides/Guide-StockHammer.html">&rarr; View Guide</a>
-      </p>
-    </section>
-
-    <section>
-      <h2>Privacy</h2>
-      <p>
-        Stock Hammer will have a dedicated <a href="stockhammer-privacy-policy.html" target="_blank">Privacy Policy</a> outlining data handling for your inventory and sales information. We prioritize your data security and privacy.
-      </p>
-      <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
-        Request Data Deletion
-      </a>
-    </section>
-
-    <footer>
-      <div>© 2025 DataForge | Built with ❤️ by Renee</div>
-      <div>
-        <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-        <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-        <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-        <a href="../contact.html" target="_blank">Contact Form</a>
-      </div>
-    </footer>
+<!-- HERO -->
+<div class="page-hero">
+  <div class="cardboard-left"></div>
+  <div class="cardboard-right"></div>
+  <div class="barcode-strip"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <img class="app-hero-logo" src="StockHammerLogo.png" alt="Stock Hammer Logo">
+    <div class="hero-badge">📦 Inventory &amp; Point of Sale</div>
+    <h1>Stock <span>Hammer</span></h1>
+    <p>Simplify inventory management and streamline point of sale operations for your small business or shop — with real-time insights and offline support.</p>
+    <div class="hero-actions">
+      <a href="../contact.html?reason=Beta+Testing+Request" class="btn-primary">🔔 Notify Me When Live</a>
+      <a href="../Guides/Guide-StockHammer.html" class="btn-secondary">📖 View Guide</a>
+    </div>
   </div>
+</div>
+
+<!-- CONTENT -->
+<div class="page-content">
+
+  <a class="back-link" href="../index.html">← Back to DataForge</a>
+
+  <div class="section-label">What It Does</div>
+  <h2 class="section-title">App Overview</h2>
+  <div class="content-card">
+    <p>Stock Hammer is designed to simplify inventory management and streamline point of sale operations. Whether you run a small retail store, a maker shop, or manage a warehouse, Stock Hammer helps you keep track of stock levels, sales, and purchases in one easy-to-use app.</p>
+    <p>Built with an offline-first design so you can manage inventory without an internet connection — syncing automatically when you're back online. Our goal is to empower small businesses with real-time insights and efficient transaction tracking.</p>
+  </div>
+
+  <hr class="page-divider">
+
+  <div class="section-label">What's Included</div>
+  <h2 class="section-title">Features</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">📦</span>
+      <div class="feature-text">
+        <h3>Inventory Tracking</h3>
+        <p>Monitor stock levels in real time — know what you have, what's running low, and what needs reordering.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🛒</span>
+      <div class="feature-text">
+        <h3>Sales & Purchases</h3>
+        <p>Record sales and purchase transactions seamlessly, with automatic inventory adjustments on every entry.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">📊</span>
+      <div class="feature-text">
+        <h3>Sales Reports</h3>
+        <p>Generate reports to analyze sales trends, identify top-performing products, and make smarter buying decisions.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">📶</span>
+      <div class="feature-text">
+        <h3>Offline-First</h3>
+        <p>Manage inventory and log transactions without an internet connection. Data syncs automatically when you reconnect.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🔗</span>
+      <div class="feature-text">
+        <h3>E-Commerce Integrations <span class="tag-soon">Coming Soon</span></h3>
+        <p>Connect with popular e-commerce platforms to sync online and in-person inventory automatically.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">📈</span>
+      <div class="feature-text">
+        <h3>Advanced Analytics <span class="tag-soon">Coming Soon</span></h3>
+        <p>A full analytics dashboard to track revenue, margins, and inventory turnover over time.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="page-divider">
+
+  <div class="cta-band">
+    <h2>🚀 Coming Soon</h2>
+    <p>Stock Hammer is coming to Google Play and other platforms. Sign up to be notified when it launches.</p>
+    <a href="../contact.html?reason=Beta+Testing+Request" class="btn-primary">Notify Me When It's Live</a>
+  </div>
+
+  <div class="content-card">
+    <div class="section-label">Privacy</div>
+    <h2 class="section-title" style="font-size:1.2rem; margin-bottom:0.75rem;">Your Data</h2>
+    <p>Stock Hammer will have a dedicated <a href="stockhammer-privacy-policy.html" target="_blank" style="color:var(--sh-brown); font-weight:500;">Privacy Policy</a> outlining data handling for your inventory and sales information. We prioritize your data security and privacy.</p>
+    <div style="margin-top:1rem;">
+      <a href="../contact.html?reason=Data+Deletion+Request" class="btn-primary" style="font-size:0.875rem; padding:10px 20px;">Request Data Deletion</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="../about.html">About</a>
+    <a href="../Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="../Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+    <a href="../Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+    <a href="../contact.html" target="_blank" rel="noopener noreferrer">Contact Form</a>
+  </div>
+  <div>© 2025 DataForge Apps | Built with ❤️ by Renee</div>
+</footer>
+
 </body>
 </html>

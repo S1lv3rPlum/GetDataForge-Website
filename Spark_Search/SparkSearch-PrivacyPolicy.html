@@ -1,348 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spark Search - Privacy Policy</title>
+  <!-- AdSense site verification -->
+  <meta name="google-adsense-account" content="ca-pub-7056143037956286">
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056143037956286"
+     crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — Spark Search | DataForgeApps</title>
+  <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cerulean: #007BA7; --cerulean-dark: #005F87; --cerulean-deep: #004060;
+      --cerulean-pale: #E0F0F7; --cerulean-mid: #B3D9EC;
+      --charcoal: #1A1A2E; --text: #2A2A3E; --text-muted: #6B7280;
+      --bg: #F7FAFB; --white: #FFFFFF; --card-border: #D6EAF4;
+      --spark-purple: #667eea;
     }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.8;
-      color: #333;
-      background: #f8f9fa;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      padding: 50px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      color: #667eea;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .last-updated {
-      color: #7f8c8d;
-      font-size: 0.95rem;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      color: #2c3e50;
-      font-size: 1.8rem;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      border-bottom: 3px solid #667eea;
-      padding-bottom: 10px;
-    }
-
-    h3 {
-      color: #34495e;
-      font-size: 1.3rem;
-      margin-top: 25px;
-      margin-bottom: 15px;
-    }
-
-    p {
-      margin-bottom: 15px;
-      font-size: 1.05rem;
-    }
-
-    ul, ol {
-      margin: 15px 0 15px 30px;
-    }
-
-    li {
-      margin-bottom: 10px;
-      font-size: 1.05rem;
-    }
-
-    .highlight-box {
-      background: #e8f4f8;
-      border-left: 5px solid #667eea;
-      padding: 20px;
-      margin: 25px 0;
-      border-radius: 8px;
-    }
-
-    .highlight-box strong {
-      color: #667eea;
-    }
-
-    .contact-info {
-      background: #fff3cd;
-      border: 2px solid #ffc107;
-      padding: 25px;
-      margin: 30px 0;
-      border-radius: 10px;
-    }
-
-    .contact-info h3 {
-      color: #856404;
-      margin-top: 0;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-bottom: 30px;
-      color: #667eea;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 30px 20px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,250,251,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--cerulean-mid); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--cerulean-deep); letter-spacing: -0.02em; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cerulean); }
+    .nav-cta { background: var(--cerulean) !important; color: var(--white) !important; padding: 8px 18px; border-radius: 8px; font-weight: 500 !important; }
+    .nav-cta:hover { background: var(--cerulean-dark) !important; }
+    .policy-content { max-width: 800px; margin: 0 auto; padding: 64px 2rem 80px; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; font-weight: 500; color: var(--cerulean); text-decoration: none; margin-bottom: 2.5rem; }
+    .back-link:hover { text-decoration: underline; }
+    .policy-content h1 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--charcoal); letter-spacing: -0.02em; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; margin-bottom: 0.5rem; }
+    .last-updated { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 2rem; }
+    .summary-box { background: #ede9ff; border-left: 4px solid var(--spark-purple); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+    .summary-box p { color: #4c3a9e; font-size: 0.95rem; line-height: 1.7; }
+    .summary-box strong { color: #3a2a8e; }
+    .policy-content p { color: var(--text-muted); font-size: 0.975rem; line-height: 1.8; margin-bottom: 1rem; }
+    .policy-content h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--charcoal); margin: 2rem 0 0.75rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.4rem; }
+    .policy-content h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--charcoal); margin: 1.5rem 0 0.5rem; }
+    .policy-content ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    .policy-content ul li { color: var(--text-muted); font-size: 0.975rem; line-height: 1.8; margin-bottom: 0.4rem; }
+    .policy-content strong { color: var(--text); }
+    .policy-content a { color: var(--spark-purple); }
+    .contact-box { background: #fff8e1; border: 1px solid #ffc107; border-radius: 10px; padding: 1.25rem 1.5rem; margin: 2rem 0; }
+    .contact-box h3 { font-family: 'Syne', sans-serif; font-weight: 700; color: #856404; margin-bottom: 0.5rem; }
+    .contact-box p { color: #856404; font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.4rem; }
+    footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 2rem; text-align: center; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 0.5rem; transition: color 0.2s; }
+    footer a:hover { color: var(--cerulean-mid); }
+    .footer-links { margin-bottom: 0.75rem; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="spark-search.html" class="back-link">← Back to Spark Search</a>
-    
-    <h1>Privacy Policy</h1>
-    <p class="last-updated"><strong>Last Updated:</strong> January 4, 2026</p>
 
-    <div class="highlight-box">
-      <p><strong>Simple Summary:</strong> Spark Search is designed with your child's privacy as our top priority. We do not collect, store, or share any personal information. All data stays on your device, and parents have full control over what their children can access.</p>
-    </div>
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../DFlogo.png" alt="DataForge Logo">
+    <span class="nav-logo-text">DataForge</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#apps">Apps</a></li>
+    <li><a href="../index.html#custom">Custom Dev</a></li>
+    <li><a href="../index.html#guides">Guides</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../about.html" class="nav-cta">About Me</a></li>
+  </ul>
+</nav>
 
-    <h2>1. Introduction</h2>
-    <p>Welcome to Spark Search, a safe search application for children created by DataForge Apps. This Privacy Policy explains how we handle information when you and your child use our application.</p>
-    
-    <p>Spark Search is designed to comply with the Children's Online Privacy Protection Act (COPPA) and prioritizes the safety and privacy of children using our service.</p>
+<div class="policy-content">
 
-    <h2>2. Information We Do NOT Collect</h2>
-    <p>Spark Search is built on a privacy-first foundation. We explicitly <strong>do not</strong> collect, store, or transmit:</p>
-    <ul>
-      <li>Names, email addresses, or any personal identification</li>
-      <li>User accounts or login credentials</li>
-      <li>Location data or GPS information</li>
-      <li>Device identifiers or advertising IDs</li>
-      <li>Photos, videos, or any media from your device</li>
-      <li>Contact lists or phone numbers</li>
-      <li>Browsing history outside of local storage</li>
-      <li>Any information that could identify your child</li>
-    </ul>
+  <a class="back-link" href="Spark_Search.html">← Back to Spark Search</a>
 
-    <h2>3. Local Data Storage</h2>
-    <p>Spark Search stores the following data <strong>locally on your device only</strong>:</p>
+  <h1>Privacy Policy — Spark Search</h1>
+  <p class="last-updated"><em>Last updated: January 4, 2026</em></p>
 
-    <h3>Search History</h3>
-    <ul>
-      <li>Search terms your child has entered</li>
-      <li>Timestamps of searches</li>
-      <li>Content type searched (pictures, coloring pages, videos, or songs)</li>
-      <li>This data is stored for up to 90 days and automatically deleted thereafter</li>
-      <li>Parents can view, export, or delete this history at any time through Parent Settings</li>
-    </ul>
-
-    <h3>Parent Settings</h3>
-    <ul>
-      <li>Parent PIN (stored encrypted on device)</li>
-      <li>Blocked word list (words parents have chosen to restrict)</li>
-      <li>Theme preferences</li>
-      <li>Content filter sensitivity settings</li>
-    </ul>
-
-    <h3>Important Notes About Local Storage:</h3>
-    <ul>
-      <li>All data remains on your device and is never transmitted to our servers</li>
-      <li>Uninstalling the app will permanently delete all stored data</li>
-      <li>We cannot access, view, or retrieve any data stored on your device</li>
-      <li>Data is not backed up to cloud services</li>
-    </ul>
-
-    <h2>4. Future Features: Optional Cloud Sync</h2>
-    <p>We are developing an <strong>optional</strong> premium feature called "Family Sync" that will allow parents to:</p>
-    <ul>
-      <li>Sync search history across multiple devices</li>
-      <li>Monitor searches from any device in the family</li>
-      <li>Sync blocked word lists across devices</li>
-      <li>Receive weekly email summaries of search activity</li>
-    </ul>
-
-    <p><strong>This feature will be:</strong></p>
-    <ul>
-      <li>Completely optional (opt-in only)</li>
-      <li>Require explicit parent consent</li>
-      <li>Only accessible with parent authentication</li>
-      <li>Clearly labeled and explained before enabling</li>
-      <li>Deletable at any time by the parent</li>
-    </ul>
-
-    <p>We will update this Privacy Policy before launching Family Sync, and existing users will be notified of changes.</p>
-
-    <h2>5. How We Keep Content Safe</h2>
-    <p>Spark Search uses multiple layers of protection to ensure age-appropriate content:</p>
-
-    <h3>Content Sources</h3>
-    <ul>
-      <li>We search only curated, family-friendly image databases (currently Pixabay)</li>
-      <li>All API calls use strict SafeSearch parameters</li>
-      <li>Content providers are vetted for child safety</li>
-    </ul>
-
-    <h3>Content Filtering</h3>
-    <ul>
-      <li><strong>Keyword filtering:</strong> Automatically blocks searches and results containing inappropriate terms</li>
-      <li><strong>Image analysis:</strong> Content is screened before display</li>
-      <li><strong>Manual blocking:</strong> Parents can add custom blocked words</li>
-      <li><strong>Ongoing monitoring:</strong> We continuously update our safety filters</li>
-    </ul>
-
-    <h2>6. Third-Party Services</h2>
-    <p>Spark Search uses the following third-party services to provide functionality:</p>
-
-    <h3>Image Search: Pixabay API</h3>
-    <ul>
-      <li>Used to search for images and coloring pages</li>
-      <li>SafeSearch enabled on all requests</li>
-      <li>Does not receive any personal information about users</li>
-      <li>Only receives search terms entered by users</li>
-      <li>Privacy Policy: <a href="https://pixabay.com/service/privacy/" target="_blank">pixabay.com/service/privacy/</a></li>
-    </ul>
-
-    <h3>Future Services (Coming Soon)</h3>
-    <ul>
-      <li><strong>YouTube Data API:</strong> For safe video searches (with strict SafeSearch)</li>
-      <li><strong>Google Cloud Vision API:</strong> For enhanced image content analysis</li>
-    </ul>
-
-    <p>When these services are added, we will update this policy with details about their privacy practices.</p>
-
-    <h2>7. No Advertising or Tracking</h2>
-    <p>Spark Search does not:</p>
-    <ul>
-      <li>Display advertisements of any kind</li>
-      <li>Use analytics or tracking tools</li>
-      <li>Share data with advertisers or marketing companies</li>
-      <li>Build user profiles or behavioral data</li>
-      <li>Use cookies (web version may use essential session cookies only)</li>
-    </ul>
-
-    <h2>8. Parent Rights and Controls</h2>
-    <p>As a parent or guardian, you have complete control over your child's use of Spark Search:</p>
-
-    <h3>Access Parent Settings</h3>
-    <ul>
-      <li>Set a PIN to protect parent-only features</li>
-      <li>View complete search history</li>
-      <li>Export search history data</li>
-      <li>Delete individual searches or entire history</li>
-    </ul>
-
-    <h3>Content Controls</h3>
-    <ul>
-      <li>Add words or topics to block list</li>
-      <li>Remove words from block list</li>
-      <li>Adjust content filter sensitivity</li>
-      <li>Enable or disable specific content types (pictures, coloring pages, etc.)</li>
-    </ul>
-
-    <h3>Data Management</h3>
-    <ul>
-      <li>Clear all stored data at any time</li>
-      <li>Uninstall app to permanently delete all data</li>
-      <li>No data recovery possible after deletion</li>
-    </ul>
-
-    <h2>9. Data Security</h2>
-    <p>We take security seriously:</p>
-    <ul>
-      <li>Parent PINs are stored using encryption</li>
-      <li>Local data is protected by device-level security</li>
-      <li>App does not have internet access beyond necessary API calls</li>
-      <li>No data is transmitted without explicit user action</li>
-      <li>All API communications use secure HTTPS connections</li>
-    </ul>
-
-    <h2>10. Age Restrictions</h2>
-    <p>Spark Search is designed for children ages 3-12 years old. We recommend:</p>
-    <ul>
-      <li>Parents set up the app and Parent Settings before allowing use</li>
-      <li>Parents review blocked words and content filters</li>
-      <li>Young children (3-6) use the app with parent supervision</li>
-      <li>Parents periodically review search history</li>
-    </ul>
-
-    <h2>11. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy as we add new features or improve the app. When we make changes:</p>
-    <ul>
-      <li>We will update the "Last Updated" date at the top</li>
-      <li>Significant changes will be announced in the app</li>
-      <li>Parents will be notified before any data collection practices change</li>
-      <li>Continued use after changes constitutes acceptance</li>
-    </ul>
-
-    <h2>12. Compliance</h2>
-    <p>Spark Search is designed to comply with:</p>
-    <ul>
-      <li><strong>COPPA</strong> (Children's Online Privacy Protection Act)</li>
-      <li><strong>GDPR</strong> (General Data Protection Regulation) - for EU users</li>
-      <li><strong>Google Play Family Policies</strong></li>
-      <li><strong>Apple App Store Guidelines</strong> (when iOS version launches)</li>
-    </ul>
-
-    <h2>13. Beta Testing</h2>
-    <p>Spark Search is currently in beta testing. During this phase:</p>
-    <ul>
-      <li>The app may contain bugs or incomplete features</li>
-      <li>We may collect anonymous crash reports to improve stability (opt-in only)</li>
-      <li>Beta testers may be asked for feedback via email (no child data shared)</li>
-      <li>All privacy protections remain in effect</li>
-    </ul>
-
-    <div class="contact-info">
-      <h3>📧 Contact Us</h3>
-      <p>If you have questions about this Privacy Policy or Spark Search's privacy practices, please contact us:</p>
-      <p>
-        <strong>Email:</strong> privacy@dataforgeapps.com<br>
-        <strong>Company:</strong> DataForge Apps<br>
-        <strong>Response Time:</strong> We aim to respond within 48 hours
-      </p>
-      <p>For data deletion requests or privacy concerns, please use the subject line: "Spark Search Privacy Request"</p>
-    </div>
-
-    <h2>14. Your Consent</h2>
-    <p>By downloading and using Spark Search, you (the parent/guardian) consent to this Privacy Policy on behalf of your child. If you do not agree with this policy, please do not use the app.</p>
-
-    <p><strong>Thank you for trusting Spark Search with your child's digital exploration! ✨</strong></p>
-
-    <hr style="margin: 40px 0; border: none; border-top: 2px solid #e9ecef;">
-
-    <p style="text-align: center; color: #7f8c8d; font-size: 0.95rem;">
-      © 2025 DataForge Apps | 
-      <a href="../contact.html" style="color: #667eea;">Contact Us</a> | 
-      <a href="spark-search.html" style="color: #667eea;">Back to Spark Search</a>
-    </p>
+  <div class="summary-box">
+    <p><strong>Simple Summary:</strong> Spark Search is designed with your child's privacy as our top priority. We do not collect, store, or share any personal information. All data stays on your device, and parents have full control over what their children can access.</p>
   </div>
+
+  <h2>1. Introduction</h2>
+  <p>Welcome to Spark Search, a safe search application for children created by DataForge Apps. This Privacy Policy explains how we handle information when you and your child use our application.</p>
+  <p>Spark Search is designed to comply with the Children's Online Privacy Protection Act (COPPA) and prioritizes the safety and privacy of children using our service.</p>
+
+  <h2>2. Information We Do NOT Collect</h2>
+  <p>Spark Search is built on a privacy-first foundation. We explicitly <strong>do not</strong> collect, store, or transmit:</p>
+  <ul>
+    <li>Names, email addresses, or any personal identification</li>
+    <li>User accounts or login credentials</li>
+    <li>Location data or GPS information</li>
+    <li>Device identifiers or advertising IDs</li>
+    <li>Photos, videos, or any media from your device</li>
+    <li>Contact lists or phone numbers</li>
+    <li>Browsing history outside of local storage</li>
+    <li>Any information that could identify your child</li>
+  </ul>
+
+  <h2>3. Local Data Storage</h2>
+  <p>Spark Search stores the following data <strong>locally on your device only</strong>:</p>
+
+  <h3>Search History</h3>
+  <ul>
+    <li>Search terms your child has entered</li>
+    <li>Timestamps of searches</li>
+    <li>Content type searched (pictures, coloring pages, videos, or songs)</li>
+    <li>Stored for up to 90 days and automatically deleted thereafter</li>
+    <li>Parents can view, export, or delete this history at any time through Parent Settings</li>
+  </ul>
+
+  <h3>Parent Settings</h3>
+  <ul>
+    <li>Parent PIN (stored encrypted on device)</li>
+    <li>Blocked word list</li>
+    <li>Theme preferences</li>
+    <li>Content filter sensitivity settings</li>
+  </ul>
+
+  <h3>Important Notes About Local Storage</h3>
+  <ul>
+    <li>All data remains on your device and is never transmitted to our servers</li>
+    <li>Uninstalling the app will permanently delete all stored data</li>
+    <li>We cannot access, view, or retrieve any data stored on your device</li>
+    <li>Data is not backed up to cloud services</li>
+  </ul>
+
+  <h2>4. Future Features: Optional Cloud Sync</h2>
+  <p>We are developing an <strong>optional</strong> premium feature called "Family Sync" that will allow parents to sync search history across devices, monitor searches remotely, and receive weekly activity summaries.</p>
+  <p>This feature will be completely opt-in, require explicit parent consent, and be fully deletable at any time. We will update this Privacy Policy before launching Family Sync.</p>
+
+  <h2>5. How We Keep Content Safe</h2>
+  <h3>Content Sources</h3>
+  <ul>
+    <li>We search only curated, family-friendly image databases (currently Pixabay)</li>
+    <li>All API calls use strict SafeSearch parameters</li>
+    <li>Content providers are vetted for child safety</li>
+  </ul>
+
+  <h3>Content Filtering</h3>
+  <ul>
+    <li><strong>Keyword filtering:</strong> Automatically blocks searches containing inappropriate terms</li>
+    <li><strong>Image analysis:</strong> Content is screened before display</li>
+    <li><strong>Manual blocking:</strong> Parents can add custom blocked words</li>
+    <li><strong>Ongoing monitoring:</strong> We continuously update our safety filters</li>
+  </ul>
+
+  <h2>6. Third-Party Services</h2>
+  <h3>Image Search: Pixabay API</h3>
+  <ul>
+    <li>Used to search for images and coloring pages with SafeSearch enabled on all requests</li>
+    <li>Does not receive any personal information about users — only search terms entered</li>
+    <li>Privacy Policy: <a href="https://pixabay.com/service/privacy/" target="_blank">pixabay.com/service/privacy/</a></li>
+  </ul>
+
+  <h3>Coming Soon</h3>
+  <ul>
+    <li><strong>YouTube Data API:</strong> For safe video searches with strict SafeSearch</li>
+    <li><strong>Google Cloud Vision API:</strong> For enhanced image content analysis</li>
+  </ul>
+  <p>When these services are added, this policy will be updated with full details.</p>
+
+  <h2>7. No Advertising or Tracking</h2>
+  <p>Spark Search does not display advertisements, use analytics or tracking tools, share data with advertisers, build user profiles, or use cookies of any kind.</p>
+
+  <h2>8. Parent Rights and Controls</h2>
+  <h3>Access Parent Settings</h3>
+  <ul>
+    <li>Set a PIN to protect parent-only features</li>
+    <li>View, export, or delete complete search history</li>
+    <li>Delete individual searches or entire history at any time</li>
+  </ul>
+
+  <h3>Content Controls</h3>
+  <ul>
+    <li>Add or remove words from the block list</li>
+    <li>Adjust content filter sensitivity</li>
+    <li>Enable or disable specific content types</li>
+  </ul>
+
+  <h2>9. Data Security</h2>
+  <ul>
+    <li>Parent PINs are stored using encryption</li>
+    <li>Local data is protected by device-level security</li>
+    <li>All API communications use secure HTTPS connections</li>
+    <li>No data is transmitted without explicit user action</li>
+  </ul>
+
+  <h2>10. Age Restrictions</h2>
+  <p>Spark Search is designed for children ages 3–12. We recommend parents set up the app and Parent Settings before allowing use, and that young children (ages 3–6) use the app with supervision.</p>
+
+  <h2>11. Compliance</h2>
+  <p>Spark Search is designed to comply with:</p>
+  <ul>
+    <li><strong>COPPA</strong> — Children's Online Privacy Protection Act</li>
+    <li><strong>GDPR</strong> — General Data Protection Regulation (EU users)</li>
+    <li><strong>Google Play Family Policies</strong></li>
+    <li><strong>Apple App Store Guidelines</strong> (when iOS version launches)</li>
+  </ul>
+
+  <h2>12. Beta Testing</h2>
+  <p>Spark Search is currently in beta testing. The app may contain bugs or incomplete features. We may collect anonymous crash reports to improve stability (opt-in only). Beta testers may be asked for feedback via email — no child data is ever shared. All privacy protections remain fully in effect during beta.</p>
+
+  <h2>13. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy as we add new features. Significant changes will be announced in the app, and parents will be notified before any data collection practices change.</p>
+
+  <div class="contact-box">
+    <h3>📧 Contact Us</h3>
+    <p>Questions about this Privacy Policy or Spark Search's privacy practices?</p>
+    <p><strong>Email:</strong> DataForgeApps@gmail.com</p>
+    <p><strong>Subject line for privacy requests:</strong> "Spark Search Privacy Request"</p>
+    <p><strong>Response time:</strong> We aim to respond within 48 hours.</p>
+  </div>
+
+  <h2>14. Your Consent</h2>
+  <p>By downloading and using Spark Search, you (the parent/guardian) consent to this Privacy Policy on behalf of your child. If you do not agree with this policy, please do not use the app.</p>
+  <p><strong>Thank you for trusting Spark Search with your child's digital exploration! ✨</strong></p>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="../about.html">About</a>
+    <a href="../Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="../Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+    <a href="../Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+    <a href="../contact.html" target="_blank" rel="noopener noreferrer">Contact Form</a>
+  </div>
+  <div>© 2025 DataForge Apps | Built with ❤️ for families</div>
+</footer>
+
 </body>
 </html>

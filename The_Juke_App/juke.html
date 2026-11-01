@@ -1,608 +1,732 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Juke</title>
+  <!-- AdSense site verification -->
+  <meta name="google-adsense-account" content="ca-pub-7056143037956286">
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056143037956286"
+     crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The Juke — live jukebox app for events. Request songs, tip the band, and hear your picks live on stage. By DataForge." />
+  <title>The Juke | DataForgeApps</title>
+  <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cerulean: #007BA7;
+      --cerulean-dark: #005F87;
+      --cerulean-deep: #004060;
+      --cerulean-pale: #E0F0F7;
+      --cerulean-mid: #B3D9EC;
+      --charcoal: #1A1A2E;
+      --charcoal-soft: #2E2E45;
+      --text: #2A2A3E;
+      --text-muted: #6B7280;
+      --bg: #F7FAFB;
+      --white: #FFFFFF;
+      --card-border: #D6EAF4;
+      --radius: 12px;
+      --radius-lg: 20px;
+      /* Juke accent — purple/indigo */
+      --juke-purple: #667eea;
+      --juke-purple-dark: #5a6fd6;
+      --juke-violet: #764ba2;
+      --juke-red: #c0392b;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      background-attachment: fixed;
-      color: #fff;
-      min-height: 100vh;
-      position: relative;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* Sidebar - Microphone Stand */
-    .sidebar {
-      position: fixed;
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 250, 251, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cerulean-mid);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 36px; width: auto; }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cerulean-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cerulean); }
+
+    .nav-cta {
+      background: var(--cerulean) !important;
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--cerulean-dark) !important; }
+
+    /* ── HERO ── */
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a0a2e 0%, #2a1a4e 40%, #1a0a3e 100%);
+      color: var(--white);
+      padding: 72px 2rem 60px;
+      text-align: center;
+    }
+
+    /* Mic stand left sidebar decoration */
+    .mic-sidebar {
+      position: absolute;
       left: 0;
       top: 0;
-      width: 60px;
-      height: 100%;
-      background: transparent;
+      bottom: 0;
+      width: 50px;
       z-index: 2;
     }
 
-    /* Microphone stand base */
-    .sidebar::before {
-      content: '';
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 45px;
-      height: 18px;
-      background: radial-gradient(ellipse at center, #1a1a1a 0%, #3a3a3a 100%);
-      border-radius: 50%;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.6);
-    }
-
-    /* Microphone stand pole */
-    .sidebar::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 145px;
-      width: 8px;
-      height: calc(100% - 185px);
-      background: linear-gradient(90deg, #2a2a2a 0%, #4a4a4a 50%, #2a2a2a 100%);
-      border-radius: 4px;
-      box-shadow: 
-        inset -2px 0 3px rgba(0,0,0,0.5),
-        inset 2px 0 2px rgba(255,255,255,0.2),
-        2px 0 8px rgba(0,0,0,0.3);
-    }
-
-    /* Microphone head */
-    .mic-head {
+    .mic-head-deco {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       top: 20px;
-      width: 32px;
-      height: 45px;
+      width: 28px;
+      height: 42px;
       background: radial-gradient(ellipse at 50% 30%, #6a6a6a 0%, #4a4a4a 50%, #2a2a2a 100%);
       border-radius: 50% 50% 48% 48% / 60% 60% 40% 40%;
-      box-shadow: 
-        0 4px 12px rgba(0,0,0,0.5),
-        inset -3px 0 6px rgba(0,0,0,0.4),
-        inset 3px 0 6px rgba(255,255,255,0.15);
-      z-index: 3;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
 
-    /* Microphone mesh grille */
-    .mic-head::before {
+    .mic-head-deco::before {
       content: '';
       position: absolute;
-      top: 5px;
-      left: 4px;
-      right: 4px;
-      bottom: 8px;
+      top: 5px; left: 4px; right: 4px; bottom: 8px;
       background: repeating-linear-gradient(
         0deg,
-        transparent,
-        transparent 1.5px,
-        rgba(136, 136, 136, 0.4) 1.5px,
-        rgba(136, 136, 136, 0.4) 2.5px
+        transparent, transparent 1.5px,
+        rgba(136,136,136,0.4) 1.5px, rgba(136,136,136,0.4) 2.5px
       );
       border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
-      opacity: 0.8;
     }
 
-    /* Microphone shine/highlight */
-    .mic-head::after {
-      content: '';
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      width: 8px;
-      height: 15px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 100%);
-      border-radius: 50%;
-      filter: blur(1px);
-    }
-
-    /* Microphone handle - the part you hold - directly attached to head */
-    .mic-handle {
+    .mic-handle-deco {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: 65px;
-      width: 22px;
-      height: 80px;
-      background: linear-gradient(90deg, #2a2a2a 0%, #3a3a3a 30%, #3a3a3a 70%, #2a2a2a 100%);
+      top: 62px;
+      width: 18px;
+      height: 70px;
+      background: linear-gradient(90deg, #2a2a2a 0%, #3a3a3a 50%, #2a2a2a 100%);
       border-radius: 3px;
-      box-shadow: 
-        inset -2px 0 4px rgba(0,0,0,0.6),
-        inset 2px 0 3px rgba(255,255,255,0.1),
-        0 2px 8px rgba(0,0,0,0.4);
-      z-index: 3;
+      box-shadow: inset -2px 0 4px rgba(0,0,0,0.6);
     }
 
-    /* Handle grip texture */
-    .mic-handle::before {
+    .mic-pole-deco {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 132px;
+      bottom: 36px;
+      width: 7px;
+      background: linear-gradient(90deg, #2a2a2a 0%, #4a4a4a 50%, #2a2a2a 100%);
+      border-radius: 3px;
+    }
+
+    .mic-base-deco {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 16px;
+      width: 40px;
+      height: 14px;
+      background: radial-gradient(ellipse at center, #1a1a1a 0%, #3a3a3a 100%);
+      border-radius: 50%;
+    }
+
+    /* Spotlight glow effect */
+    .page-hero::before {
       content: '';
       position: absolute;
-      top: 10px;
-      left: 2px;
-      right: 2px;
-      bottom: 10px;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(0,0,0,0.2) 3px,
-        rgba(0,0,0,0.2) 4px
-      );
-      border-radius: 2px;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 60% 40%, rgba(102,126,234,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 40% at 80% 20%, rgba(118,75,162,0.2) 0%, transparent 50%);
+      pointer-events: none;
     }
 
-    /* XLR connector at bottom of handle */
-    .mic-handle::after {
-      content: '';
+    .page-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(102,126,234,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(102,126,234,0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* Sound wave decoration */
+    .sound-wave {
       position: absolute;
       bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 18px;
-      height: 12px;
-      background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
-      border-radius: 0 0 3px 3px;
-      box-shadow: inset 0 2px 3px rgba(0,0,0,0.6);
+      left: 50px;
+      right: 0;
+      height: 8px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--juke-purple) 0px, var(--juke-purple) 4px,
+        transparent 4px, transparent 8px,
+        var(--juke-violet) 8px, var(--juke-violet) 10px,
+        transparent 10px, transparent 16px
+      );
+      opacity: 0.5;
     }
 
-    /* Remove cable - no cable needed */
-    .mic-cable {
-      display: none;
-    }
-
-    /* Remove clip connector */
-    .mic-connector {
-      display: none;
-    }
-
-    /* Main content wrapper */
-    .content-wrapper {
-      margin-left: 80px;
-      padding: 20px;
+    .page-hero-inner {
       position: relative;
       z-index: 1;
-    }
-
-    .container {
-      max-width: 700px;
+      max-width: 640px;
       margin: 0 auto;
-      background: rgba(255,255,255,0.95);
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      color: #333;
+      padding-left: 30px;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .header-title {
+    .app-hero-logos {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
-      margin-bottom: 10px;
+      gap: 16px;
+      margin-bottom: 1.25rem;
     }
 
-    .logo {
+    .app-hero-logo {
       width: 80px;
+      height: 80px;
       border-radius: 20px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      object-fit: contain;
+      background: var(--white);
+      padding: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
-    h1 {
-      color: #2c3e50;
-      font-size: 2.8rem;
-      margin: 0;
+    .logo-divider {
+      color: rgba(255,255,255,0.3);
+      font-size: 1.5rem;
     }
 
-    h2 {
-      color: #2c3e50;
-      font-size: 2rem;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      text-align: center;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(102,126,234,0.2);
+      border: 1px solid rgba(102,126,234,0.45);
+      color: #a5b4fc;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 1rem;
     }
 
-    .subtitle {
-      color: #7f8c8d;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
+    .page-hero-inner h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      color: var(--white);
     }
 
-    header a {
-      color: #667eea;
-      text-decoration: none;
-      font-weight: 600;
-    }
+    .page-hero-inner h1 span { color: #a5b4fc; }
 
-    header a:hover {
-      text-decoration: underline;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
-      border-radius: 15px;
-      padding: 30px;
-      margin: 30px 0;
-      text-align: center;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      margin: 15px 0;
-    }
-
-    .download-section {
-      background: #f8f9fa;
-      border-radius: 15px;
-      padding: 30px;
-      margin: 30px 0;
-      border: 3px solid #667eea;
-      text-align: center;
-    }
-
-    .download-button {
-      display: inline-block;
-      padding: 20px 40px;
-      margin: 20px 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 12px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    }
-
-    .download-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-    }
-
-    .app-icon {
-      font-size: 2rem;
-      margin-right: 10px;
-    }
-
-    .how-it-works {
-      background: #fff;
-      border-radius: 15px;
-      padding: 30px;
-      margin: 30px 0;
-      border: 2px solid #e9ecef;
-    }
-
-    .how-it-works ol {
-      font-size: 1.1rem;
-      line-height: 2;
-      padding-left: 25px;
-    }
-
-    .how-it-works li {
-      margin: 10px 0;
-    }
-
-    .how-it-works p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
-
-    .instructions {
-      background: #fff3cd;
-      border-left: 4px solid #ffc107;
-      padding: 20px;
-      margin: 30px 0;
-      border-radius: 8px;
-    }
-
-    .instructions h3 {
-      margin-top: 0;
-      color: #856404;
-    }
-
-    .instructions ol {
-      margin: 10px 0;
-      padding-left: 20px;
-      color: #856404;
-    }
-
-    .qr-section {
-      text-align: center;
-      margin: 40px 0;
-      padding: 30px;
-      background: white;
-      border-radius: 15px;
-      border: 2px dashed #ccc;
-    }
-
-    .qr-section h3 {
-      color: #2c3e50;
-    }
-
-    .qr-code {
-      max-width: 250px;
-      margin: 20px auto;
-    }
-
-    .want-juke {
-      background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(238, 87, 101, 0.08) 100%);
-      border-radius: 15px;
-      padding: 30px;
-      margin: 40px 0;
-      text-align: center;
-      border: 2px solid #ff6b6b;
-    }
-
-    .want-juke h2 {
-      color: #c0392b;
-      margin-top: 0;
-    }
-
-    .want-juke p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #555;
-    }
-
-    .want-juke ul {
-      text-align: left;
-      max-width: 550px;
-      margin: 0 auto;
-      font-size: 1.05rem;
+    .page-hero-inner p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      font-weight: 300;
       line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 2rem;
     }
 
-    .contact-button {
-      display: inline-block;
-      padding: 15px 30px;
-      margin: 20px 0;
-      background: #c0392b;
-      color: white;
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--juke-purple), var(--juke-violet));
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.95rem;
       text-decoration: none;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: opacity 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(102,126,234,0.4);
     }
 
-    .contact-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(192, 57, 43, 0.4);
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 400;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s;
     }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    /* ── CONTENT ── */
+    .page-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 2rem 80px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--cerulean);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--juke-purple);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .content-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--juke-purple);
+    }
+
+    .content-card p {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .content-card p:last-child { margin-bottom: 0; }
+
+    /* ── HOW IT WORKS STEPS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .step-item {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--juke-purple), var(--juke-violet));
+      color: var(--white);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 50%;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+
+    .step-item h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    .step-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── FEATURES GRID ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-item {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .feature-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+
+    .feature-text h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+    .tag-soon {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ── INSTALL WARNING ── */
+    .install-notice {
+      background: #fff8e1;
+      border: 1px solid #ffc107;
+      border-left: 4px solid #ffc107;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .install-notice h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #856404;
+      margin-bottom: 0.5rem;
+    }
+
+    .install-notice ol {
+      margin-left: 1.25rem;
+      color: #856404;
+      font-size: 0.875rem;
+      line-height: 1.8;
+    }
+
+    /* ── TWO APP BAND ── */
+    .two-app-band {
+      background: linear-gradient(135deg, #f5f0ff, #ede8ff);
+      border: 1px solid #c4b5fd;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .two-app-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .two-app-band p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .two-app-band ul {
+      margin-left: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .two-app-band ul li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .page-divider { border: none; border-top: 1px solid var(--card-border); margin: 2.5rem 0; }
+
+    .cta-band {
+      background: linear-gradient(135deg, #f0f0ff, #e8e0ff);
+      border: 1px solid #c4b5fd;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-band p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
     footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 2rem;
       text-align: center;
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #dee2e6;
-      color: #6c757d;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
-    footer a {
-      color: #667eea;
-      text-decoration: none;
-      font-weight: 600;
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 0.5rem; transition: color 0.2s; }
+    footer a:hover { color: var(--cerulean-mid); }
+    .footer-links { margin-bottom: 0.75rem; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .mic-sidebar { display: none; }
+      .page-hero-inner { padding-left: 0; }
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    footer div:last-child {
-      margin-top: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 40px;
-      }
-
-      .content-wrapper {
-        margin-left: 50px;
-        padding: 10px;
-      }
-
-      .container {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      .header-title {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .mic-head {
-        width: 28px;
-        height: 45px;
-      }
-
-      .mic-connector {
-        width: 14px;
-        height: 18px;
-      }
-    }
+    .page-hero-inner > * { animation: fadeUp 0.5s ease both; }
+    .page-hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+    .page-hero-inner > *:nth-child(2) { animation-delay: 0.1s; }
+    .page-hero-inner > *:nth-child(3) { animation-delay: 0.18s; }
+    .page-hero-inner > *:nth-child(4) { animation-delay: 0.26s; }
+    .page-hero-inner > *:nth-child(5) { animation-delay: 0.34s; }
   </style>
 </head>
 <body>
-  <!-- Sidebar with microphone stand -->
-  <div class="sidebar">
-    <div class="mic-head"></div>
-    <div class="mic-handle"></div>
-    <div class="mic-connector"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">
+    <img src="../DFlogo.png" alt="DataForge Logo">
+    <span class="nav-logo-text">DataForge</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#apps">Apps</a></li>
+    <li><a href="../index.html#custom">Custom Dev</a></li>
+    <li><a href="../index.html#guides">Guides</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../about.html" class="nav-cta">About Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="mic-sidebar">
+    <div class="mic-head-deco"></div>
+    <div class="mic-handle-deco"></div>
+    <div class="mic-pole-deco"></div>
+    <div class="mic-base-deco"></div>
   </div>
-
-  <div class="content-wrapper">
-    <div class="container">
-      <header>
-        <div class="header-title">
-          <img src="Juke_icon.png" alt="The Juke Logo" class="logo">
-          <h1>The Juke</h1>
-           <img src="TheJuke-ForBands_icon.png" alt="The Juke-For Bands Logo" class="logo">
-        </div>
-        <p class="subtitle">Live Jukebox</p>
-        <p><a href="../index.html">🏠 Back to Home</a></p>
-      </header>
-
-      <!-- HERO SECTION -->
-      <div class="hero">
-        <p><strong>Turn your night into a party!</strong></p>
-        <p>Request songs, tip the band, and hear your picks played live on stage — all from your phone.</p>
-      </div>
-
-      <!-- ABOUT / APP INFO -->
-      <div class="how-it-works">
-        <h2>About This App</h2>
-        <p>
-          <strong>The Juke</strong> was created specifically for Nashville North events.  
-          It gives fans a fun, digital way to browse available songs, send requests, and tip the band without standing in line or shouting over the crowd.  
-          The app uses no accounts, no passwords, and no personal profiles — just simple, fast song requests.
-        </p>
-      </div>
-
-      <!-- DOWNLOAD SECTION -->
-      <div class="download-section">
-        <h2 style="margin-top: 0;">📥 Get The App</h2>
-        <a href="YOUR_CUSTOMER_APK_URL_HERE" class="download-button">
-          <span class="app-icon">🎵</span>
-          Download for Android
-        </a>
-        <p style="color: #6c757d; margin-top: 10px;">
-          Free to download • Request songs live • Pay via Venmo or cash
-        </p>
-      </div>
-
-      <!-- HOW IT WORKS -->
-      <div class="how-it-works">
-        <h2>How It Works</h2>
-        <ol>
-          <li>📱 <strong>Download the app</strong></li>
-          <li>🎵 <strong>Browse the song list</strong> at the show</li>
-          <li>💰 <strong>Pick a song & pay</strong> via Venmo or cash</li>
-          <li>🎸 <strong>Your request is performed live!</strong></li>
-        </ol>
-      </div>
-
-      <!-- INSTALLATION INSTRUCTIONS -->
-      <div class="instructions">
-        <h3>📋 Installation Steps (If downloading outside Play Store)</h3>
-        <ol>
-          <li>Tap the download button above</li>
-          <li>Your phone may warn about "Unknown Sources"</li>
-          <li>Allow installation in <strong>Settings → Install Unknown Apps</strong></li>
-          <li>Tap <strong>Install</strong></li>
-          <li>Open The Juke and start requesting 🎉</li>
-        </ol>
-      </div>
-
-      <!-- QR CODE -->
-      <div class="qr-section">
-        <h3>🎤 At the Show?</h3>
-        <p>(Coming Soon!) Scan to instantly download The Juke on your phone:</p>
-        <img src="YOUR_QR_IMAGE_HERE.png" class="qr-code" alt="QR Code for The Juke Download">
-      </div>
-
-      <!-- ADD THE JUKE TO YOUR VENUE / BAND -->
-      <div class="want-juke">
-        <h2>Bring <em>The Juke</em> to Your Band or Venue 🎤</h2>
-        <p>
-          Want to let your crowd request songs, tip the band, and stay engaged all night?
-          The Juke now includes a companion <strong>Band & Venue Manager App</strong> coming soon to Google Play.
-        </p>
-
-        <p>With the manager app, performers and venues will be able to:</p>
-
-        <ul>
-          <li>🎵 Build and customize your own live song list</li>
-          <li>🕹️ Enable or disable requests in real time during shows</li>
-          <li>📋 Update set lists instantly — no re-uploading or rebuilding</li>
-          <li>📱 Manage multiple events, rotating bands, or weekly lineups</li>
-          <li>⚡ Sync updates instantly with your audience's Juke app</li>
-        </ul>
-
-        <p style="margin-top: 20px;">
-          No coding, no custom builds — just download, set up your profile, and you're ready to go.
-        </p>
-
-        <a href="../contact.html?reason=Beta+Testing+Request" class="contact-button">
-          Notify Me When It's Live
-        </a>
-      </div>
-
-      <section>
-        <p>
-  Learn how to engage your audience with <strong>The Juke - Audience</strong>, track feedback, and monitor interaction metrics.
-  <a href="../Guides/Guide-TheJuke.html">&rarr; View Guide</a>
-        </p>
-      </section>
-
-      
-      <!-- PRIVACY POLICY -->
-      <div class="how-it-works">
-        <h2>Privacy Policy</h2>
-        <p>
-          The Juke does not collect or store personal information.  
-          No accounts, emails, names, or payment info are stored by the app.  
-          Payments are handled externally via Venmo, Cash App, or cash and are not processed through the app.
-        </p>
-        <p style="font-size: 1rem; color: #555;">
-          Full privacy policy available here:  
-          <a href="juke-privacy-policy.html" target="_blank">View Privacy Policy</a>
-        </p>
-        <p style="font-size: 1rem; color: #555;">
-          Full Band/Venue privacy policy available here:  
-          <a href="juke-band-privacy-policy.html" target="_blank">View Band & Venue Privacy Policy</a>
-        </p>
-      </div>
-
-      <!-- DATA DELETION REQUEST -->
-      <div class="how-it-works">
-        <h2>Request Data Deletion</h2>
-        <p>
-          Because The Juke does not store user accounts or personal data,  
-          the only deletable data is optional venue-related analytics if you operate a venue version.
-        </p>
-        <a href="../contact.html?reason=Data+Deletion+Request" class="contact-button">
-          Request Data Deletion
-        </a>
-      </div>
-
-      <!-- FOOTER -->
-      <footer>
-        <div>© 2025 DataForge | Built with ❤️ by Renee</div>
-        <div>
-          <a href="../Site_Level_Docs/privacy.html" target="_blank">Privacy Policy</a> |
-          <a href="../Site_Level_Docs/terms.html" target="_blank">Terms of Service</a> |
-          <a href="../Site_Level_Docs/cookies.html" target="_blank">Cookie Policy</a> |
-          <a href="../contact.html" target="_blank">Contact Form</a>
-        </div>
-      </footer>
+  <div class="sound-wave"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="app-hero-logos">
+      <img class="app-hero-logo" src="Juke_icon.png" alt="The Juke Logo">
+      <span class="logo-divider">+</span>
+      <img class="app-hero-logo" src="TheJuke-ForBands_icon.png" alt="The Juke For Bands Logo">
+    </div>
+    <div class="hero-badge">🎵 Live Jukebox App</div>
+    <h1>The <span>Juke</span></h1>
+    <p>Turn your night into a party — request songs, tip the band, and hear your picks live on stage. All from your phone.</p>
+    <div class="hero-actions">
+      <a href="YOUR_CUSTOMER_APK_URL_HERE" class="btn-primary">🎵 Download for Android</a>
+      <a href="../Guides/Guide-TheJuke.html" class="btn-secondary">📖 View Guide</a>
     </div>
   </div>
-</body>
-</html>
+</div>
+
+<!-- CONTENT -->
+<div class="page-content">
+
+  <a class="back-link" href="../index.html">← Back to DataForge</a>
+
+  <!-- ABOUT -->
+  <div class="section-label">What It Is</div>
+  <h2 class="section-title">About The Juke</h2>
+  <div class="content-card">
+    <p><strong>The Juke</strong> was created for Nashville North events to give fans a fun, digital way to browse available songs, send requests, and tip the band — without standing in line or shouting over the crowd.</p>
+    <p>The app uses no accounts, no passwords, and no personal profiles — just simple, fast song requests. Payments are handled via Venmo or cash, completely outside the app.</p>
+  </div>
+
+  <hr class="page-divider">
+
+  <!-- HOW IT WORKS -->
+  <div class="section-label">For the Audience</div>
+  <h2 class="section-title">How It Works</h2>
+
+  <div class="steps">
+    <div class="step-item">
+      <span class="step-icon">📱</span>
+      <div class="step-number">1</div>
+      <h3>Download the App</h3>
+      <p>Free to download for Android.</p>
+    </div>
+    <div class="step-item">
+      <span class="step-icon">🎵</span>
+      <div class="step-number">2</div>
+      <h3>Browse the Song List</h3>
+      <p>See what the band is playing tonight.</p>
+    </div>
+    <div class="step-item">
+      <span class="step-icon">💰</span>
+      <div class="step-number">3</div>
+      <h3>Pick a Song & Pay</h3>
+      <p>Tip via Venmo or cash at the show.</p>
+    </div>
+    <div class="step-item">
+      <span class="step-icon">🎸</span>
+      <div class="step-number">4</div>
+      <h3>Hear It Live!</h3>
+      <p>Your request gets performed on stage.</p>
+    </div>
+  </div>
+
+  <div class="install-notice">
+    <h3>📋 Installing Outside the Play Store?</h3>
+    <ol>
+      <li>Tap the Download button above</li>
+      <li>Your phone may warn about "Unknown Sources"</li>
+      <li>Allow installation in <strong>Settings → Install Unknown Apps</strong></li>
+      <li>Tap <strong>Install</strong>, then open The Juke and start requesting 🎉</li>
+    </ol>
+  </div>
+
+  <hr class="page-divider">
+
+  <!-- FOR BANDS -->
+  <div class="two-app-band">
+    <div class="section-label" style="color:var(--juke-violet);">For Performers & Venues</div>
+    <h2>Bring The Juke to Your Band or Venue 🎤</h2>
+    <p>Want to let your crowd request songs, tip the band, and stay engaged all night? The Juke includes a companion <strong>Band &amp; Venue Manager App</strong> coming soon to Google Play.</p>
+    <p>With the manager app, performers and venues will be able to:</p>
+    <ul>
+      <li>🎵 Build and customize your own live song list</li>
+      <li>🕹️ Enable or disable requests in real time during shows</li>
+      <li>📋 Update set lists instantly — no re-uploading or rebuilding</li>
+      <li>📱 Manage multiple events, rotating bands, or weekly lineups</li>
+      <li>⚡ Sync updates instantly with your audience's Juke app</li>
+    </ul>
+    <p>No coding, no custom builds — just download, set up your profile, and you're ready to go.</p>
+    <div style="margin-top:1.5rem;">
+      <a href="../contact.html?reason=Beta+Testing+Request" class="btn-primary">🔔 Notify Me When It's Live</a>
+    </div>
+  </div>
+
+  <hr class="page-divider">
+
+  <!-- PRIVACY -->
+  <div class="content-card">
+    <div class="section-label">Privacy</div>
+    <h2 class="section-title" style="font-size:1.2rem; margin-bottom:0.75rem;">Your Data</h2>
+    <p>The Juke does not collect or store personal information. No accounts, emails, names, or payment info are stored by the audience app. Payments are handled externally via Venmo or cash.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1rem;">
+      <a href="juke-privacy-policy.html" target="_blank" style="display:inline-flex; align-items:center; gap:6px; background:var(--bg); border:1px solid var(--card-border); border-radius:999px; padding:8px 16px; font-size:0.875rem; color:var(--juke-purple); font-weight:500; text-decoration:none;">📄 Audience Privacy Policy</a>
+      <a href="juke-band-privacy-policy.html" target="_blank" style="display:inline-flex; align-items:center; gap:6px; background:var(--bg); border:1px solid var(--card-border); border-radius:999px; padding:8px 16px; font-size:0.875rem; color:var(--juke-violet); font-weight:500; text-decoration:none;">🎤 Band & Venue Privacy Policy</a>
+    </div>
+    <div style="margin-top:1rem;">
+      <a href="../contact.html?reason=Data+Deletion+Request" class="btn-primary" style="font-size:0.875rem; padding:10px 20px;">Request Data Deletion</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="../about.html">About</a>
+    <a href="../Site_Level_Docs/privacy.html" target="_blank" rel="n
