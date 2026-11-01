@@ -9,9 +9,9 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The Juke — live jukebox app for events. Request songs, tip the band, and hear your picks live on stage. By DataForge." />
+  <meta name="description" content="The Juke — live jukebox web app for events. Request songs, tip the band, and hear your picks live on stage. Nothing to download. By DataForge." />
   <title>The Juke | DataForgeApps</title>
-  <link rel="icon" type="image/png" href="/DFlogo-32x32.png">
+  <link rel="icon" type="image/png" href="../DFlogo-32x32.png">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
   <style>
@@ -65,13 +65,7 @@
       height: 64px;
     }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo img { height: 36px; width: auto; }
 
     .nav-logo-text {
@@ -82,12 +76,7 @@
       letter-spacing: -0.02em;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
 
     .nav-links a {
       font-size: 0.875rem;
@@ -121,14 +110,7 @@
     }
 
     /* Mic stand left sidebar decoration */
-    .mic-sidebar {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 50px;
-      z-index: 2;
-    }
+    .mic-sidebar { position: absolute; left: 0; top: 0; bottom: 0; width: 50px; z-index: 2; }
 
     .mic-head-deco {
       position: absolute;
@@ -146,11 +128,7 @@
       content: '';
       position: absolute;
       top: 5px; left: 4px; right: 4px; bottom: 8px;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent, transparent 1.5px,
-        rgba(136,136,136,0.4) 1.5px, rgba(136,136,136,0.4) 2.5px
-      );
+      background: repeating-linear-gradient(0deg, transparent, transparent 1.5px, rgba(136,136,136,0.4) 1.5px, rgba(136,136,136,0.4) 2.5px);
       border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
     }
 
@@ -216,31 +194,13 @@
       left: 50px;
       right: 0;
       height: 8px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--juke-purple) 0px, var(--juke-purple) 4px,
-        transparent 4px, transparent 8px,
-        var(--juke-violet) 8px, var(--juke-violet) 10px,
-        transparent 10px, transparent 16px
-      );
+      background: repeating-linear-gradient(90deg, var(--juke-purple) 0px, var(--juke-purple) 4px, transparent 4px, transparent 8px, var(--juke-violet) 8px, var(--juke-violet) 10px, transparent 10px, transparent 16px);
       opacity: 0.5;
     }
 
-    .page-hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 640px;
-      margin: 0 auto;
-      padding-left: 30px;
-    }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding-left: 30px; }
 
-    .app-hero-logos {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 1.25rem;
-    }
+    .app-hero-logos { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 1.25rem; }
 
     .app-hero-logo {
       width: 80px;
@@ -252,10 +212,7 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
-    .logo-divider {
-      color: rgba(255,255,255,0.3);
-      font-size: 1.5rem;
-    }
+    .logo-divider { color: rgba(255,255,255,0.3); font-size: 1.5rem; }
 
     .hero-badge {
       display: inline-flex;
@@ -293,12 +250,7 @@
       margin: 0 auto 2rem;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--juke-purple), var(--juke-violet));
@@ -332,11 +284,7 @@
     .btn-secondary:hover { background: rgba(255,255,255,0.18); }
 
     /* ── CONTENT ── */
-    .page-content {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 64px 2rem 80px;
-    }
+    .page-content { max-width: 900px; margin: 0 auto; padding: 64px 2rem 80px; }
 
     .back-link {
       display: inline-flex;
@@ -378,22 +326,11 @@
       border-left: 4px solid var(--juke-purple);
     }
 
-    .content-card p {
-      color: var(--text-muted);
-      font-size: 0.975rem;
-      line-height: 1.8;
-      margin-bottom: 0.75rem;
-    }
-
+    .content-card p { color: var(--text-muted); font-size: 0.975rem; line-height: 1.8; margin-bottom: 0.75rem; }
     .content-card p:last-child { margin-bottom: 0; }
 
     /* ── HOW IT WORKS STEPS ── */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
+    .steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
 
     .step-item {
       background: var(--white);
@@ -431,12 +368,7 @@
     .step-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
 
     /* ── FEATURES GRID ── */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
 
     .feature-item {
       background: var(--white);
@@ -474,7 +406,7 @@
       vertical-align: middle;
     }
 
-    /* ── INSTALL WARNING ── */
+    /* ── HOME SCREEN NOTICE ── */
     .install-notice {
       background: #fff8e1;
       border: 1px solid #ffc107;
@@ -492,12 +424,8 @@
       margin-bottom: 0.5rem;
     }
 
-    .install-notice ol {
-      margin-left: 1.25rem;
-      color: #856404;
-      font-size: 0.875rem;
-      line-height: 1.8;
-    }
+    .install-notice ul { margin-left: 1.25rem; color: #856404; font-size: 0.875rem; line-height: 1.8; }
+    .install-notice p { color: #856404; font-size: 0.875rem; line-height: 1.7; margin-top: 0.75rem; }
 
     /* ── TWO APP BAND ── */
     .two-app-band {
@@ -516,23 +444,9 @@
       margin-bottom: 0.5rem;
     }
 
-    .two-app-band p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      margin-bottom: 0.75rem;
-    }
-
-    .two-app-band ul {
-      margin-left: 1.25rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .two-app-band ul li {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.8;
-    }
+    .two-app-band p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 0.75rem; }
+    .two-app-band ul { margin-left: 1.25rem; margin-bottom: 1.25rem; }
+    .two-app-band ul li { color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; }
 
     .page-divider { border: none; border-top: 1px solid var(--card-border); margin: 2.5rem 0; }
 
@@ -620,11 +534,12 @@
       <span class="logo-divider">+</span>
       <img class="app-hero-logo" src="TheJuke-ForBands_icon.png" alt="The Juke For Bands Logo">
     </div>
-    <div class="hero-badge">🎵 Live Jukebox App</div>
+    <div class="hero-badge">🎵 Live Jukebox Web App</div>
     <h1>The <span>Juke</span></h1>
-    <p>Turn your night into a party — request songs, tip the band, and hear your picks live on stage. All from your phone.</p>
+    <p>Turn your night into a party — request songs, tip the band, and hear your picks live on stage. All from your phone's browser. Nothing to download.</p>
     <div class="hero-actions">
-      <a href="YOUR_CUSTOMER_APK_URL_HERE" class="btn-primary">🎵 Download for Android</a>
+      <a href="https://the-juke---nashville.web.app/" target="_blank" rel="noopener" class="btn-primary">🎵 Launch Audience App</a>
+      <a href="https://thejuke-nashville-band.web.app/" target="_blank" rel="noopener" class="btn-secondary">🎤 Launch Band App</a>
       <a href="../Guides/Guide-TheJuke.html" class="btn-secondary">📖 View Guide</a>
     </div>
   </div>
@@ -640,7 +555,7 @@
   <h2 class="section-title">About The Juke</h2>
   <div class="content-card">
     <p><strong>The Juke</strong> was created for Nashville North events to give fans a fun, digital way to browse available songs, send requests, and tip the band — without standing in line or shouting over the crowd.</p>
-    <p>The app uses no accounts, no passwords, and no personal profiles — just simple, fast song requests. Payments are handled via Venmo or cash, completely outside the app.</p>
+    <p>The audience app uses no accounts, no passwords, and no personal profiles — just simple, fast song requests. It runs right in your phone's browser, so there's nothing to install. Payments are handled via Venmo or cash, completely outside the app.</p>
   </div>
 
   <hr class="page-divider">
@@ -653,8 +568,8 @@
     <div class="step-item">
       <span class="step-icon">📱</span>
       <div class="step-number">1</div>
-      <h3>Download the App</h3>
-      <p>Free to download for Android.</p>
+      <h3>Open the App</h3>
+      <p>Free in any phone browser. Nothing to download.</p>
     </div>
     <div class="step-item">
       <span class="step-icon">🎵</span>
@@ -677,13 +592,12 @@
   </div>
 
   <div class="install-notice">
-    <h3>📋 Installing Outside the Play Store?</h3>
-    <ol>
-      <li>Tap the Download button above</li>
-      <li>Your phone may warn about "Unknown Sources"</li>
-      <li>Allow installation in <strong>Settings → Install Unknown Apps</strong></li>
-      <li>Tap <strong>Install</strong>, then open The Juke and start requesting 🎉</li>
-    </ol>
+    <h3>📲 Add The Juke to Your Home Screen</h3>
+    <ul>
+      <li><strong>iPhone (Safari):</strong> Tap the Share button, then <strong>Add to Home Screen</strong></li>
+      <li><strong>Android (Chrome):</strong> Tap the ⋮ menu, then <strong>Add to Home screen</strong> or <strong>Install app</strong></li>
+    </ul>
+    <p><strong>Tip:</strong> If someone texts you the link, open it in Safari or Chrome instead of the in-app browser inside your messaging app. Some in-app browsers block parts of the app from loading.</p>
   </div>
 
   <hr class="page-divider">
@@ -692,8 +606,8 @@
   <div class="two-app-band">
     <div class="section-label" style="color:var(--juke-violet);">For Performers & Venues</div>
     <h2>Bring The Juke to Your Band or Venue 🎤</h2>
-    <p>Want to let your crowd request songs, tip the band, and stay engaged all night? The Juke includes a companion <strong>Band &amp; Venue Manager App</strong> coming soon to Google Play.</p>
-    <p>With the manager app, performers and venues will be able to:</p>
+    <p>Want to let your crowd request songs, tip the band, and stay engaged all night? The Juke includes a companion <strong>Band &amp; Venue Manager App</strong> that runs in your browser too.</p>
+    <p>With the manager app, performers and venues can:</p>
     <ul>
       <li>🎵 Build and customize your own live song list</li>
       <li>🕹️ Enable or disable requests in real time during shows</li>
@@ -701,9 +615,9 @@
       <li>📱 Manage multiple events, rotating bands, or weekly lineups</li>
       <li>⚡ Sync updates instantly with your audience's Juke app</li>
     </ul>
-    <p>No coding, no custom builds — just download, set up your profile, and you're ready to go.</p>
+    <p>No coding, no custom builds — just open the app, sign in, and you're ready to go.</p>
     <div style="margin-top:1.5rem;">
-      <a href="../contact.html?reason=Beta+Testing+Request" class="btn-primary">🔔 Notify Me When It's Live</a>
+      <a href="https://thejuke-nashville-band.web.app/" target="_blank" rel="noopener" class="btn-primary">🎤 Launch Band App</a>
     </div>
   </div>
 
@@ -729,4 +643,13 @@
 <footer>
   <div class="footer-links">
     <a href="../about.html">About</a>
-    <a href="../Site_Level_Docs/privacy.html" target="_blank" rel="n
+    <a href="../Site_Level_Docs/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="../Site_Level_Docs/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+    <a href="../Site_Level_Docs/cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+    <a href="../contact.html" target="_blank" rel="noopener noreferrer">Contact Form</a>
+  </div>
+  <div>© 2025 DataForge Apps | Built with ❤️ by Renee</div>
+</footer>
+
+</body>
+</html>
